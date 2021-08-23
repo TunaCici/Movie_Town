@@ -2,6 +2,7 @@ from flask import Flask
 from flask import url_for
 from flask import render_template
 from flask import request
+from utils import imdb_helper
 
 from markupsafe import escape
 

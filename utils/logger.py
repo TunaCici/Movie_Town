@@ -1,9 +1,4 @@
 """
-Made by Project Lexus Team
-Name: logger.py
-Purpose: Makes logging easier for the modules.
-Peints logs to both the console and the file.
-
 Author: Tuna Cici
 Created: 19/08/2021
 """
@@ -13,8 +8,8 @@ import inspect
 import logging
 import logging.handlers
 
-from . import config
-class LexusLogger:
+import config
+class CustomLogger:
     #class member(s)
     logger = None
 
@@ -33,7 +28,7 @@ class LexusLogger:
 
         #setup logging to file, rotating every minute
         filelog = logging.handlers.TimedRotatingFileHandler(config.LOG_FILE_DIR,
-                        when='m', interval=1)
+                        when='m', interval=1, encoding="utf-8")
         filelog.setLevel(logging.DEBUG)
         filelog.setFormatter(formatter)
         filelog.namer = lambda name: name.replace(".txt", "") + ".txt"

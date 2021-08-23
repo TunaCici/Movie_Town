@@ -1,0 +1,9 @@
+2021-08-23 23:34:45,802 [INFO] [imdb_helper.py] Started main function.
+2021-08-23 23:34:45,802 [INFO] [imdb_helper.py] Opening files...
+2021-08-23 23:34:45,802 [INFO] [imdb_helper.py] Files opened.
+2021-08-23 23:34:57,763 [INFO] [imdb_helper.py] Started main function.
+2021-08-23 23:34:57,764 [INFO] [imdb_helper.py] Opening files...
+2021-08-23 23:34:57,764 [INFO] [imdb_helper.py] Files opened.
+2021-08-23 23:35:14,645 [INFO] [imdb_helper.py] Started main function.
+2021-08-23 23:35:14,646 [INFO] [imdb_helper.py] Opening files...
+2021-08-23 23:35:14,646 [INFO] [imdb_helper.py] Files opened.
