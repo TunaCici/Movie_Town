@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--Import Bootstrap 5 CSS-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+          crossorigin="anonymous">
+          <link rel="stylesheet"
+                href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <!--End import-->
+    <!-- Import Custom CSS-->
+    <link rel="stylesheet" href="/static/style.css">
+    <!-- End import-->
+    <!--Import Font-->
+
+    <!-- End import-->
+    <title>Welcome Page</title>
+  </head>
+
+  <body class="background-primary font-primary font-large">
+    <header>
+      <!--Header start-->
+      <div class ="container p-2">
+        <nav class="navbar navbar-expand-md navbar-light py-3 fixed-top background-blur">
+          <a href="#">
+            <img src="/static/logo/main_logo.png" alt="Movie Town Logo" height="60rem" class="d-inline-block align-top">
+          </a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#toggleMenu"
+            aria-controls="toggleMenu"
+            aria-expanded="false"
+            aria-label="Toggle Navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          
+          <div class="collapse navbar-collapse", id="toggleMenu">
+            <!--Left side-->
+            <ul class="navbar-nav text-center">
+              <li>
+                <a class="nav-link", href="#">Home</a>
+              </li>
+              <li>
+                <a class="nav-link", href="#">Search</a>
+              </li>
+              <li>
+                <a class="nav-link", href="#">About</a>
+              </li>
+            </ul>
+
+            <!--Right Side-->
+            <ul class="navbar-nav text-center ms-auto">
+              <li>
+                <a class="nav-link", href="#">Login</a>
+              </li>
+              <li>
+                <a class="nav-link", href="#">Signup</a>
+              </li>
+            </ul>
+
+          </div>
+        </nav>
+      </div>
+      <!--Header end-->
+    </header>
+    <main>
+      <!--Main start-->
+      <!--Featured Label-->
+      <div class="container text-center p-2">
+        <h2 class="font-bold font-xlarge" style="color: #484848;">~Featured Movies~</h2>
+      </div>
+      <!-- carousel section-->
+      <div
+        id="carouselShowcase" 
+        class="container p-3 carousel slide"
+        data-bs-interval="3000"
+        data-bs-ride="carousel"
+      >
+      <!--Indicators-->
+        <div class="carousel-indicators">
+          <button
+            class="active"
+            type="button"
+            data-bs-target="#carouselShowcase"
+            data-bs-slide-to="0"
+            aria-current="true"
+            aria-label="Slide 1"
+          >
+          </button>
+          <button
+            type="button"
+            data-bs-target="#carouselShowcase"
+            data-bs-slide-to="1"
+            aria-current="true"
+            aria-label="Slide 2"
+          >
+          </button>
+          <button
+            type="button"
+            data-bs-target="#carouselShowcase"
+            data-bs-slide-to="2"
+            aria-current="true"
+            aria-label="Slide 3"
+          >
+          </button>
+        </div>
+      <!--Images-->
+        <div class="carousel-inner" style="border-radius: 1rem;" >
+          <div class="carousel-item active">
+            <img
+              src="/static/quentin_movies.jpeg"
+              class="d-block w-100"
+              alt="Movie One"
+            >
+            <div class="carousel-caption d-none d-md-block">
+              <h5 class="drop-shadow">Quentin Tarantino Movies</h5>
+              <p class="drop-shadow">The king of pop-culture is back! Check out his movies</p>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <img
+              src="/static/lotr_trilogy.jpg"
+              class="d-block w-100"
+              alt="Movie Two"
+            >
+            <div class="carousel-caption d-none d-md-block">
+              <h5 class="drop-shadow">The Lord of The Rings Trilogy</h5>
+              <p class="drop-shadow">Explore the epic adventure in the Middle-Earth</p>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <img
+              src="/static/matrix_trilogy.jpg"
+              class="d-block w-100"
+              alt="Movie Three"
+            >
+            <div class="carousel-caption d-none d-md-block">
+              <h5 class="drop-shadow">The Matrix Trilogy</h5>
+              <p class="drop-shadow">Do you think we live in a simulation? Then, check out The Matrix</p>
+            </div>
+          </div>
+        </div>
+        <!--Buttons-->
+        <button
+          class="carousel-control-prev"
+          type="button"
+          data-bs-target="#carouselShowcase"
+          data-bs-slide="prev"
+        >
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button
+          class="carousel-control-next"
+          type="button"
+          data-bs-target="#carouselShowcase"
+          data-bs-slide="next"
+        >
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+      <!--Info about the search-->
+      <section class="text-light p-5 text-center" style="background-color: #e3a6e6;">
+        <div class="container">
+          <div class="d-lg-flex">
+            <div>
+              <h1 class="drop-shadow" style="font-family: Manrope;">Searching for a movie?</h1>
+              <p>
+                Worry not! We have many different movies for you to watch. Just type what you are looking for
+                on our Search page and we will find that in no time. There are way too many movies in our database
+                (77.878 to be exact!) so you can be sure that we have what you want.
+              </p>
+            </div>
+            <img
+              class="img-fluid ms-auto"
+              src="/static/finding_nemo.gif"
+              alt="Finding Nemo"
+              style="border-radius: 0.75rem;"  
+            >
+          </div>
+        </div>
+      </section>
+      <!--Info about the watchlist-->
+      <section class="text-light p-5 text-center" style="background-color: #A12831;">
+        <div class="container">
+          <div class="d-lg-flex">
+            <img
+              class="img-fluid ms-auto"
+              src="/static/john_travolta.gif"
+              alt="John Travolta"
+              style="border-radius: 0.75rem;"  
+            >
+            <div>
+              <h1 class="drop-shadow" style="font-family: Manrope;">Create your own Watchlist</h1>
+              <p>
+                Now that you found your special movie, add it to your watchlist that so you can keep
+                all of your movies organized. I know I know, you might forget about it in the future.
+                BUT what if I say we can send you a reminder mail about it? Now this is getting interesting.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!--Info about signing up-->
+      <!--Info about the search-->
+      <section class="text-light p-5 text-center" style="background-color: #DA5C07;">
+        <div class="container">
+          <div class="d-lg-flex">
+            <div>
+              <h1 class="drop-shadow" style="font-family: Manrope;">Sign up now!</h1>
+              <p>
+                All of these features and more are available for free! All you need is to
+                create an account. Every sensitive info of yours will be encrypted in our database.
+                So, just relax and enjoy your movie night &lt;3
+              </p>
+            </div>
+            <img
+              class="img-fluid ms-auto"
+              src="/static/the_joker.gif"
+              alt="Finding Nemo"
+              style="border-radius: 0.75rem;"  
+            >
+          </div>
+        </div>
+      </section>
+      <!--Main end-->
+    </main>
+    <footer class="p-5 bg-dark text-white text-center position-relative">
+      <div class="container">
+        <p class="lead">No Copyright &copy; 2021 Tuna Cici</p>
+        <a href="#" class="position-absolute bottom-0 end-0 p-5">
+          <i class="bi bi-arrow-up-circle h1"></i>
+        </a>
+      </div>
+    </footer>
+
+    <!--Import Bootstrap 5 JS and Bundles-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
+    <!--End import-->
+  </body>
+</html>

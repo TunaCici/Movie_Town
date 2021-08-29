@@ -1,0 +1,25 @@
+.border {
+    border-style: solid;
+    border-color: red;
+}
+
+.drop-shadow {
+    text-shadow: 2px 2px 4px #000000;
+}
+
+.background-blur {
+    backdrop-filter: url(filters.svg#filter) blur(6px) brightness(100%);
+    border-radius: 1rem;
+}
+
+.rounded-corner {
+    border-radius: 0.75rem;
+}
+
+.background-primary {
+    background-color: #E2E2E2;
+}
+
+.background-secondary {
+    background-color: #171717;
+}
