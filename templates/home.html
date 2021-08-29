@@ -26,7 +26,7 @@
       <!--Header start-->
       <div class ="container p-2">
         <nav class="navbar navbar-expand-md navbar-light py-3 fixed-top background-blur">
-          <a href="#">
+          <a href="{{ url_for('home') }}">
             <img src="/static/logo/main_logo.png" alt="Movie Town Logo" height="60rem" class="d-inline-block align-top">
           </a>
           <button
@@ -45,7 +45,7 @@
             <!--Left side-->
             <ul class="navbar-nav text-center">
               <li>
-                <a class="nav-link", href="#">Home</a>
+                <a class="nav-link", href="{{ url_for('home') }}">Home</a>
               </li>
               <li>
                 <a class="nav-link", href="#">Search</a>
@@ -58,10 +58,10 @@
             <!--Right Side-->
             <ul class="navbar-nav text-center ms-auto">
               <li>
-                <a class="nav-link", href="#">Login</a>
+                <a class="nav-link", href="{{ url_for('login') }}">Login</a>
               </li>
               <li>
-                <a class="nav-link", href="#">Signup</a>
+                <a class="nav-link", href="{{ url_for('sign_up') }}">Sign up   </a>
               </li>
             </ul>
 

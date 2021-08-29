@@ -22,7 +22,7 @@
     />
     <link rel="stylesheet" href="/static/sign-up.css">
     <!--End import-->
-    <title>Sign-up Page</title>
+    <title>Login Page</title>
 </head>
 <body>
     <div class="vh-100 d-flex justify-content-center align-items-center">
@@ -40,49 +40,17 @@
         <div class="container w-100">
             <div class="d-flex flex-column min-vh-100 justify-content-center align-items-center">
                 <form>
-                    <h1 class="text-center">create your account</h1>
+                    <h1 class="text-center">login to your account</h1>
                     <div class="form-text text-center">
-                        all your information is safe on our database
+                        you are about to experience something amazing
                     </div>
                     <div class="container p-5">
-                        <!-- 2 column grid layout with text inputs for the first and last names -->
-                        <div class="row mb-4">
-                            <div class="col">
-                                <div class="form-outline">
-                                    <input type="text" id="name" class="form-control" />
-                                    <label class="form-label" for="name">First name</label>
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="form-outline">
-                                    <input type="text" id="surName" class="form-control" />
-                                    <label class="form-label" for="surName">Last name</label>
-                                </div>
-                            </div>
-                        </div>
-                        
                         <!--Username input-->
                         <div class="input-group mb-4">
                             <span class="input-group-text" id="userName">@</span>
                             <input type="text" class="form-control" placeholder="Username" aria-label="Username"
                               aria-describedby="basic-addon1" />
                           </div>
-            
-                        <!-- Email input -->  
-                        <div class="form-outline">
-                            <input
-                              type="text"
-                              id="mailAddress"
-                              class="form-control"
-                              aria-describedby="mailDescription"
-                            />
-                            <label class="form-label" for="mailAddress">Email address</label>
-                        </div>
-                        <div id="mailDescription" class="form-text">
-                            we'll never share your email with anyone else.
-                        </div>
-
-                        <br>
 
                         <!-- Password input one-->
                         <div class="form-outline mb-4">
@@ -90,29 +58,16 @@
                             <label class="form-label" for="passwordOne">Password</label>
                         </div>
 
-                        <!-- Password input two-->
-                        <div class="form-outline mb-4">
-                            <input type="password" id="passwordTwo" class="form-control" />
-                            <label class="form-label" for="passwordTwo">Confirm password</label>
-                        </div>
-                        
-                        <!-- Default checkbox -->
-                        <div class="form-check">
-                            <input
-                            class="form-check-input"
-                            type="checkbox"
-                            value=""
-                            id="accept"
-                            />
-                            <label class="form-check-label" for="accept">
-                            I agree to the Terms of Use.
-                            </label>
-                        </div>
+                        <a href="#">
+                            <div class="form-text text-center text-primary">
+                                forget your password?
+                            </div>
+                        </a>
 
                         <br>
 
                         <!-- Submit button -->
-                        <button type="submit" class="btn btn-secondary btn-block text-light">Sign up</button>
+                        <button type="submit" class="btn btn-secondary btn-block text-light">Sign in</button>
                     </div>
                 </form>
             </div>
