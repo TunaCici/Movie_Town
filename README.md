@@ -17,6 +17,8 @@ experience. Such as Elasticsearch to make searching better or
 Redis to reduce loading times.
 And more…
 
+![Showing Home Page](/data/home.gif)
+
 ## The Design
 I will try to design both HTML 
 and CSS myself. If things get 
@@ -32,6 +34,8 @@ Again, if I can not make these
 things, I will settle on a 
 template. Since design is not my 
 main problem here.
+
+![Showing Home Page](/data/side_by_side.jpg)
 
 ## The Technology
 On my website users can create and login to their account. 
