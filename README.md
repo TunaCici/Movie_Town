@@ -5,7 +5,8 @@ This is my Web Application project for UITSEC Internship. In
 this website you can search for different movies and tv shows. 
 Explore their cast, director; see pictures of them and add them to 
 your watchlist where you can get reminder to watch them. All the 
-movies will be pulled from IMDb’s database.
+movies will be pulled from IMDb’s database. 
+(https://www.kaggle.com/stefanoleone992/imdb-extensive-dataset)
 
 You will be able to create an account and see all of your movies 
 from watchlist. There will be other features for created accounts, 
