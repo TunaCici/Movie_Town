@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--Import Bootstrap 5 CSS-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+          crossorigin="anonymous">
+          <link rel="stylesheet"
+                href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <!--End import-->
+    <!-- Import Custom CSS-->
+    <link rel="stylesheet" href="/static/style.css">
+    <!-- End import-->
+    <title>Welcome Page</title>
+  </head>
+
+  <body class="background-primary font-primary font-large">
+    <header>
+      <!--Header start-->
+      <div class ="container p-2">
+        <nav class="navbar navbar-expand-md navbar-light py-3 fixed-top background-blur">
+          <a href="{{ url_for('home') }}">
+            <img src="/static/logo/main_logo.png" alt="Movie Town Logo" height="60rem" class="d-inline-block align-top">
+          </a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#toggleMenu"
+            aria-controls="toggleMenu"
+            aria-expanded="false"
+            aria-label="Toggle Navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          
+          <div class="collapse navbar-collapse", id="toggleMenu">
+            <!--Left side-->
+            <ul class="navbar-nav text-center">
+              <li>
+                <a class="nav-link", href="{{ url_for('home') }}">Home</a>
+              </li>
+              <li>
+                <a class="nav-link", href="#">Search</a>
+              </li>
+              <li>
+                <a class="nav-link", href="#">About</a>
+              </li>
+            </ul>
+
+            <!--Right Side-->
+            <ul class="navbar-nav text-center ms-auto">
+              <li>
+                <a class="nav-link", href="{{ url_for('login') }}">Login</a>
+              </li>
+              <li>
+                <a class="nav-link", href="{{ url_for('sign_up') }}">Sign up   </a>
+              </li>
+            </ul>
+
+          </div>
+        </nav>
+      </div>
+      <!--Header end-->
+    </header>
+    <main>
+        <!--Main start-->
+        {% block main %} {% endblock %}
+        <!--Main end-->
+    </main>
+    <footer class="p-5 bg-dark text-white text-center position-relative">
+      <div class="container">
+        <p class="lead">No Copyright &copy; 2021 Tuna Cici</p>
+        <a href="#" class="position-absolute bottom-0 end-0 p-5">
+          <i class="bi bi-arrow-up-circle h1"></i>
+        </a>
+      </div>
+    </footer>
+
+    <!--Import Bootstrap 5 JS and Bundles-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
+    <!--End import-->
+  </body>
+</html>
