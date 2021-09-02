@@ -1,8 +1,8 @@
 # Movie Town
 
 ## About
-This is my Web Application project for UITSEC Internship. In 
-this website you can search for different movies and tv shows. 
+This is my Web Application project. 
+In this website you can search for different movies and tv shows. 
 Explore their cast, director; see pictures of them and add them to 
 your watchlist where you can get reminder to watch them. All the 
 movies will be pulled from IMDb’s database. 
