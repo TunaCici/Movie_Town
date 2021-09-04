@@ -1,0 +1,9 @@
+2021-09-04 20:19:29,551 [INFO] [imdb_helper.py] Started main function.
+2021-09-04 20:19:29,551 [INFO] [imdb_helper.py] Opening files...
+2021-09-04 20:19:29,552 [INFO] [imdb_helper.py] Files opened.
+2021-09-04 20:19:30,651 [DEBUG] [urllib3.connectionpool] Starting new HTTPS connection (1): api.themoviedb.org:443
+2021-09-04 20:19:30,784 [DEBUG] [urllib3.connectionpool] https://api.themoviedb.org:443 "GET /3/find/tt0133093?api_key=fe0c11c0aeee82176ba4b9f31e43b286&external_source=imdb_id HTTP/1.1" 200 None
+2021-09-04 20:19:30,788 [DEBUG] [urllib3.connectionpool] Starting new HTTPS connection (1): image.tmdb.org:443
+2021-09-04 20:19:30,907 [DEBUG] [urllib3.connectionpool] https://image.tmdb.org:443 "GET /t/p/original/fNG7i7RqMErkcqhohV2a6cV1Ehy.jpg HTTP/1.1" 200 268378
+2021-09-04 20:19:31,056 [DEBUG] [urllib3.connectionpool] https://api.themoviedb.org:443 "GET /3/find/tt0232500?api_key=fe0c11c0aeee82176ba4b9f31e43b286&external_source=imdb_id HTTP/1.1" 200 None
+2021-09-04 20:19:31,090 [DEBUG] [urllib3.connectionpool] https://image.tmdb.org:443 "GET /t/p/original/jY9ef5nqY4xIIMu3yzW3qamUCoi.jpg HTTP/1.1" 200 235403
