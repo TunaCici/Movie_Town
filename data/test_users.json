@@ -1,0 +1,25 @@
+{
+    "users": [
+        {
+            "name": "Mike",
+            "surname": "Tyson",
+            "username": "miketheking",
+            "mail": "mike_tyson@gmail.com",
+            "password": "miky2077"
+        },
+        {
+            "name": "John",
+            "surname": "Wick",
+            "username": "bangbang",
+            "mail": "jonathan_wick@gmail.com",
+            "password": "dontkillmypuppyb1tch"
+        },
+        {
+            "name": "Daenerys",
+            "surname": "Targaryen",
+            "username": "khaalesi",
+            "mail": "dany@gmail.com",
+            "password": "dracarys99"
+        }
+    ]
+}
