@@ -5,8 +5,6 @@ from pymongo import database
 from pymongo import MongoClient
 from pymongo.errors import ConnectionFailure
 
-import test_data
-
 URL = "localhost"
 PORT = 27017
 

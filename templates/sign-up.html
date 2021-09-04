@@ -7,7 +7,7 @@
 {% block middle %}
 <div class="container w-100">
     <div class="d-flex flex-column min-vh-100 justify-content-center align-items-center">
-        <form action="{{ url_for('sign-up') }}" method="POST">
+        <form action="{{ url_for('sign_up') }}" method="POST">
             <h1 class="text-center">create your account</h1>
             <div class="form-text text-center">
                 all your information is safe on our database
@@ -61,7 +61,7 @@
 
                 <!-- Password input two-->
                 <div class="form-outline mb-4">
-                    <input type="password" name="passwordTWo" id="passwordTwo" class="form-control" />
+                    <input type="password" name="passwordTwo" id="passwordTwo" class="form-control" />
                     <label class="form-label" for="passwordTwo">Confirm password</label>
                 </div>
                 

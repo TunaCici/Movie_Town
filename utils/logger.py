@@ -8,7 +8,14 @@ import inspect
 import logging
 import logging.handlers
 
-import config
+
+if __name__ == "utils." + os.path.basename(__file__)[:-3]:
+    # importing from outside the package
+    from utils import config
+else:
+    # importing from main and inside the package
+    import config
+
 class CustomLogger:
     #class member(s)
     logger = None

@@ -10,13 +10,18 @@ to imdb files such as, movies, actors.
 import json
 import os
 import requests
-import logger
-import config
-
 import pandas as pd
-
 from io import FileIO
 from numpy import int64
+
+if __name__ == "utils." + os.path.basename(__file__)[:-3]:
+    # importing from outside the package
+    from utils import config
+    from utils import logger
+else:
+    # importing from main and inside the package
+    import config
+    import logger
 
 
 FILE_MOVIES: FileIO
