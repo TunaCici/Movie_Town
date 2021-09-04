@@ -55,15 +55,24 @@ class MongoHandler:
         except ConnectionFailure:
             print("Server not available.")
             self.is_running = False
+            return None
         self.is_running = True
-        print("Initialization successful.")
         
         # create database and collections
         self.db = self.client[DB_NAME]
         self.user_collection = self.db[USER_COLLECTION_NAME]
         self.movie_collection = self.db[MOVIE_COLLECTION_NAME]
+        print("Initialization successful.")
 
     def running(self) -> bool:
+        try:
+        # The ismaster command is cheap and does not require auth.
+            self.client.admin.command('ismaster')
+        except ConnectionFailure:
+            print("Server not available.")
+            self.is_running = False
+        self.is_running = True
+        
         return self.is_running
 
     def user_add(
@@ -78,8 +87,12 @@ class MongoHandler:
             "u_mail": mail,
             "u_password": password
         }
-
-        self.user_collection.insert_one(user_struct)
+        try:
+            self.user_collection.insert_one(user_struct)
+        except Exception as e:
+            print("An error occured operation will stop. See details:")
+            print(e)
+            return None
 
     def username_exists(self, username: str) -> bool:
         try:
