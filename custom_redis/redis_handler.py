@@ -17,9 +17,9 @@ class RedisHandler:
             self.is_running = True
         else:
             self.is_running = False
-            print("Server not available.")
+            print("Redis erver not available.")
             
-        print("Initialization successful.")
+        print("Redis initialization successful.")
 
     def runnig(self) -> bool:
         if self.client.ping():
@@ -29,6 +29,9 @@ class RedisHandler:
             
         return self.is_running
     
+    def get_redis(self) -> Redis:
+        return self.client
+
     def cache(self, keyword: str, value: Any):
         try:
             self.client.set(keyword, value)
