@@ -1,4 +1,5 @@
 /data/*.csv
 /data/posters/*.jpg
-/redis/redis-stable
+/custom_redis/redis-stable
 /logs
+/data/logs

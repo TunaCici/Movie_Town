@@ -1,7 +1,7 @@
 body::before {
     display: block;
     content: "";
-    height: 4rem;
+    height: 5rem;
 }
 @font-face {
     font-family: CallunaSans;
@@ -92,4 +92,14 @@ body::before {
 
 .font-xlarge {
     font-size: xxx-large;
+}
+
+.profile-img {
+    filter: drop-shadow(0 0 0.75rem grey);
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.visible-ws {
+    white-space: pre;
 }

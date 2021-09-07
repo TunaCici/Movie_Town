@@ -15,10 +15,9 @@ currently used for login and sign-ups.
 
 import uuid
 import bcrypt
-from numpy import byte
 import form_helper
 
-from mongodb import mongo_handler
+from custom_mongo import mongo_handler
 from utils import logger
 
 HANDLER_LOGGER = logger.CustomLogger()
@@ -29,12 +28,18 @@ def handle_signup(form: dict) -> str:
     if result is None:
         # TODO: Register the user to the database
         HANDLER_LOGGER.log_info("Form validated. Registering the user.")
+        
+        # encrypt the password
         pass_hashed = bcrypt.hashpw(
             bytes(form.get("passwordOne"), encoding="utf-8"),
             bcrypt.gensalt()
         )
+
+        # create uuid for the user
+        unq_id = uuid.uuid4()
+
         MONGO_HANDLER.user_add(
-            uuid.uuid4(),
+            unq_id,
             form.get("name"),
             form.get("surname"),
             form.get("username"),
@@ -51,7 +56,3 @@ def handle_signup(form: dict) -> str:
 def handle_login(form: dict) -> str:
     # TODO: Handle the login request
     pass
-
-if __name__ == "__main__":
-
-    handle_signup()

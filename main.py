@@ -30,15 +30,25 @@ from flask import render_template
 from flask import request
 from werkzeug.utils import redirect
 
+from custom_redis import redis_handler
+
+print("hello")
+
 # currently on localhost
 app = Flask(__name__)
+app.config['SESSION_TYPE'] = 'redis'
+app.config['SESSION_PERMANENT'] = False
+app.config['SESSION_USE_SIGNER'] = True
+app.config['SESSION_REDIS'] = redis_handler.from_url('redis://localhost:6379')
+
+# variables for testing
 
 @app.route("/")
 def home():
     """
     method to be called when wisiting root or '/'
     """
-    return render_template("home.html")
+    return render_template("home.html", signed_in = True)
 
 @app.route("/sign-up", methods=['GET', 'POST'])
 def sign_up():
@@ -54,7 +64,7 @@ def sign_up():
         else:
             # TODO: Critical error. Handle this ASAP!
             pass
-        return redirect(url_for("home"))
+        return redirect(url_for("home", signed_in = True), )
     else:
         return render_template("sign-up.html")
 
@@ -73,6 +83,9 @@ def login():
             # TODO: Critical error. Handle this ASAP!
             pass
         
-        return redirect(url_for("home"))
+        return redirect(url_for("home"), signed_in = True)
     else:
         return render_template("login.html")
+
+if __name__ == "__main__":
+    app.run()
