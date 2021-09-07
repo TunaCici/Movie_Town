@@ -1,5 +1,29 @@
 {% extends 'base.html' %}
 
+{% block navbar %}
+  <!-- signed in -->
+  {% if signed_in %}
+    <a href="{{ url_for('home') }}">
+      <img src="/static/sample_profil_pic.jpg" alt="Movie Town Logo" width="60rem" height="60srem" class="d-none d-md-inline-block align-top profile-img">
+    </a>
+    <li>
+      <a class="nav-link visible-ws", href="{{ url_for('sign_up') }}"> Tunahan</a>
+    </li>
+    <li>
+      <a class="nav-link visible-ws" href="#">Logout  </a>
+    </li>
+  <!-- no one signed in -->
+  {% else %}
+    <li>
+      <a class="nav-link", href="{{ url_for('login') }}">Login</a>
+    </li>
+    <li>
+      <a class="nav-link", href="{{ url_for('sign_up') }}">Sign up   </a>
+    </li>
+  {% endif %}
+
+{% endblock %}
+
 {% block main %}
   <!--Featured Label-->
   <div class="container text-center p-2">
