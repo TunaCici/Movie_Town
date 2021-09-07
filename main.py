@@ -54,7 +54,6 @@ def home():
     """
     method to be called when wisiting root or '/'
     """
-
     if "username" in session:
         return render_template("home.html", signed_in=True)
     else:
