@@ -51,7 +51,7 @@ class MongoHandler:
         # The ismaster command is cheap and does not require auth.
             self.client.admin.command('ismaster')
         except ConnectionFailure:
-            print("Server not available.")
+            print("MongoDB server not available.")
             self.is_running = False
             return None
         self.is_running = True
@@ -60,7 +60,7 @@ class MongoHandler:
         self.db = self.client[DB_NAME]
         self.user_collection = self.db[USER_COLLECTION_NAME]
         self.movie_collection = self.db[MOVIE_COLLECTION_NAME]
-        print("Initialization successful.")
+        print("MongoDB initialization successful.")
 
     def running(self) -> bool:
         try:
@@ -72,6 +72,9 @@ class MongoHandler:
         self.is_running = True
         
         return self.is_running
+
+    def get_mongo(self) -> MongoClient:
+        return self.client
 
     def user_add(
         self, id: uuid.UUID, name: str,
