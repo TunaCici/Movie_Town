@@ -18,11 +18,13 @@
     <title>Welcome Page</title>
   </head>
 
-  <body class="background-primary font-primary font-large">
+  <body class="background-img font-primary font-large">
     <header>
       <!--Header start-->
       <div class ="container p-2">
-        <nav class="navbar navbar-expand-md navbar-light py-4 fixed-top background-blur">
+        <nav 
+          class="navbar navbar-expand-md navbar-light py-4 fixed-top background-blur"
+          style="filter: drop-shadow(0 0 0.25rem grey);">
           <a href="{{ url_for('home') }}">
             <img src="/static/logo/main_logo.png" alt="Movie Town Logo" height="60rem" class="d-inline-block align-top">
           </a>
@@ -67,11 +69,11 @@
         {% block main %} {% endblock %}
         <!--Main end-->
     </main>
-    <footer class="p-5 bg-dark text-white text-center position-relative">
+    <footer class="p-5 text-white text-center position-relative" style="background-color: rgba(33, 37, 41, 0.7);">
       <div class="container">
         <p class="lead">No Copyright &copy; 2021 Tuna Cici</p>
         <a href="#" class="position-absolute bottom-0 end-0 p-5">
-          <i class="bi bi-arrow-up-circle h1"></i>
+          <i class="bi bi-arrow-up-circle h1" style="color: #007ACC;"></i>
         </a>
       </div>
     </footer>

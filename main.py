@@ -30,16 +30,18 @@ from flask import render_template
 from flask import request
 from werkzeug.utils import redirect
 
+import redis
 from custom_redis import redis_handler
 
-print("hello")
+redis_session = redis_handler.RedisHandler()
 
 # currently on localhost
 app = Flask(__name__)
+app.debug = True
 app.config['SESSION_TYPE'] = 'redis'
 app.config['SESSION_PERMANENT'] = False
 app.config['SESSION_USE_SIGNER'] = True
-app.config['SESSION_REDIS'] = redis_handler.from_url('redis://localhost:6379')
+app.config['SESSION_REDIS'] = redis_session.get_redis()
 
 # variables for testing
 

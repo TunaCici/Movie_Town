@@ -1,8 +1,9 @@
 body::before {
     display: block;
     content: "";
-    height: 5rem;
+    height: 6.5rem;
 }
+
 @font-face {
     font-family: CallunaSans;
     font-weight: normal;
@@ -29,19 +30,13 @@ body::before {
 }
 
 @font-face {
-    font-family: Manrope;
-    font-weight: normal;
+    font-family: VanillaExtract;
+    font-weight: bolder;
     font-style: normal;
-    src: url(/static/fonts/Manrope-regular.otf);
+    src: url(/static/fonts/Vanillaextract.ttf);
 }
 
-@font-face {
-    font-family: Manrope;
-    font-weight: bold;
-    font-style: normal;
-    src: url(/static/fonts/Manrope-bold.otf);
-}
-
+/*Colors*/
 .background-primary {
     background-color: #E2E2E2;
 }
@@ -52,6 +47,12 @@ body::before {
 
 .background-accent {
     background-color: #FFCC00;
+}
+
+.background-img {
+    background-image: url("background.png");
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .tx-primary {
@@ -70,20 +71,17 @@ body::before {
     text-shadow: 2px 2px 4px #000000;
 }
 
+.shadow {
+    filter: drop-shadow(0 0 0.75rem grey);
+}
+
 .background-blur {
+    background-color: rgba(255, 255, 255, 0.85);
     backdrop-filter: url(filters.svg#filter) blur(6px) saturate(150%);
 }
 
 .font-primary {
     font-family: CallunaSans;
-}
-
-.bold {
-    font-weight: bold;
-}
-
-.italic {
-    font-style: italic;
 }
 
 .font-large {
@@ -102,4 +100,26 @@ body::before {
 
 .visible-ws {
     white-space: pre;
+}
+
+/*Animated Text Color With Hue*/
+.text-gradient {
+    font-family: VanillaExtract;
+    font-size: 4rem;
+    color: #f35626;
+    background-image: -webkit-linear-gradient(92deg, #cc5500, #ccbb00);
+    background-clip: text;
+    animation: hue 20s infinite linear;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -webkit-animation: hue 20s infinite linear;
+}
+
+@keyframes hue {
+  from {
+    filter: hue-rotate(0deg);
+  }
+  to {
+    filter: hue-rotate(-360deg);
+  }
 }
