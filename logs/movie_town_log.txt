@@ -1,138 +1,52 @@
-2021-09-05 00:21:52,147 [DEBUG] [urllib3.connectionpool] https://api.themoviedb.org:443 "GET /3/find/tt0099479?api_key=fe0c11c0aeee82176ba4b9f31e43b286&external_source=imdb_id HTTP/1.1" 200 None
-2021-09-05 00:21:52,217 [DEBUG] [urllib3.connectionpool] https://image.tmdb.org:443 "GET /t/p/original/y1qSb5mkdlZpKQC70FWldZ53C6k.jpg HTTP/1.1" 200 171743
-2021-09-05 00:21:52,406 [DEBUG] [urllib3.connectionpool] https://api.themoviedb.org:443 "GET /3/find/tt0099480?api_key=fe0c11c0aeee82176ba4b9f31e43b286&external_source=imdb_id HTTP/1.1" 200 None
-2021-09-05 00:21:52,469 [DEBUG] [urllib3.connectionpool] https://image.tmdb.org:443 "GET /t/p/original/9U0MuCe7jT4PfEz9FsB5yn8YeE1.jpg HTTP/1.1" 200 53902
-2021-09-05 00:21:52,861 [DEBUG] [urllib3.connectionpool] https://api.themoviedb.org:443 "GET /3/find/tt0099484?api_key=fe0c11c0aeee82176ba4b9f31e43b286&external_source=imdb_id HTTP/1.1" 200 None
-2021-09-05 00:21:52,924 [DEBUG] [urllib3.connectionpool] https://image.tmdb.org:443 "GET /t/p/original/zwQrgqrMSqidARZrquEjQ10T8bX.jpg HTTP/1.1" 200 63310
-2021-09-05 00:21:53,100 [DEBUG] [urllib3.connectionpool] https://api.themoviedb.org:443 "GET /3/find/tt0099487?api_key=fe0c11c0aeee82176ba4b9f31e43b286&external_source=imdb_id HTTP/1.1" 200 None
-2021-09-05 00:21:53,126 [DEBUG] [urllib3.connectionpool] https://image.tmdb.org:443 "GET /t/p/original/1RFIbuW9Z3eN9Oxw2KaQG5DfLmD.jpg HTTP/1.1" 200 192466
-2021-09-05 00:21:53,352 [DEBUG] [urllib3.connectionpool] https://api.themoviedb.org:443 "GET /3/find/tt0099492?api_key=fe0c11c0aeee82176ba4b9f31e43b286&external_source=imdb_id HTTP/1.1" 200 None
-2021-09-05 00:21:53,416 [DEBUG] [urllib3.connectionpool] https://image.tmdb.org:443 "GET /t/p/original/oDJUVUgTJXoJVj9dtNDrvyGhMDj.jpg HTTP/1.1" 200 117520
-2021-09-05 00:21:53,617 [DEBUG] [urllib3.connectionpool] https://api.themoviedb.org:443 "GET /3/find/tt0099496?api_key=fe0c11c0aeee82176ba4b9f31e43b286&external_source=imdb_id HTTP/1.1" 200 None
-2021-09-05 00:21:53,687 [DEBUG] [urllib3.connectionpool] https://image.tmdb.org:443 "GET /t/p/original/uh4T4xqhSTZ06TuHpJWc5H0DLyM.jpg HTTP/1.1" 200 116923
-2021-09-05 00:21:53,883 [DEBUG] [urllib3.connectionpool] https://api.themoviedb.org:443 "GET /3/find/tt0099498?api_key=fe0c11c0aeee82176ba4b9f31e43b286&external_source=imdb_id HTTP/1.1" 200 None
-2021-09-05 00:21:53,945 [DEBUG] [urllib3.connectionpool] https://image.tmdb.org:443 "GET /t/p/original/tW1opUZx9Le6bsby8Cp7IjECcX3.jpg HTTP/1.1" 200 355035
-2021-09-05 00:21:54,177 [DEBUG] [urllib3.connectionpool] https://api.themoviedb.org:443 "GET /3/find/tt0099502?api_key=fe0c11c0aeee82176ba4b9f31e43b286&external_source=imdb_id HTTP/1.1" 200 None
-2021-09-05 00:21:54,241 [DEBUG] [urllib3.connectionpool] https://image.tmdb.org:443 "GET /t/p/original/v5YFPYOjVHSRWoaKPjCZiRP0ULJ.jpg HTTP/1.1" 200 276054
-2021-09-05 00:21:54,482 [DEBUG] [urllib3.connectionpool] https://api.themoviedb.org:443 "GET /3/find/tt0099506?api_key=fe0c11c0aeee82176ba4b9f31e43b286&external_source=imdb_id HTTP/1.1" 200 None
-2021-09-05 00:21:54,655 [DEBUG] [urllib3.connectionpool] https://image.tmdb.org:443 "GET /t/p/original/5O42TYmwKDuJJfTOiUIQ64IUk5A.jpg HTTP/1.1" 200 218698
-2021-09-05 00:21:54,865 [DEBUG] [urllib3.connectionpool] https://api.themoviedb.org:443 "GET /3/find/tt0099512?api_key=fe0c11c0aeee82176ba4b9f31e43b286&external_source=imdb_id HTTP/1.1" 200 None
-2021-09-05 00:21:54,921 [DEBUG] [urllib3.connectionpool] https://image.tmdb.org:443 "GET /t/p/original/w1k8SgODFQOk9wHjX4mi8QdkYAO.jpg HTTP/1.1" 200 1036820
-2021-09-05 00:21:55,325 [DEBUG] [urllib3.connectionpool] https://api.themoviedb.org:443 "GET /3/find/tt0099520?api_key=fe0c11c0aeee82176ba4b9f31e43b286&external_source=imdb_id HTTP/1.1" 200 None
-2021-09-05 00:21:55,388 [DEBUG] [urllib3.connectionpool] https://image.tmdb.org:443 "GET /t/p/original/djkoK0O3ARHiq9gEbVHMKpPTl4b.jpg HTTP/1.1" 200 219792
-2021-09-05 00:21:55,594 [DEBUG] [urllib3.connectionpool] https://api.themoviedb.org:443 "GET /3/find/tt0099523?api_key=fe0c11c0aeee82176ba4b9f31e43b286&external_source=imdb_id HTTP/1.1" 200 None
-2021-09-05 00:21:55,663 [DEBUG] [urllib3.connectionpool] https://image.tmdb.org:443 "GET /t/p/original/aepkcrl4dtWHc08JFTBzKTds2Ty.jpg HTTP/1.1" 200 72335
-2021-09-05 00:21:55,832 [DEBUG] [urllib3.connectionpool] https://api.themoviedb.org:443 "GET /3/find/tt0099524?api_key=fe0c11c0aeee82176ba4b9f31e43b286&external_source=imdb_id HTTP/1.1" 200 None
-2021-09-05 00:21:55,899 [DEBUG] [urllib3.connectionpool] https://image.tmdb.org:443 "GET /t/p/original/bseeUdbDcZpc8MXZmFF3Q1YcbXD.jpg HTTP/1.1" 200 125244
-2021-09-05 00:21:56,091 [DEBUG] [urllib3.connectionpool] https://api.themoviedb.org:443 "GET /3/find/tt0099528?api_key=fe0c11c0aeee82176ba4b9f31e43b286&external_source=imdb_id HTTP/1.1" 200 None
-2021-09-05 00:21:56,154 [DEBUG] [urllib3.connectionpool] https://image.tmdb.org:443 "GET /t/p/original/xww5RyKpDKjGPXnOVYhaZrqCVcL.jpg HTTP/1.1" 200 74360
-2021-09-05 00:21:56,327 [DEBUG] [urllib3.connectionpool] https://api.themoviedb.org:443 "GET /3/find/tt0099541?api_key=fe0c11c0aeee82176ba4b9f31e43b286&external_source=imdb_id HTTP/1.1" 200 None
-2021-09-05 00:21:56,390 [DEBUG] [urllib3.connectionpool] https://image.tmdb.org:443 "GET /t/p/original/tbroDWSb0awwFOaMjN2cTNiuuXi.jpg HTTP/1.1" 200 440861
-2021-09-05 00:21:56,634 [DEBUG] [urllib3.connectionpool] https://api.themoviedb.org:443 "GET /3/find/tt0099545?api_key=fe0c11c0aeee82176ba4b9f31e43b286&external_source=imdb_id HTTP/1.1" 200 None
-2021-09-05 00:21:56,800 [DEBUG] [urllib3.connectionpool] https://image.tmdb.org:443 "GET /t/p/original/jJWsCKzOtDHqoRQlW6S8j5a29eX.jpg HTTP/1.1" 200 85980
-2021-09-05 00:21:56,997 [DEBUG] [urllib3.connectionpool] https://api.themoviedb.org:443 "GET /3/find/tt0099546?api_key=fe0c11c0aeee82176ba4b9f31e43b286&external_source=imdb_id HTTP/1.1" 200 None
-2021-09-05 00:21:57,056 [DEBUG] [urllib3.connectionpool] https://image.tmdb.org:443 "GET /t/p/original/17ivrq2ziE8CZ4oknJXuXEBVE3T.jpg HTTP/1.1" 200 173332
-2021-09-05 00:21:57,305 [DEBUG] [urllib3.connectionpool] https://api.themoviedb.org:443 "GET /3/find/tt0099554?api_key=fe0c11c0aeee82176ba4b9f31e43b286&external_source=imdb_id HTTP/1.1" 200 None
-2021-09-05 00:21:57,385 [DEBUG] [urllib3.connectionpool] https://image.tmdb.org:443 "GET /t/p/original/aLRuOCvYq1Fp22IwOhkvBoujhdm.jpg HTTP/1.1" 200 48643
-2021-09-05 00:21:57,569 [DEBUG] [urllib3.connectionpool] https://api.themoviedb.org:443 "GET /3/find/tt0099557?api_key=fe0c11c0aeee82176ba4b9f31e43b286&external_source=imdb_id HTTP/1.1" 200 None
-2021-09-05 00:21:57,673 [DEBUG] [urllib3.connectionpool] https://image.tmdb.org:443 "GET /t/p/original/A36ATn3m63VnjMR8lMJu2Z5L1dv.jpg HTTP/1.1" 200 116596
-2021-09-05 00:21:57,862 [DEBUG] [urllib3.connectionpool] https://api.themoviedb.org:443 "GET /3/find/tt0099558?api_key=fe0c11c0aeee82176ba4b9f31e43b286&external_source=imdb_id HTTP/1.1" 200 None
-2021-09-05 00:21:57,919 [DEBUG] [urllib3.connectionpool] https://image.tmdb.org:443 "GET /t/p/original/afKSbtdqD0LPoTr8O60l0hC68sc.jpg HTTP/1.1" 200 528734
-2021-09-05 00:21:58,173 [DEBUG] [urllib3.connectionpool] https://api.themoviedb.org:443 "GET /3/find/tt0099562?api_key=fe0c11c0aeee82176ba4b9f31e43b286&external_source=imdb_id HTTP/1.1" 200 None
-2021-09-05 00:21:58,269 [DEBUG] [urllib3.connectionpool] https://image.tmdb.org:443 "GET /t/p/original/gkxwLRIP1tqAMtRPtbstckzdzl9.jpg HTTP/1.1" 200 72432
-2021-09-05 00:21:58,527 [DEBUG] [urllib3.connectionpool] https://api.themoviedb.org:443 "GET /3/find/tt0099564?api_key=fe0c11c0aeee82176ba4b9f31e43b286&external_source=imdb_id HTTP/1.1" 200 None
-2021-09-05 00:21:58,696 [DEBUG] [urllib3.connectionpool] https://image.tmdb.org:443 "GET /t/p/original/gRSqjjpBXt6mY9h5Gyr7704fBL2.jpg HTTP/1.1" 200 132319
-2021-09-05 00:21:58,939 [DEBUG] [urllib3.connectionpool] https://api.themoviedb.org:443 "GET /3/find/tt0099566?api_key=fe0c11c0aeee82176ba4b9f31e43b286&external_source=imdb_id HTTP/1.1" 200 None
-2021-09-05 00:21:59,096 [DEBUG] [urllib3.connectionpool] https://image.tmdb.org:443 "GET /t/p/original/ppF5pUheNoL0EPuGRIEnHz1ewp7.jpg HTTP/1.1" 200 196444
-2021-09-05 00:21:59,340 [DEBUG] [urllib3.connectionpool] https://api.themoviedb.org:443 "GET /3/find/tt0099568?api_key=fe0c11c0aeee82176ba4b9f31e43b286&external_source=imdb_id HTTP/1.1" 200 None
-2021-09-05 00:21:59,401 [DEBUG] [urllib3.connectionpool] https://image.tmdb.org:443 "GET /t/p/original/odB4Ci1cvInPJfaEoSr3sDcLRSW.jpg HTTP/1.1" 200 49074
-2021-09-05 00:21:59,603 [DEBUG] [urllib3.connectionpool] https://api.themoviedb.org:443 "GET /3/find/tt0099572?api_key=fe0c11c0aeee82176ba4b9f31e43b286&external_source=imdb_id HTTP/1.1" 200 None
-2021-09-05 00:21:59,662 [DEBUG] [urllib3.connectionpool] https://image.tmdb.org:443 "GET /t/p/original/tVRBpCWDmr7mw0EhGocJSQlksCE.jpg HTTP/1.1" 200 58109
-2021-09-05 00:21:59,862 [DEBUG] [urllib3.connectionpool] https://api.themoviedb.org:443 "GET /3/find/tt0099575?api_key=fe0c11c0aeee82176ba4b9f31e43b286&external_source=imdb_id HTTP/1.1" 200 None
-2021-09-05 00:21:59,928 [DEBUG] [urllib3.connectionpool] https://image.tmdb.org:443 "GET /t/p/original/ccqyNqhesnxc090uNKgMOeIef3n.jpg HTTP/1.1" 200 379169
-2021-09-05 00:22:00,156 [DEBUG] [urllib3.connectionpool] https://api.themoviedb.org:443 "GET /3/find/tt0099577?api_key=fe0c11c0aeee82176ba4b9f31e43b286&external_source=imdb_id HTTP/1.1" 200 None
-2021-09-05 00:22:00,218 [DEBUG] [urllib3.connectionpool] https://image.tmdb.org:443 "GET /t/p/original/dEyOdxc6jvvBe9t9s8OGhwuiNeV.jpg HTTP/1.1" 200 81084
-2021-09-05 00:22:00,492 [DEBUG] [urllib3.connectionpool] https://api.themoviedb.org:443 "GET /3/find/tt0099578?api_key=fe0c11c0aeee82176ba4b9f31e43b286&external_source=imdb_id HTTP/1.1" 200 None
-2021-09-05 00:22:00,559 [DEBUG] [urllib3.connectionpool] https://image.tmdb.org:443 "GET /t/p/original/yQwELMAqOVYAvLxnJvQ1OcArtl4.jpg HTTP/1.1" 200 201671
-2021-09-05 00:22:00,759 [DEBUG] [urllib3.connectionpool] https://api.themoviedb.org:443 "GET /3/find/tt0099581?api_key=fe0c11c0aeee82176ba4b9f31e43b286&external_source=imdb_id HTTP/1.1" 200 None
-2021-09-05 00:22:00,821 [DEBUG] [urllib3.connectionpool] https://image.tmdb.org:443 "GET /t/p/original/nCTfbtyoAwZabwZjhO6BRfZh1wo.jpg HTTP/1.1" 200 672713
-2021-09-05 00:22:01,116 [DEBUG] [urllib3.connectionpool] https://api.themoviedb.org:443 "GET /3/find/tt0099582?api_key=fe0c11c0aeee82176ba4b9f31e43b286&external_source=imdb_id HTTP/1.1" 200 None
-2021-09-05 00:22:01,179 [DEBUG] [urllib3.connectionpool] https://image.tmdb.org:443 "GET /t/p/original/wda3j7p7YHXKpFIlSzoTCtP7myF.jpg HTTP/1.1" 200 168663
-2021-09-05 00:22:01,414 [DEBUG] [urllib3.connectionpool] https://api.themoviedb.org:443 "GET /3/find/tt0099587?api_key=fe0c11c0aeee82176ba4b9f31e43b286&external_source=imdb_id HTTP/1.1" 200 None
-2021-09-05 00:22:01,483 [DEBUG] [urllib3.connectionpool] https://image.tmdb.org:443 "GET /t/p/original/tzjCePBItSRfZxLnOd3KBGHQIJl.jpg HTTP/1.1" 200 150007
-2021-09-05 00:22:01,666 [DEBUG] [urllib3.connectionpool] https://api.themoviedb.org:443 "GET /3/find/tt0099593?api_key=fe0c11c0aeee82176ba4b9f31e43b286&external_source=imdb_id HTTP/1.1" 200 None
-2021-09-05 00:22:01,830 [DEBUG] [urllib3.connectionpool] https://api.themoviedb.org:443 "GET /3/find/tt0099594?api_key=fe0c11c0aeee82176ba4b9f31e43b286&external_source=imdb_id HTTP/1.1" 200 None
-2021-09-05 00:22:01,984 [DEBUG] [urllib3.connectionpool] https://image.tmdb.org:443 "GET /t/p/original/k9DNHo4U2TkYBo4TVW3K0pglgqz.jpg HTTP/1.1" 200 48998
-2021-09-05 00:22:02,283 [DEBUG] [urllib3.connectionpool] https://api.themoviedb.org:443 "GET /3/find/tt0099595?api_key=fe0c11c0aeee82176ba4b9f31e43b286&external_source=imdb_id HTTP/1.1" 200 None
-2021-09-05 00:22:02,339 [DEBUG] [urllib3.connectionpool] https://image.tmdb.org:443 "GET /t/p/original/4RvLn9R69stp8C6NWDFoHiUGwgK.jpg HTTP/1.1" 200 70715
-2021-09-05 00:22:02,514 [DEBUG] [urllib3.connectionpool] https://api.themoviedb.org:443 "GET /3/find/tt0099601?api_key=fe0c11c0aeee82176ba4b9f31e43b286&external_source=imdb_id HTTP/1.1" 200 None
-2021-09-05 00:22:02,681 [DEBUG] [urllib3.connectionpool] https://image.tmdb.org:443 "GET /t/p/original/uaMlpQqQADX94sw2Mjbj8whExlo.jpg HTTP/1.1" 200 111929
-2021-09-05 00:22:02,910 [DEBUG] [urllib3.connectionpool] https://api.themoviedb.org:443 "GET /3/find/tt0099606?api_key=fe0c11c0aeee82176ba4b9f31e43b286&external_source=imdb_id HTTP/1.1" 200 None
-2021-09-05 00:22:02,977 [DEBUG] [urllib3.connectionpool] https://image.tmdb.org:443 "GET /t/p/original/mbHO0Duv9GBI0nHDbD2w4u7N2V2.jpg HTTP/1.1" 200 353196
-2021-09-05 00:22:03,249 [DEBUG] [urllib3.connectionpool] https://api.themoviedb.org:443 "GET /3/find/tt0099607?api_key=fe0c11c0aeee82176ba4b9f31e43b286&external_source=imdb_id HTTP/1.1" 200 None
-2021-09-05 00:22:03,310 [DEBUG] [urllib3.connectionpool] https://image.tmdb.org:443 "GET /t/p/original/qGSD92HKcevy4dzSLiaGa8yu5bz.jpg HTTP/1.1" 200 217493
-2021-09-05 00:22:03,633 [DEBUG] [urllib3.connectionpool] https://api.themoviedb.org:443 "GET /3/find/tt0099611?api_key=fe0c11c0aeee82176ba4b9f31e43b286&external_source=imdb_id HTTP/1.1" 200 None
-2021-09-05 00:22:03,700 [DEBUG] [urllib3.connectionpool] https://image.tmdb.org:443 "GET /t/p/original/s8Oubzkc2pPdOdj4D23ljZSKRbg.jpg HTTP/1.1" 200 302305
-2021-09-05 00:22:03,952 [DEBUG] [urllib3.connectionpool] https://api.themoviedb.org:443 "GET /3/find/tt0099612?api_key=fe0c11c0aeee82176ba4b9f31e43b286&external_source=imdb_id HTTP/1.1" 200 None
-2021-09-05 00:22:04,019 [DEBUG] [urllib3.connectionpool] https://image.tmdb.org:443 "GET /t/p/original/rMkdj4ZtTTZ6Zgu8ZttrW0QpMnT.jpg HTTP/1.1" 200 84902
-2021-09-05 00:22:04,230 [DEBUG] [urllib3.connectionpool] https://api.themoviedb.org:443 "GET /3/find/tt0099613?api_key=fe0c11c0aeee82176ba4b9f31e43b286&external_source=imdb_id HTTP/1.1" 200 None
-2021-09-05 00:22:04,316 [DEBUG] [urllib3.connectionpool] https://image.tmdb.org:443 "GET /t/p/original/r3hQSQYZPprMKyxAKXZElDLqeg4.jpg HTTP/1.1" 200 43232
-2021-09-05 00:22:04,480 [DEBUG] [urllib3.connectionpool] https://api.themoviedb.org:443 "GET /3/find/tt0099614?api_key=fe0c11c0aeee82176ba4b9f31e43b286&external_source=imdb_id HTTP/1.1" 200 None
-2021-09-05 00:22:04,561 [DEBUG] [urllib3.connectionpool] https://image.tmdb.org:443 "GET /t/p/original/LTsBUpMCdHeneVsWZDKZfZmpxA.jpg HTTP/1.1" 200 173246
-2021-09-05 00:22:04,755 [DEBUG] [urllib3.connectionpool] https://api.themoviedb.org:443 "GET /3/find/tt0099615?api_key=fe0c11c0aeee82176ba4b9f31e43b286&external_source=imdb_id HTTP/1.1" 200 None
-2021-09-05 00:22:04,791 [DEBUG] [urllib3.connectionpool] https://image.tmdb.org:443 "GET /t/p/original/2BWfpISXFso32Aokpmzw0ebaOLA.jpg HTTP/1.1" 200 69585
-2021-09-05 00:22:04,963 [DEBUG] [urllib3.connectionpool] https://api.themoviedb.org:443 "GET /3/find/tt0099620?api_key=fe0c11c0aeee82176ba4b9f31e43b286&external_source=imdb_id HTTP/1.1" 200 None
-2021-09-05 00:22:05,124 [DEBUG] [urllib3.connectionpool] https://api.themoviedb.org:443 "GET /3/find/tt0099622?api_key=fe0c11c0aeee82176ba4b9f31e43b286&external_source=imdb_id HTTP/1.1" 200 None
-2021-09-05 00:22:05,186 [DEBUG] [urllib3.connectionpool] https://image.tmdb.org:443 "GET /t/p/original/j2978pulBntdIMGxNZZhcI0rMsi.jpg HTTP/1.1" 200 132649
-2021-09-05 00:22:05,395 [DEBUG] [urllib3.connectionpool] https://api.themoviedb.org:443 "GET /3/find/tt0099623?api_key=fe0c11c0aeee82176ba4b9f31e43b286&external_source=imdb_id HTTP/1.1" 200 None
-2021-09-05 00:22:05,457 [DEBUG] [urllib3.connectionpool] https://image.tmdb.org:443 "GET /t/p/original/7rmkAzjmIo1St0Rf8Wkl3kiYi5O.jpg HTTP/1.1" 200 111427
-2021-09-05 00:22:05,630 [DEBUG] [urllib3.connectionpool] https://api.themoviedb.org:443 "GET /3/find/tt0099624?api_key=fe0c11c0aeee82176ba4b9f31e43b286&external_source=imdb_id HTTP/1.1" 200 None
-2021-09-05 00:22:05,690 [DEBUG] [urllib3.connectionpool] https://image.tmdb.org:443 "GET /t/p/original/q4zFvHgfTlR8sYtM439BZSt0L9Q.jpg HTTP/1.1" 200 438833
-2021-09-05 00:22:05,936 [DEBUG] [urllib3.connectionpool] https://api.themoviedb.org:443 "GET /3/find/tt0099625?api_key=fe0c11c0aeee82176ba4b9f31e43b286&external_source=imdb_id HTTP/1.1" 200 None
-2021-09-05 00:22:05,994 [DEBUG] [urllib3.connectionpool] https://image.tmdb.org:443 "GET /t/p/original/tTPexzCApuZKoaTRQXLw2HWIqXp.jpg HTTP/1.1" 200 117530
-2021-09-05 00:22:06,172 [DEBUG] [urllib3.connectionpool] https://api.themoviedb.org:443 "GET /3/find/tt0099629?api_key=fe0c11c0aeee82176ba4b9f31e43b286&external_source=imdb_id HTTP/1.1" 200 None
-2021-09-05 00:22:06,234 [DEBUG] [urllib3.connectionpool] https://image.tmdb.org:443 "GET /t/p/original/u6enVTliBTr9MRHMHLU4nCO1Keb.jpg HTTP/1.1" 200 78815
-2021-09-05 00:22:06,402 [DEBUG] [urllib3.connectionpool] https://api.themoviedb.org:443 "GET /3/find/tt0099632?api_key=fe0c11c0aeee82176ba4b9f31e43b286&external_source=imdb_id HTTP/1.1" 200 None
-2021-09-05 00:22:06,462 [DEBUG] [urllib3.connectionpool] https://image.tmdb.org:443 "GET /t/p/original/d7DHeskMQGK1mIa6ErTXrsIf3NL.jpg HTTP/1.1" 200 46359
-2021-09-05 00:22:06,637 [DEBUG] [urllib3.connectionpool] https://api.themoviedb.org:443 "GET /3/find/tt0099634?api_key=fe0c11c0aeee82176ba4b9f31e43b286&external_source=imdb_id HTTP/1.1" 200 None
-2021-09-05 00:22:06,704 [DEBUG] [urllib3.connectionpool] https://image.tmdb.org:443 "GET /t/p/original/sDeEZAdPFwzTUEp8Ba9M8Naw2dG.jpg HTTP/1.1" 200 372844
-2021-09-05 00:22:06,938 [DEBUG] [urllib3.connectionpool] https://api.themoviedb.org:443 "GET /3/find/tt0099636?api_key=fe0c11c0aeee82176ba4b9f31e43b286&external_source=imdb_id HTTP/1.1" 200 None
-2021-09-05 00:22:07,003 [DEBUG] [urllib3.connectionpool] https://image.tmdb.org:443 "GET /t/p/original/3XyBlFPfr1mAeplN1deQfQ3oHmb.jpg HTTP/1.1" 200 152644
-2021-09-05 00:22:07,193 [DEBUG] [urllib3.connectionpool] https://api.themoviedb.org:443 "GET /3/find/tt0099637?api_key=fe0c11c0aeee82176ba4b9f31e43b286&external_source=imdb_id HTTP/1.1" 200 None
-2021-09-05 00:22:07,257 [DEBUG] [urllib3.connectionpool] https://image.tmdb.org:443 "GET /t/p/original/7slcRVlqFthzjTbnXFLoQ7LE053.jpg HTTP/1.1" 200 280797
-2021-09-05 00:22:07,485 [DEBUG] [urllib3.connectionpool] https://api.themoviedb.org:443 "GET /3/find/tt0099642?api_key=fe0c11c0aeee82176ba4b9f31e43b286&external_source=imdb_id HTTP/1.1" 200 None
-2021-09-05 00:22:07,544 [DEBUG] [urllib3.connectionpool] https://image.tmdb.org:443 "GET /t/p/original/tLnEqOY9yXWpOHWPqZaaKNRfX3p.jpg HTTP/1.1" 200 44555
-2021-09-05 00:22:07,719 [DEBUG] [urllib3.connectionpool] https://api.themoviedb.org:443 "GET /3/find/tt0099648?api_key=fe0c11c0aeee82176ba4b9f31e43b286&external_source=imdb_id HTTP/1.1" 200 None
-2021-09-05 00:22:07,781 [DEBUG] [urllib3.connectionpool] https://image.tmdb.org:443 "GET /t/p/original/mAKns7jbJD2rBwCE0K2aMW67uj.jpg HTTP/1.1" 200 107747
-2021-09-05 00:22:07,967 [DEBUG] [urllib3.connectionpool] https://api.themoviedb.org:443 "GET /3/find/tt0099651?api_key=fe0c11c0aeee82176ba4b9f31e43b286&external_source=imdb_id HTTP/1.1" 200 None
-2021-09-05 00:22:08,029 [DEBUG] [urllib3.connectionpool] https://image.tmdb.org:443 "GET /t/p/original/lKhOnyQBudE32jPQxtyIhTNhhOZ.jpg HTTP/1.1" 200 195735
-2021-09-05 00:22:08,244 [DEBUG] [urllib3.connectionpool] https://api.themoviedb.org:443 "GET /3/find/tt0099652?api_key=fe0c11c0aeee82176ba4b9f31e43b286&external_source=imdb_id HTTP/1.1" 200 None
-2021-09-05 00:22:08,311 [DEBUG] [urllib3.connectionpool] https://image.tmdb.org:443 "GET /t/p/original/r8n2JqfyxoL1qBEp8JnnyiFg2fU.jpg HTTP/1.1" 200 280591
-2021-09-05 00:22:08,551 [DEBUG] [urllib3.connectionpool] https://api.themoviedb.org:443 "GET /3/find/tt0099653?api_key=fe0c11c0aeee82176ba4b9f31e43b286&external_source=imdb_id HTTP/1.1" 200 None
-2021-09-05 00:22:08,582 [DEBUG] [urllib3.connectionpool] https://image.tmdb.org:443 "GET /t/p/original/w9RaPHov8oM5cnzeE27isnFMsvS.jpg HTTP/1.1" 200 60292
-2021-09-05 00:22:08,751 [DEBUG] [urllib3.connectionpool] https://api.themoviedb.org:443 "GET /3/find/tt0099656?api_key=fe0c11c0aeee82176ba4b9f31e43b286&external_source=imdb_id HTTP/1.1" 200 None
-2021-09-05 00:22:08,811 [DEBUG] [urllib3.connectionpool] https://image.tmdb.org:443 "GET /t/p/original/ljYMbuNeGvKf3xUto1quK2GUWSo.jpg HTTP/1.1" 200 510766
-2021-09-05 00:22:09,080 [DEBUG] [urllib3.connectionpool] https://api.themoviedb.org:443 "GET /3/find/tt0099663?api_key=fe0c11c0aeee82176ba4b9f31e43b286&external_source=imdb_id HTTP/1.1" 200 None
-2021-09-05 00:22:09,141 [DEBUG] [urllib3.connectionpool] https://image.tmdb.org:443 "GET /t/p/original/h2TxVMoZtbG1TSPNhBJhoFtuRFE.jpg HTTP/1.1" 200 34307
-2021-09-05 00:22:09,301 [DEBUG] [urllib3.connectionpool] https://api.themoviedb.org:443 "GET /3/find/tt0099664?api_key=fe0c11c0aeee82176ba4b9f31e43b286&external_source=imdb_id HTTP/1.1" 200 None
-2021-09-05 00:22:09,364 [DEBUG] [urllib3.connectionpool] https://image.tmdb.org:443 "GET /t/p/original/dxkfg6wR2ctbKj6wHRE2y5GG8Y6.jpg HTTP/1.1" 200 79089
-2021-09-05 00:22:09,537 [DEBUG] [urllib3.connectionpool] https://api.themoviedb.org:443 "GET /3/find/tt0099669?api_key=fe0c11c0aeee82176ba4b9f31e43b286&external_source=imdb_id HTTP/1.1" 200 None
-2021-09-05 00:22:09,594 [DEBUG] [urllib3.connectionpool] https://image.tmdb.org:443 "GET /t/p/original/4zwgcaKqIJ5GB6kCPpyMLZuNyoi.jpg HTTP/1.1" 200 211729
-2021-09-05 00:22:09,801 [DEBUG] [urllib3.connectionpool] https://api.themoviedb.org:443 "GET /3/find/tt0099670?api_key=fe0c11c0aeee82176ba4b9f31e43b286&external_source=imdb_id HTTP/1.1" 200 None
-2021-09-05 00:22:09,866 [DEBUG] [urllib3.connectionpool] https://image.tmdb.org:443 "GET /t/p/original/94DtyrNfxFgMz64AbN5u6Q54vb.jpg HTTP/1.1" 200 176293
-2021-09-05 00:22:10,057 [DEBUG] [urllib3.connectionpool] https://api.themoviedb.org:443 "GET /3/find/tt0099673?api_key=fe0c11c0aeee82176ba4b9f31e43b286&external_source=imdb_id HTTP/1.1" 200 None
-2021-09-05 00:22:10,119 [DEBUG] [urllib3.connectionpool] https://image.tmdb.org:443 "GET /t/p/original/unWo9e3VrfnT6vfb3PKtzjvBfC7.jpg HTTP/1.1" 200 592275
-2021-09-05 00:22:10,386 [DEBUG] [urllib3.connectionpool] https://api.themoviedb.org:443 "GET /3/find/tt0099674?api_key=fe0c11c0aeee82176ba4b9f31e43b286&external_source=imdb_id HTTP/1.1" 200 None
-2021-09-05 00:22:10,414 [DEBUG] [urllib3.connectionpool] https://image.tmdb.org:443 "GET /t/p/original/lm3pQ2QoQ16pextRsmnUbG2onES.jpg HTTP/1.1" 200 206639
-2021-09-05 00:22:10,621 [DEBUG] [urllib3.connectionpool] https://api.themoviedb.org:443 "GET /3/find/tt0099675?api_key=fe0c11c0aeee82176ba4b9f31e43b286&external_source=imdb_id HTTP/1.1" 200 None
-2021-09-05 00:22:10,681 [DEBUG] [urllib3.connectionpool] https://image.tmdb.org:443 "GET /t/p/original/439SBxDGNledvQp3Bo75qt34PB3.jpg HTTP/1.1" 200 126111
-2021-09-05 00:22:10,864 [DEBUG] [urllib3.connectionpool] https://api.themoviedb.org:443 "GET /3/find/tt0099685?api_key=fe0c11c0aeee82176ba4b9f31e43b286&external_source=imdb_id HTTP/1.1" 200 None
-2021-09-05 00:22:10,893 [DEBUG] [urllib3.connectionpool] https://image.tmdb.org:443 "GET /t/p/original/6QMSLvU5ziIL2T6VrkaKzN2YkxK.jpg HTTP/1.1" 200 106031
-2021-09-05 00:22:11,077 [DEBUG] [urllib3.connectionpool] https://api.themoviedb.org:443 "GET /3/find/tt0099691?api_key=fe0c11c0aeee82176ba4b9f31e43b286&external_source=imdb_id HTTP/1.1" 200 None
-2021-09-05 00:22:11,140 [DEBUG] [urllib3.connectionpool] https://image.tmdb.org:443 "GET /t/p/original/7MkJ7AIg8yN4rbUvmymsp7N2iFY.jpg HTTP/1.1" 200 129917
-2021-09-05 00:22:11,430 [DEBUG] [urllib3.connectionpool] https://api.themoviedb.org:443 "GET /3/find/tt0099697?api_key=fe0c11c0aeee82176ba4b9f31e43b286&external_source=imdb_id HTTP/1.1" 200 None
-2021-09-05 00:22:11,487 [DEBUG] [urllib3.connectionpool] https://image.tmdb.org:443 "GET /t/p/original/oVoY9FlZ3soX6g1Fur5jBOZsVVw.jpg HTTP/1.1" 200 170813
-2021-09-05 00:22:11,676 [DEBUG] [urllib3.connectionpool] https://api.themoviedb.org:443 "GET /3/find/tt0099699?api_key=fe0c11c0aeee82176ba4b9f31e43b286&external_source=imdb_id HTTP/1.1" 200 None
-2021-09-05 00:22:11,740 [DEBUG] [urllib3.connectionpool] https://image.tmdb.org:443 "GET /t/p/original/9UweLsv3pCORu25Uq72m2IBkKaK.jpg HTTP/1.1" 200 153957
-2021-09-05 00:22:11,939 [DEBUG] [urllib3.connectionpool] https://api.themoviedb.org:443 "GET /3/find/tt0099700?api_key=fe0c11c0aeee82176ba4b9f31e43b286&external_source=imdb_id HTTP/1.1" 200 None
-2021-09-05 00:22:11,970 [DEBUG] [urllib3.connectionpool] https://image.tmdb.org:443 "GET /t/p/original/jN7yvxnIHRozhq2mzWZDE5GPRc0.jpg HTTP/1.1" 200 385964
+2021-09-08 01:24:57,079 [INFO] [werkzeug]  * Restarting with stat
+2021-09-08 01:24:58,182 [WARNING] [werkzeug]  * Debugger is active!
+2021-09-08 01:24:58,198 [INFO] [werkzeug]  * Debugger PIN: 143-987-194
+2021-09-08 01:25:00,410 [INFO] [werkzeug] 127.0.0.1 - - [08/Sep/2021 01:25:00] "GET /sign-up HTTP/1.1" 200 -
+2021-09-08 01:25:00,505 [INFO] [werkzeug] 127.0.0.1 - - [08/Sep/2021 01:25:00] "[36mGET /static/sign-up.css HTTP/1.1[0m" 304 -
+2021-09-08 01:25:02,121 [INFO] [werkzeug] 127.0.0.1 - - [08/Sep/2021 01:25:02] "GET / HTTP/1.1" 200 -
+2021-09-08 01:25:02,173 [INFO] [werkzeug] 127.0.0.1 - - [08/Sep/2021 01:25:02] "[36mGET /static/home.css HTTP/1.1[0m" 304 -
+2021-09-08 01:25:02,176 [INFO] [werkzeug] 127.0.0.1 - - [08/Sep/2021 01:25:02] "[36mGET /static/logo/main_logo.png HTTP/1.1[0m" 304 -
+2021-09-08 01:25:02,195 [INFO] [werkzeug] 127.0.0.1 - - [08/Sep/2021 01:25:02] "[36mGET /static/sample_profil_pic.jpg HTTP/1.1[0m" 304 -
+2021-09-08 01:25:02,209 [INFO] [werkzeug] 127.0.0.1 - - [08/Sep/2021 01:25:02] "[36mGET /static/matrix_trilogy.jpg HTTP/1.1[0m" 304 -
+2021-09-08 01:25:02,211 [INFO] [werkzeug] 127.0.0.1 - - [08/Sep/2021 01:25:02] "[36mGET /static/quentin_movies.jpeg HTTP/1.1[0m" 304 -
+2021-09-08 01:25:02,228 [INFO] [werkzeug] 127.0.0.1 - - [08/Sep/2021 01:25:02] "[36mGET /static/lotr_trilogy.jpg HTTP/1.1[0m" 304 -
+2021-09-08 01:25:02,234 [INFO] [werkzeug] 127.0.0.1 - - [08/Sep/2021 01:25:02] "[36mGET /static/finding_nemo.gif HTTP/1.1[0m" 304 -
+2021-09-08 01:25:02,245 [INFO] [werkzeug] 127.0.0.1 - - [08/Sep/2021 01:25:02] "[36mGET /static/john_travolta.gif HTTP/1.1[0m" 304 -
+2021-09-08 01:25:02,250 [INFO] [werkzeug] 127.0.0.1 - - [08/Sep/2021 01:25:02] "[36mGET /static/the_joker.gif HTTP/1.1[0m" 304 -
+2021-09-08 01:25:30,872 [INFO] [werkzeug] 127.0.0.1 - - [08/Sep/2021 01:25:30] "GET / HTTP/1.1" 200 -
+2021-09-08 01:25:30,949 [INFO] [werkzeug] 127.0.0.1 - - [08/Sep/2021 01:25:30] "[36mGET /static/home.css HTTP/1.1[0m" 304 -
+2021-09-08 01:25:30,964 [INFO] [werkzeug] 127.0.0.1 - - [08/Sep/2021 01:25:30] "[36mGET /static/logo/main_logo.png HTTP/1.1[0m" 304 -
+2021-09-08 01:25:30,977 [INFO] [werkzeug] 127.0.0.1 - - [08/Sep/2021 01:25:30] "[36mGET /static/quentin_movies.jpeg HTTP/1.1[0m" 304 -
+2021-09-08 01:25:30,981 [INFO] [werkzeug] 127.0.0.1 - - [08/Sep/2021 01:25:30] "[36mGET /static/sample_profil_pic.jpg HTTP/1.1[0m" 304 -
+2021-09-08 01:25:31,025 [INFO] [werkzeug] 127.0.0.1 - - [08/Sep/2021 01:25:31] "[36mGET /static/lotr_trilogy.jpg HTTP/1.1[0m" 304 -
+2021-09-08 01:25:31,036 [INFO] [werkzeug] 127.0.0.1 - - [08/Sep/2021 01:25:31] "[36mGET /static/matrix_trilogy.jpg HTTP/1.1[0m" 304 -
+2021-09-08 01:25:31,046 [INFO] [werkzeug] 127.0.0.1 - - [08/Sep/2021 01:25:31] "[36mGET /static/the_joker.gif HTTP/1.1[0m" 304 -
+2021-09-08 01:25:31,051 [INFO] [werkzeug] 127.0.0.1 - - [08/Sep/2021 01:25:31] "[36mGET /static/finding_nemo.gif HTTP/1.1[0m" 304 -
+2021-09-08 01:25:31,055 [INFO] [werkzeug] 127.0.0.1 - - [08/Sep/2021 01:25:31] "[36mGET /static/john_travolta.gif HTTP/1.1[0m" 304 -
+2021-09-08 01:25:32,776 [INFO] [werkzeug] 127.0.0.1 - - [08/Sep/2021 01:25:32] "[32mGET /logout HTTP/1.1[0m" 302 -
+2021-09-08 01:25:32,797 [INFO] [werkzeug] 127.0.0.1 - - [08/Sep/2021 01:25:32] "GET / HTTP/1.1" 200 -
+2021-09-08 01:25:32,875 [INFO] [werkzeug] 127.0.0.1 - - [08/Sep/2021 01:25:32] "[36mGET /static/home.css HTTP/1.1[0m" 304 -
+2021-09-08 01:25:32,877 [INFO] [werkzeug] 127.0.0.1 - - [08/Sep/2021 01:25:32] "[36mGET /static/logo/main_logo.png HTTP/1.1[0m" 304 -
+2021-09-08 01:25:32,891 [INFO] [werkzeug] 127.0.0.1 - - [08/Sep/2021 01:25:32] "[36mGET /static/quentin_movies.jpeg HTTP/1.1[0m" 304 -
+2021-09-08 01:25:32,905 [INFO] [werkzeug] 127.0.0.1 - - [08/Sep/2021 01:25:32] "[36mGET /static/matrix_trilogy.jpg HTTP/1.1[0m" 304 -
+2021-09-08 01:25:32,909 [INFO] [werkzeug] 127.0.0.1 - - [08/Sep/2021 01:25:32] "[36mGET /static/finding_nemo.gif HTTP/1.1[0m" 304 -
+2021-09-08 01:25:32,933 [INFO] [werkzeug] 127.0.0.1 - - [08/Sep/2021 01:25:32] "[36mGET /static/lotr_trilogy.jpg HTTP/1.1[0m" 304 -
+2021-09-08 01:25:32,940 [INFO] [werkzeug] 127.0.0.1 - - [08/Sep/2021 01:25:32] "[36mGET /static/john_travolta.gif HTTP/1.1[0m" 304 -
+2021-09-08 01:25:32,968 [INFO] [werkzeug] 127.0.0.1 - - [08/Sep/2021 01:25:32] "[36mGET /static/the_joker.gif HTTP/1.1[0m" 304 -
+2021-09-08 01:25:34,058 [INFO] [werkzeug] 127.0.0.1 - - [08/Sep/2021 01:25:34] "GET /login HTTP/1.1" 200 -
+2021-09-08 01:25:34,138 [INFO] [werkzeug] 127.0.0.1 - - [08/Sep/2021 01:25:34] "[36mGET /static/sign-up.css HTTP/1.1[0m" 304 -
+2021-09-08 01:25:40,538 [INFO] [werkzeug] 127.0.0.1 - - [08/Sep/2021 01:25:40] "[32mPOST /login HTTP/1.1[0m" 302 -
+2021-09-08 01:25:40,562 [INFO] [werkzeug] 127.0.0.1 - - [08/Sep/2021 01:25:40] "GET / HTTP/1.1" 200 -
+2021-09-08 01:25:40,615 [INFO] [werkzeug] 127.0.0.1 - - [08/Sep/2021 01:25:40] "[36mGET /static/home.css HTTP/1.1[0m" 304 -
+2021-09-08 01:25:40,628 [INFO] [werkzeug] 127.0.0.1 - - [08/Sep/2021 01:25:40] "[36mGET /static/logo/main_logo.png HTTP/1.1[0m" 304 -
+2021-09-08 01:25:40,643 [INFO] [werkzeug] 127.0.0.1 - - [08/Sep/2021 01:25:40] "[36mGET /static/lotr_trilogy.jpg HTTP/1.1[0m" 304 -
+2021-09-08 01:25:40,644 [INFO] [werkzeug] 127.0.0.1 - - [08/Sep/2021 01:25:40] "[36mGET /static/quentin_movies.jpeg HTTP/1.1[0m" 304 -
+2021-09-08 01:25:40,652 [INFO] [werkzeug] 127.0.0.1 - - [08/Sep/2021 01:25:40] "[36mGET /static/matrix_trilogy.jpg HTTP/1.1[0m" 304 -
+2021-09-08 01:25:40,671 [INFO] [werkzeug] 127.0.0.1 - - [08/Sep/2021 01:25:40] "[36mGET /static/finding_nemo.gif HTTP/1.1[0m" 304 -
+2021-09-08 01:25:40,672 [INFO] [werkzeug] 127.0.0.1 - - [08/Sep/2021 01:25:40] "[36mGET /static/the_joker.gif HTTP/1.1[0m" 304 -
+2021-09-08 01:25:40,674 [INFO] [werkzeug] 127.0.0.1 - - [08/Sep/2021 01:25:40] "[36mGET /static/john_travolta.gif HTTP/1.1[0m" 304 -
+2021-09-08 01:25:40,700 [INFO] [werkzeug] 127.0.0.1 - - [08/Sep/2021 01:25:40] "[36mGET /static/background.png HTTP/1.1[0m" 304 -
+2021-09-08 01:25:40,704 [INFO] [werkzeug] 127.0.0.1 - - [08/Sep/2021 01:25:40] "[33mGET /static/filters.svg HTTP/1.1[0m" 404 -
+2021-09-08 01:25:40,735 [INFO] [werkzeug] 127.0.0.1 - - [08/Sep/2021 01:25:40] "[36mGET /static/fonts/CallunaSans-Regular.otf HTTP/1.1[0m" 304 -
+2021-09-08 01:25:40,739 [INFO] [werkzeug] 127.0.0.1 - - [08/Sep/2021 01:25:40] "[36mGET /static/fonts/Vanillaextract.ttf HTTP/1.1[0m" 304 -
+2021-09-08 01:25:40,759 [INFO] [werkzeug] 127.0.0.1 - - [08/Sep/2021 01:25:40] "[36mGET /static/fonts/CallunaSans-Italic.otf HTTP/1.1[0m" 304 -

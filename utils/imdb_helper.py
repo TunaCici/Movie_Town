@@ -151,6 +151,31 @@ def drop_column(file: FileIO, columns: list):
     df.drop(columns, axis=1, inplace=True)
     df.to_csv("imdb_movies.csv", encoding="utf8")
 
+def list_high_rated(file: FileIO):
+    pd_file = pd.read_csv(FILE_MOVIES, low_memory=False)
+    df = pd.DataFrame(pd_file)
+    
+    total = 0
+    for idx, i in df.iterrows():
+        if 7.5 <= i["avg_vote"]:
+            title = i["title"]
+            score = i["avg_vote"]
+            total += 1
+            print(f"{title} with score of {score}")
+
+    print(f"Total of: {total}")
+
+def update_path_of_titles(file: FileIO):
+    pd_file = pd.read_csv(file, low_memory=False)
+    df = pd.DataFrame(pd_file)
+
+    for idx, i in df.iterrows():
+        if os.path.isfile(config.PROJECT_DIR + "data/posters/" + i["imdb_title_id"] + ".jpg"):
+            df.at[idx, "poster_path"] = "data/posters/" + i["imdb_title_id"] + ".jpg"
+        
+    print(df)
+    df.to_csv("imdb_movies.csv")
+
 if __name__ == "__main__":
     IMDB_LOGGER.log_info("Started main function.")
     open_files()
@@ -158,5 +183,9 @@ if __name__ == "__main__":
     close_files()
 
     open_files()
-    init_movie_images()
+    # TODO: Write your code here for data manipulation
+    #init_movie_images()
+    #list_high_rated(FILE_MOVIES)
+    #add_path_to_titles(FILE_MOVIES)
+    #update_path_of_titles(FILE_MOVIES)
     close_files()

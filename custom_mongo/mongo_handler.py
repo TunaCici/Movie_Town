@@ -1,9 +1,14 @@
 import pymongo
 import bcrypt
 import uuid
+import sys
+import pandas as pd
 from pymongo import database
 from pymongo import MongoClient
 from pymongo.errors import ConnectionFailure
+
+sys.path.append("..")
+from utils import config
 
 URL = "localhost"
 PORT = 27017
@@ -152,6 +157,18 @@ class MongoHandler:
         try:
             res = self.user_collection.find_one({"u_username": username})
             return res
+        except Exception as e:
+            print("An error occured operation will stop. See details:")
+            print(e)
+            return None
+    
+    def init_movies(self):
+        try:
+            with open(config.PROJECT_DIR + "data/imdb_movies.csv") as movie_file:
+                pd_csv = pd.read_csv(movie_file, low_memory=False)
+                df = pd.DataFrame(pd_csv)
+                self.movie_collection.insert_many(df.to_dict("records"))
+                
         except Exception as e:
             print("An error occured operation will stop. See details:")
             print(e)

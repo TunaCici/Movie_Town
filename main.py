@@ -28,9 +28,10 @@ from flask import Flask
 from flask import url_for
 from flask import render_template
 from flask import request
+from flask import session
+from flask_session import Session
 from werkzeug.utils import redirect
 
-import redis
 from custom_redis import redis_handler
 
 redis_session = redis_handler.RedisHandler()
@@ -38,10 +39,13 @@ redis_session = redis_handler.RedisHandler()
 # currently on localhost
 app = Flask(__name__)
 app.debug = True
-app.config['SESSION_TYPE'] = 'redis'
+app.secret_key = "B4D_w0lf"
+app.config['SESSION_TYPE'] = "redis"
 app.config['SESSION_PERMANENT'] = False
 app.config['SESSION_USE_SIGNER'] = True
 app.config['SESSION_REDIS'] = redis_session.get_redis()
+
+server_session = Session(app)
 
 # variables for testing
 
@@ -50,7 +54,11 @@ def home():
     """
     method to be called when wisiting root or '/'
     """
-    return render_template("home.html", signed_in = True)
+
+    if "username" in session:
+        return render_template("home.html", signed_in=True)
+    else:
+        return render_template("home.html", signed_in=False)
 
 @app.route("/sign-up", methods=['GET', 'POST'])
 def sign_up():
@@ -66,7 +74,7 @@ def sign_up():
         else:
             # TODO: Critical error. Handle this ASAP!
             pass
-        return redirect(url_for("home", signed_in = True), )
+        return redirect(url_for("home"))
     else:
         return render_template("sign-up.html")
 
@@ -77,17 +85,28 @@ def login():
     """
     if request.method == "POST":
         form = request.form
-        result = handler.handle_signup(form)
-        if result:
+        result = handler.handle_login(form, session)
+        print(result)
+        if result == "success":
             # TODO: Inform the user about the results
-            pass
+            return redirect(url_for("home"))
         else:
             # TODO: Critical error. Handle this ASAP!
-            pass
+            return redirect(url_for("home"))
         
-        return redirect(url_for("home"), signed_in = True)
     else:
         return render_template("login.html")
+
+@app.route("/logout", methods=['GET', 'POST'])
+def logout():
+    """
+    method to be called when wisiting '/logout'
+    """
+    if "username" in session:
+        session.pop("username")
+        return redirect(url_for("home"))
+    else:
+        return redirect(url_for("login"))
 
 if __name__ == "__main__":
     app.run()

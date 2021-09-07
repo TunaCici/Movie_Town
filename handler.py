@@ -16,6 +16,9 @@ currently used for login and sign-ups.
 import uuid
 import bcrypt
 import form_helper
+import json
+
+from flask_session import Session
 
 from custom_mongo import mongo_handler
 from utils import logger
@@ -23,6 +26,9 @@ from utils import logger
 HANDLER_LOGGER = logger.CustomLogger()
 MONGO_HANDLER = mongo_handler.MongoHandler()
 
+def parse_cookie(cookie: str) -> str:
+    return "session:" + cookie[0:36]
+    
 def handle_signup(form: dict) -> str:
     result = form_helper.check_register(form)
     if result is None:
@@ -53,6 +59,18 @@ def handle_signup(form: dict) -> str:
         HANDLER_LOGGER.log_warning("Invalid form.")
         return "fail"
 
-def handle_login(form: dict) -> str:
+def handle_login(form: dict, session: Session) -> str:
     # TODO: Handle the login request
-    pass
+    username = form.get("username")
+    password = form.get("passwordOne")
+
+    user = MONGO_HANDLER.user_get(username)
+    if user is None:
+        return "fail"
+    valid = bcrypt.checkpw(bytes(password, encoding="utf8"), user.get("u_password"))
+    
+    if valid:
+        session["username"] = username
+        return "success"
+    else:
+        return "fail"

@@ -3,3 +3,4 @@
 /custom_redis/redis-stable
 /logs
 /data/logs
+logs/movie_town_log.txt
