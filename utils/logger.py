@@ -8,7 +8,6 @@ import inspect
 import logging
 import logging.handlers
 
-
 if __name__ == "utils." + os.path.basename(__file__)[:-3]:
     # importing from outside the package
     from utils import config
@@ -25,6 +24,7 @@ class CustomLogger:
         #get the callers filename
         filename = inspect.stack()[1].filename
         filename = os.path.basename(filename)
+
         #get the root logger
         rootlogger = logging.getLogger()
         #set overall level to debug, default is warning for root logger
@@ -72,3 +72,16 @@ class CustomLogger:
         self.logger.error(text)
         print("An error occured. See the above log. Exiting program...")
         exit(-1)
+    
+    def list_loggers(self) -> int:
+        """
+        prints how many logger is running
+        """
+
+        for k,v in  logging.Logger.manager.loggerDict.items()  :
+            print('+ [%s] {%s} ' % (str.ljust( k, 20)  , str(v.__class__)[8:-2]) ) 
+            if not isinstance(v, logging.PlaceHolder):
+                for h in v.handlers:
+                    print('     +++',str(h.__class__)[8:-2] )
+
+        

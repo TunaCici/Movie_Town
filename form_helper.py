@@ -10,9 +10,7 @@ also improves security a little bit.
 """
 import re
 
-from custom_mongo import mongo_handler
-
-mg_client = mongo_handler.MongoHandler()
+from custom_mongo.mongo_handler import MongoHandler
 
 MIN_ALLOWED_NAME = 2
 MIN_ALLOWED_SURNAME = 2
@@ -31,14 +29,13 @@ def validate_email(mail: str) -> bool:
     
     if re.search(regex, mail):
         return True
-    else:
-        return False
+    return False
 
-def check_existing(username: str, mail: str) -> bool:
-    if mg_client.username_exists(username):
+def check_existing(username: str, mail: str, db: MongoHandler) -> bool:
+    if db.username_exists(username):
         print("username exists")
         return True
-    if mg_client.mail_exists(mail):
+    if db.mail_exists(mail):
         print("mail exists")
         return True
     return False
@@ -84,6 +81,6 @@ def check_register(form: dict) -> str:
         return "invalid_accept"
     
     if check_existing(username, mailAddress):
-        return "already_exists"
+        return "user_exists"
 
     return None
