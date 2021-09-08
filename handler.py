@@ -67,7 +67,7 @@ def handle_login(form: dict, db: MongoHandler, session: session) -> str:
     valid = bcrypt.checkpw(
         bytes(password, encoding="utf8"), user.get("u_password"))
     if valid:
-        session["username"] = username
+        session["username"] = user
         return "success"
     
     return "fail"

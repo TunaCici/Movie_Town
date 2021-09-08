@@ -38,15 +38,31 @@ from werkzeug.utils import redirect
 from custom_mongo import mongo_handler
 from custom_redis import redis_handler
 from utils import logger
+from utils import feature_pack
+
+# logger
+FLASK_LOGGER = logger.CustomLogger()
 
 # global flask app
 app = Flask(__name__)
 RUNNING = False
-# logger
-FLASK_LOGGER = logger.CustomLogger()
+
+# init dbs
+REDIS_CLIENT: redis_handler.RedisHandler
+MONGO_CLIENT: mongo_handler.MongoHandler
+
+FLASK_LOGGER.log_info("Connecting to databases.")
+try:
+    REDIS_CLIENT = redis_handler.RedisHandler()
+except Exception as e:
+    FLASK_LOGGER.log_error(f"Connection failed to Redis.\n\t{e}")
+try:
+    MONGO_CLIENT = mongo_handler.MongoHandler()
+except Exception as e:
+    FLASK_LOGGER.log_error(f"Connection failed to MongoDB.\n\t{e}")  
 
 # global variables
-UPDATE_RATE = 10 # per second
+UPDATE_RATE = 5 # per second
 FIRST_RUN = True
 
 @app.route("/")
@@ -55,23 +71,30 @@ def home():
     method to be called when wisiting root or '/'
     """
     if "username" in session:
-        return render_template("home.html", signed_in=True)
+        usr = session.get("username")
+        return render_template("home.html", user=usr)
     else:
-        return render_template("home.html", signed_in=False)
+        return render_template("home.html", user=None)
 
 @app.route("/sign-up", methods=['GET', 'POST'])
 def sign_up():
     """
     method to be called when wisiting '/sign-up'
     """
-    if request.method == "POST":
+    if "username" in session:
+        FLASK_LOGGER.log_warning(f"Already logged in.")
+        return redirect(url_for("home"))
+
+    elif request.method == "POST":
         form = request.form
         result = handler.handle_signup(form)
         if result:
             # TODO: Inform the user about the results
+            FLASK_LOGGER.log_info("Successfuly registered.")
             pass
         else:
             # TODO: Critical error. Handle this ASAP!
+            FLASK_LOGGER.log_warning(f"Failed to register. ({result})")
             pass
         return redirect(url_for("home"))
     
@@ -82,9 +105,12 @@ def login():
     """
     method to be called when wisiting '/login'
     """
-    if request.method == "POST":
+    if "username" in session:
+        FLASK_LOGGER.log_warning(f"Already logged in.")
+
+    elif request.method == "POST":
         form = request.form
-        result = handler.handle_login(form, session)
+        result = handler.handle_login(form, MONGO_CLIENT, session)
         if result == "success":
             # successfully logged in
             FLASK_LOGGER.log_info(
@@ -109,6 +135,18 @@ def logout():
         session.pop("username")
         return redirect(url_for("home"))
     
+    return redirect(url_for("home"))
+
+@app.route("/profile", methods=['GET', 'POST'])
+def profile():
+    """
+    method to be called when wisiting '/profile'
+    """
+    if "username" in session:
+        usr = session.get("username")
+        return render_template(
+            "profile.html", user=usr, welcoming=feature_pack.get_str_time())
+    
     return redirect(url_for("login"))
 
 def watchdog(
@@ -128,39 +166,27 @@ def watchdog(
             # TODO: write the code here
             if FIRST_RUN:
                 # TODO: to be executed on the first run 
-                redis_c.reset() # reset session data
+                # redis_c.reset() # reset session data
                 FIRST_RUN = False
             last_run = time.perf_counter()
 
 
 if __name__ == "__main__":
-    # init dbs
-    FLASK_LOGGER.log_info("Connecting to databases.")
-    try:
-        redis_client = redis_handler.RedisHandler()
-    except Exception as e:
-        FLASK_LOGGER.log_error(f"Connection failed to Redis.\n\t{e}")
-
-    try:
-        mongo_client = mongo_handler.MongoHandler()
-    except Exception as e:
-        FLASK_LOGGER.log_error(f"Connection failed to MongoDB.\n\t{e}")    
-        
     # check if running
-    if not redis_client.runnig():
+    if not REDIS_CLIENT.runnig():
         FLASK_LOGGER.log_error("Redis client is not running. Aborting.")
 
-    if not mongo_client.running():
+    if not MONGO_CLIENT.running():
         FLASK_LOGGER.log_error("Mongo client is not running. Aborting.")
 
     FLASK_LOGGER.log_info("Successfully connected to DBs.")
 
-    app.debug = True
+    app.debug = False
     app.secret_key = "B4D_w0lf"
     app.config['SESSION_TYPE'] = "redis"
     app.config['SESSION_PERMANENT'] = False
     app.config['SESSION_USE_SIGNER'] = True
-    app.config['SESSION_REDIS'] = redis_client.get_redis()
+    app.config['SESSION_REDIS'] = REDIS_CLIENT.get_redis()
     server_session = Session(app)
 
     # reset the session before start
@@ -168,7 +194,7 @@ if __name__ == "__main__":
     FLASK_LOGGER.log_info("Starting")
     try:
         t_watchdog = threading.Thread(
-            target=watchdog, args=(redis_client, mongo_client))
+            target=watchdog, args=(REDIS_CLIENT, MONGO_CLIENT))
         t_watchdog.start()
 
         RUNNING = True

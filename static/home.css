@@ -30,6 +30,31 @@ body::before {
 }
 
 @font-face {
+    font-family: SanFrancisco;
+    font-weight: normal;
+    font-style: normal;
+    src: url("/static/fonts/SanFrancisco-Regular.otf");
+}
+@font-face {
+    font-family: SanFrancisco;
+    font-weight: bold;
+    font-style: normal;
+    src: url("/static/fonts/SanFrancisco-Bold.otf");
+}
+@font-face {
+    font-family: SanFrancisco;
+    font-weight: normal;
+    font-style: italic;
+    src: url("/static/fonts/SanFrancisco-Italic.otf");
+}
+@font-face {
+    font-family: SanFrancisco;
+    font-weight: bold;
+    font-style: italic;
+    src: url("/static/fonts/SanFrancisco-BoldItalic.otf");
+}
+
+@font-face {
     font-family: VanillaExtract;
     font-weight: bolder;
     font-style: normal;

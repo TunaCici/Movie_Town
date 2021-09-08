@@ -1,13 +1,17 @@
 {% extends 'base.html' %}
 
+{% block title%}
+    Movie Town
+{% endblock %}
+
 {% block navbar %}
   <!-- signed in -->
-  {% if signed_in %}
-    <a href="{{ url_for('home') }}">
-      <img src="/static/sample_profil_pic.jpg" alt="Movie Town Logo" width="60rem" height="60srem" class="d-none d-md-inline-block align-top profile-img">
+  {% if user %}
+    <a href="{{ url_for('profile') }}">
+      <img src="/static/sample_profil_pic.jpg" alt="Profile Picture" width="60rem" height="60rem" class="d-none d-md-inline-block align-top profile-img">
     </a>
     <li>
-      <a class="nav-link visible-ws", href="{{ url_for('sign_up') }}"> Tunahan</a>
+      <a class="nav-link visible-ws", href="{{ url_for('profile') }}"> {{ user.get("u_name") }}</a>
     </li>
     <li>
       <a class="nav-link visible-ws" href="{{ url_for('logout') }}">Logout  </a>
@@ -21,7 +25,6 @@
       <a class="nav-link", href="{{ url_for('sign_up') }}">Sign up   </a>
     </li>
   {% endif %}
-
 {% endblock %}
 
 {% block main %}

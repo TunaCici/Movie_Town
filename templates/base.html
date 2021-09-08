@@ -14,8 +14,9 @@
     <!--End import-->
     <!-- Import Custom CSS-->
     <link rel="stylesheet" href="/static/home.css">
+    <link rel="stylesheet" href="/static/profile.css">
     <!-- End import-->
-    <title>Welcome Page</title>
+    <title>{% block title %}{% endblock %}</title>
   </head>
 
   <body class="background-img font-primary font-large">
@@ -69,7 +70,7 @@
         {% block main %} {% endblock %}
         <!--Main end-->
     </main>
-    <footer class="p-5 text-white text-center position-relative" style="background-color: rgba(33, 37, 41, 0.7);">
+    <footer class="fixed-bottom p-5 text-white text-center position-relative" style="background-color: rgba(33, 37, 41, 0.7);">
       <div class="container">
         <p class="lead">No Copyright &copy; 2021 Tuna Cici</p>
         <a href="#" class="position-absolute bottom-0 end-0 p-5">

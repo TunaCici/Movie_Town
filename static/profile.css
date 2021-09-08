@@ -1,0 +1,45 @@
+.profile-sheet {
+    border-radius: 1rem;
+    background-color: white;
+    filter: drop-shadow(0 0 0.75rem grey);
+}
+
+.cool-font-regular {
+    font-family: SanFrancisco;
+    font-weight: normal;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.cool-font-italic {
+    font-family: SanFrancisco;
+    font-weight: normal;
+    font-style: italic;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.cool-font-bold {
+    font-family: SanFrancisco;
+    font-weight: bold;
+    font-style: normal;
+    font-size: 2rem;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.cool-font-bolditalic {
+    font-family: SanFrancisco;
+    font-weight: bold;
+    font-style: italic;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.light-label {
+    font-size: 1.5rem;
+    color: #AEB9CC;
+}
+
+
