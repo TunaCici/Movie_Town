@@ -1,6 +1,9 @@
 /data/*.csv
 /data/posters/*.jpg
 /custom_redis/redis-stable
+/custom_elasticsearch/kibana-7.14.1
+/custom_elasticsearch/elasticsearch-7.14.1
+/custom_elasticsearch/ids_and_passwords.txt
 /logs
 /data/logs
 /logs/movie_town_log.txt

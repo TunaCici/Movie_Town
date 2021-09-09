@@ -1,0 +1,59 @@
+.display-border {
+    border-color: crimson;
+    border-style: solid;
+}
+
+.search-box {
+    border-radius: 4rem;
+    background-color: #FFFFFF;
+    filter: drop-shadow(0 0 0.1rem grey);
+    width: 50%;
+    transition: filter 0.5s, width 0.5s;
+    transition-timing-function: cubic-bezier(.47, 1.64, .41, .8);
+
+}
+
+.text-box {
+    outline: none;
+    background-color: #FFFFFF;
+    border-style: none;
+}
+
+.submit-button {
+    background-color: #FFFFFF;
+    border-style: none;
+    font-size: 1.7rem;
+    font-weight: bold;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.search-box:hover {
+    width: 75%;
+    filter: drop-shadow(0 0 0.5rem grey);
+}
+
+.result-sheet {
+    height: auto;
+    border-radius: 4rem;
+    background-color: white;
+    filter: drop-shadow(0 0 0.1rem grey);
+}
+
+.result-left {
+    min-width: 256px;
+    width: 30%;
+}
+
+.poster {
+    width: 100%;
+    height: auto;
+}
+
+.result-right {
+    width: 70%;
+}
+
+.rating {
+    font-size: 1rem;
+}

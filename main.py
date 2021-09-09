@@ -27,6 +27,7 @@ import handler
 
 import threading
 import time
+import datetime
 from flask import Flask
 from flask import url_for
 from flask import render_template
@@ -149,6 +150,17 @@ def profile():
     
     return redirect(url_for("login"))
 
+@app.route("/search", methods=['GET', 'POST'])
+def search():
+    """
+    method to be called when wisiting '/profile'
+    """
+    if "username" in session:
+        usr = session.get("username")
+        return render_template("search.html", user=usr)
+    
+    return redirect(url_for("login"))
+
 def watchdog(
     redis_c: redis_handler.RedisHandler,
     mongo_c: mongo_handler.MongoHandler
@@ -187,6 +199,7 @@ if __name__ == "__main__":
     app.config['SESSION_PERMANENT'] = False
     app.config['SESSION_USE_SIGNER'] = True
     app.config['SESSION_REDIS'] = REDIS_CLIENT.get_redis()
+    app.config['PERMANENT_SESSION_LIFETIME'] = datetime.timedelta(hours=8)
     server_session = Session(app)
 
     # reset the session before start
