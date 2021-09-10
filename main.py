@@ -38,6 +38,7 @@ from werkzeug.utils import redirect
 
 from custom_mongo import mongo_handler
 from custom_redis import redis_handler
+from custom_elastic import elastic_handler
 from utils import logger
 from utils import feature_pack
 
@@ -51,6 +52,7 @@ RUNNING = False
 # init dbs
 REDIS_CLIENT: redis_handler.RedisHandler
 MONGO_CLIENT: mongo_handler.MongoHandler
+ELASTIC_CLIENT: elastic_handler.ElasticHandler
 
 FLASK_LOGGER.log_info("Connecting to databases.")
 try:
@@ -60,11 +62,17 @@ except Exception as e:
 try:
     MONGO_CLIENT = mongo_handler.MongoHandler()
 except Exception as e:
-    FLASK_LOGGER.log_error(f"Connection failed to MongoDB.\n\t{e}")  
+    FLASK_LOGGER.log_error(f"Connection failed to MongoDB.\n\t{e}")
+try:
+    ELASTIC_CLIENT = elastic_handler.ElasticHandler()
+except Exception as e:
+    FLASK_LOGGER.log_error(f"Connection failed to ElasticSearch.\n\t{e}")  
 
 # global variables
-UPDATE_RATE = 5 # per second
+UPDATE_RATE = 30 # per second
 FIRST_RUN = True
+BATCH_SIZE = 100
+MOVIE_SIZE = MONGO_CLIENT.movie_get_count()
 
 @app.route("/")
 def home():
@@ -161,16 +169,17 @@ def search():
     
     return redirect(url_for("login"))
 
-def watchdog(
-    redis_c: redis_handler.RedisHandler,
-    mongo_c: mongo_handler.MongoHandler
-):
+def watchdog():
     """
-    monitors the website after app.run() is called.
+    monitors the website and dbs after app.run() is called.
     """
     global FIRST_RUN
     time.sleep(1)
     last_run = time.perf_counter()
+    integrity_start_idx = 0
+    integrity_end_idx = 0
+    integrity_check_reset = False
+
     while RUNNING:
         curr_run = time.perf_counter()
         delta = curr_run - last_run
@@ -180,16 +189,37 @@ def watchdog(
                 # TODO: to be executed on the first run 
                 # redis_c.reset() # reset session data
                 FIRST_RUN = False
+
+            # obtain integrity between mongo and elastic
+            if integrity_check_reset:
+                integrity_start_idx = 0
+                print("indexing done.")
+                exit(0)
+
+            if MOVIE_SIZE - integrity_start_idx < BATCH_SIZE:
+                integrity_end_idx = MOVIE_SIZE
+                integrity_check_reset = True
+            else:
+                integrity_end_idx = integrity_start_idx + BATCH_SIZE
+
+            handler.check_integrity(
+                MONGO_CLIENT, ELASTIC_CLIENT,
+                integrity_start_idx, integrity_end_idx
+            )
+            integrity_start_idx += BATCH_SIZE
             last_run = time.perf_counter()
 
 
 if __name__ == "__main__":
-    # check if running
+    # check dbs
     if not REDIS_CLIENT.runnig():
         FLASK_LOGGER.log_error("Redis client is not running. Aborting.")
 
     if not MONGO_CLIENT.running():
         FLASK_LOGGER.log_error("Mongo client is not running. Aborting.")
+    
+    if not ELASTIC_CLIENT.running():
+        FLASK_LOGGER.log_error("Elastic client is not running. Aborting.")
 
     FLASK_LOGGER.log_info("Successfully connected to DBs.")
 
@@ -206,8 +236,7 @@ if __name__ == "__main__":
 
     FLASK_LOGGER.log_info("Starting")
     try:
-        t_watchdog = threading.Thread(
-            target=watchdog, args=(REDIS_CLIENT, MONGO_CLIENT))
+        t_watchdog = threading.Thread(target=watchdog)
         t_watchdog.start()
 
         RUNNING = True
