@@ -1,3 +1,4 @@
+from numpy import str_
 import pymongo
 import bcrypt
 import uuid
@@ -18,7 +19,7 @@ USER_COLLECTION_NAME = "users"
 MOVIE_COLLECTION_NAME = "movies"
 
 user_struct = {
-    "u_id": uuid.UUID,
+    "u_id": str_,
     "u_name": str,
     "u_surname": str,
     "u_username": str,
@@ -27,19 +28,20 @@ user_struct = {
 }
 
 movie_struct = {
-    "m_id": None,
-    "m_imdb_id": None,
-    "m_title": None,
-    "m_year": None,
-    "m_genre": None,
-    "m_duration": None,
-    "m_country": None,
-    "m_director": None,
-    "m_writer": None,
-    "m_actors": None,
-    "m_description": None,
-    "m_score": None,
-    "m_poster": None
+    "m_id": str,
+    "m_imdb_id": str,
+    "m_title": str,
+    "m_year": str,
+    "m_genre": str,
+    "m_duration": str,
+    "m_country": str,
+    "m_director": str,
+    "m_writer": str,
+    "m_production": str,
+    "m_actors": str,
+    "m_description": str,
+    "m_score": float,
+    "m_poster": str
 }
 
 class MongoHandler:
@@ -82,11 +84,13 @@ class MongoHandler:
         return self.client
 
     def user_add(
-        self, id: uuid.UUID, name: str,
-        surname: str, username: str,
-        mail: str, password: bytes ) -> bool:
+        self, name: str, surname: str,
+        username: str, mail: str,
+        password: bytes ) -> bool:
+
+        unique_id = uuid.uuid4()
         user_struct = {
-            "u_id": id,
+            "u_id": unique_id,
             "u_name": name,
             "u_surname": surname,
             "u_username": username,
@@ -98,7 +102,9 @@ class MongoHandler:
         except Exception as e:
             print("An error occured operation will stop. See details:")
             print(e)
-            return None
+            return False
+
+        return True
 
     def username_exists(self, username: str) -> bool:
         try:
@@ -167,8 +173,47 @@ class MongoHandler:
             with open(config.PROJECT_DIR + "data/imdb_movies.csv") as movie_file:
                 pd_csv = pd.read_csv(movie_file, low_memory=False)
                 df = pd.DataFrame(pd_csv)
-                self.movie_collection.insert_many(df.to_dict("records"))
-                
+                for i in df.to_dict("records"):
+                    movie_struct = {
+                        "m_id": i.get("id"),
+                        "m_imdb_id": i.get("imdb_title_id"),
+                        "m_title": i.get("title"),
+                        "m_year": i.get("year"),
+                        "m_genre": i.get("genre"),
+                        "m_duration": i.get("duration"),
+                        "m_country": i.get("country"),
+                        "m_director": i.get("director"),
+                        "m_writer": i.get("writer"),
+                        "m_production": i.get("production_company"),
+                        "m_actors": i.get("actors"),
+                        "m_description": i.get("description"),
+                        "m_score": i.get("avg_vote"),
+                        "m_poster": i.get("poster_path")
+                    }
+                    self.movie_collection.insert_one(movie_struct)
+        except Exception as e:
+            print("An error occured operation will stop. See details:")
+            print(e)
+            return None
+
+    def get_range_of_movies(self, start: int, end: int) -> list:
+        if start < 0 or end < 0:
+            print("Range values cannot be smaller than 0")
+            return None
+
+        movies: list
+
+        try:
+            movies = self.movie_collection.find().skip(start).limit(end)
+            return list(movies)
+        except Exception as e:
+            print("An error occured operation will stop. See details:")
+            print(e)
+            return None       
+    
+    def movie_get_count(self) -> int:
+        try:
+            return self.movie_collection.count()
         except Exception as e:
             print("An error occured operation will stop. See details:")
             print(e)
@@ -176,4 +221,4 @@ class MongoHandler:
 
 if __name__ == "__main__":
     inst = MongoHandler()
-    res = inst.user_get("miketheking")
+    
