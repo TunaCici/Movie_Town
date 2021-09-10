@@ -8,6 +8,7 @@ to imdb files such as, movies, actors.
 """
 
 import json
+import uuid
 import os
 import requests
 import pandas as pd
@@ -126,6 +127,13 @@ def get_image(imdb_id: str) -> bytes:
         print("an error occured.")
         return None
 
+def print_all(file: FileIO):
+    pd_file = pd.read_csv(FILE_MOVIES, low_memory=False)
+    df = pd.DataFrame(pd_file)
+
+    print(df)
+
+
 def init_movie_images():
     pd_file = pd.read_csv(FILE_MOVIES, low_memory=False)
     df = pd.DataFrame(pd_file)
@@ -176,6 +184,18 @@ def update_path_of_titles(file: FileIO):
     print(df)
     df.to_csv("imdb_movies.csv")
 
+def update_id_of_titles(file: FileIO):
+    pd_file = pd.read_csv(file, low_memory=False)
+    df = pd.DataFrame(pd_file)
+
+    for idx, i in df.iterrows():
+        b_unique_id = uuid.uuid4()
+        str_unique_id = str(b_unique_id)
+        df.at[idx, "id"] = str_unique_id
+
+    print(df)
+    df.to_csv("updated_movies.csv")
+
 if __name__ == "__main__":
     IMDB_LOGGER.log_info("Started main function.")
     open_files()
@@ -188,4 +208,6 @@ if __name__ == "__main__":
     #list_high_rated(FILE_MOVIES)
     #add_path_to_titles(FILE_MOVIES)
     #update_path_of_titles(FILE_MOVIES)
+    #update_id_of_titles(FILE_MOVIES)
+    #print_all(FILE_MOVIES)
     close_files()
