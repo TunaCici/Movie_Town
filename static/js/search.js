@@ -10,7 +10,7 @@ function delay(callback, ms) {
   }
 
 function main_entry() {
-    $("#searchBox").keyup(delay(function () {
+    $("#searchBox").keyup(delay(function (e) {
         $.ajax({
             type: "POST",
             url: "/process-search",

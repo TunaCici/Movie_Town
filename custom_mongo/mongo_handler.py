@@ -160,6 +160,16 @@ class MongoHandler:
             print(e)
             return None
 
+    def user_update_password(self, id: uuid.UUID, password: bytes):
+        try:
+            self.user_collection.update_one(
+                {"u_id": id},
+                {"$set": {"u_password": password}})
+        except Exception as e:
+            print("An error occured operation will stop. See details:")
+            print(e)
+            return None
+
     def user_get(self, username: str) -> dict:
         try:
             res = self.user_collection.find_one({"u_username": username})

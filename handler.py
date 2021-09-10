@@ -77,6 +77,38 @@ def handle_search(elastic: ElasticHandler, search_str: str) -> list:
     result = elastic.search(search_str)
     return result
 
+def handle_password_change(
+    mongo: MongoHandler,
+    user: dict,
+    form: dict)-> str:
+    # check current password
+    curr_pass = user.get("u_password")
+    form_pass = form.get("currentPassword")
+
+    same = bcrypt.checkpw(bytes(form_pass, encoding="utf-8"), curr_pass)
+
+    if not same:
+        return "wrong_curr_pass"
+    
+    passwordOne = form.get("newPasswordOne")
+    passwordTwo = form.get("newPasswordTwo")
+
+    response = form_helper.check_password(passwordOne, passwordTwo)
+
+    if response == "invalid_password":
+        return "fail"
+    elif response == "invalid_confirm":
+        return "fail"
+    elif response == "valid":
+        user_id = user.get("u_id")
+        pass_hashed = bcrypt.hashpw(
+            bytes(passwordOne, encoding="utf-8"),
+            bcrypt.gensalt())
+        mongo.user_update_password(user_id, pass_hashed)
+        return "success"
+
+    return "fail"
+
 def check_integrity(
     mongo: MongoHandler,
     elastic: ElasticHandler,

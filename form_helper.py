@@ -31,6 +31,14 @@ def validate_email(mail: str) -> bool:
         return True
     return False
 
+def check_password(passwordOne: str, passwordTwo: str) -> str:
+    if passwordOne is None or len(passwordOne) < MIN_ALLOWED_PASSWORD:
+        return "invalid_password"
+    if passwordTwo is None or passwordTwo != passwordOne:
+        return "invalid_confirm"
+    
+    return "valid"
+
 def check_existing(username: str, mail: str, db: MongoHandler) -> bool:
     if db.username_exists(username):
         print("username exists")

@@ -140,7 +140,7 @@ def logout():
     """
     if "username" in session:
         FLASK_LOGGER.log_info(
-            f"User: {session.get('username')} logged out.")
+            f"User: {session.get('u_username')} logged out.")
         session.pop("username")
         return redirect(url_for("home"))
     
@@ -154,9 +154,59 @@ def profile():
     if "username" in session:
         usr = session.get("username")
         return render_template(
-            "profile.html", user=usr, welcoming=feature_pack.get_str_time())
+            "profile_base.html", user=usr, welcoming=feature_pack.get_str_time())
     
     return redirect(url_for("login"))
+
+@app.route("/profile-panel", methods=['POST'])
+def profil_panel():
+    """
+    method to be called when posting to '/profile-panel'
+    """
+    if "username" in session:
+        usr = session.get("username")
+        operation = request.form.get("request")
+
+        if operation == "load_information":
+            rendered = render_template("profile_information.html", user=usr)
+
+            data = {
+                "result": "success",
+                "data": rendered
+            }
+
+            return json.dumps(data)
+
+        elif operation == "load_password":
+            rendered = render_template("profile_password.html")
+
+            data = {
+                "result": "success",
+                "data": rendered
+            }
+
+            return json.dumps(data)
+
+    return json.dumps({"result": "fail"})
+
+@app.route("/password", methods=['POST'])
+def password():
+    """
+    method to be called when posting to '/password'
+    """
+    if "username" in session:
+        usr = session.get("username")
+        if request.form.get("request") == "change":
+            form = request.form
+            result = handler.handle_password_change(MONGO_CLIENT, usr, form)
+
+            if result == "success":
+                session.pop("username")
+                return json.dumps({"result": result})
+
+            return json.dumps({"result": "fail"})
+    
+    return json.dumps({"result": "fail"})
 
 @app.route("/search", methods=['GET', 'POST'])
 def search():
@@ -192,7 +242,7 @@ def process_search():
 
         else:
             return json.dumps({"result": "empty"})
-    return {"result": "fail"}
+    return json.dumps({"result": "fail"})
 
 def watchdog():
     """
