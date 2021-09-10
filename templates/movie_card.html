@@ -1,0 +1,89 @@
+<div class="d-flex flex-row pt-2">
+    <!--Left Side-->
+    <div class="d-none d-md-inline-block d-flex flex-column align-items-center result-left">
+        {% set path = movie.get("m_poster")%}
+        {% if path == "no_path" %}
+            <img src="/static/data/posters/no_path.gif" class="poster">
+        {% else %}
+            <img src="/static/{{ path }}" class="poster">
+        {% endif %}
+    </div>
+    <!--Right Side-->
+    <div class="container d-flex flex-column align-items-start result-right">
+        <!--Movie Name-->
+        <h2>{{ movie.get("m_title") }}</h2>
+        <!--Rating-->
+        <div class="d-flex flex-row rating align-items-center">
+            {% set score = (movie.get("m_score") / 2) %}
+            {% set full_star = score | int %}
+            {% set empty_star = (5 - score) | int %}
+            {% set half_star = 5 - (full_star + empty_star) %}
+            {% for i in range(full_star) %}
+                <i class="fas fa-star"></i>
+            {% endfor %}
+            {% for i in range(half_star) %}
+                <i class="fas fa-star-half-alt"></i>
+            {% endfor %}
+            {% for i in range(empty_star) %}
+                <i class="far fa-star"></i>
+            {% endfor %}
+            
+            <h5 class="container-fluid pl-1">{{ score }}/5</h5>
+        </div>
+        <!--Country-->
+        <div class="d-flex flex-row pt-3 justify-content-center">
+            {% set country = movie.get("m_country") %}
+
+            {% if country == "USA" %}
+                <i class="flag flag-united-states"></i>
+
+            {% elif country == "Germany" %}
+                <i class="flag flag-germany"></i>
+
+            {% elif country == "France" %}
+                <i class="flag flag-france"></i>
+
+            {% elif country == "Soviet Union" %}
+                <i class="flag flag-russia"></i>
+
+            {% elif country == "UK" %}
+                <i class="flag flag-united-kingdom"></i>
+
+            {% elif country == "Sweden" %}
+                <i class="flag flag-sweden"></i>
+
+            {% elif country == "India" %}
+                <i class="flag flag-india"></i>
+
+            {% elif country == "Japan" %}
+                <i class="flag flag-japan"></i>
+
+            {% elif country == "Turkey" %}
+                <i class="flag flag-turkey"></i>
+            
+            {% else %}
+                <i class="flag flag-united-states"></i>
+
+            {% endif %}
+            
+            <h6>{{movie.get("m_country")}}</h6>
+        </div>
+        <!--Director-->
+        <div class="d-flex flex-row pt-3 justify-content-center">
+            <h5>Director:</h5>
+            <h5 class="container-fluid pl-1">{{ movie.get("m_director") }}</h5>
+        </div>
+        <!--Writer-->
+        <div class="d-flex flex-row pt-2 justify-content-center">
+            <h5>Writer:</h5>
+            <h5 class="container-fluid pl-1">{{ movie.get("m_writer") }}</h5>
+        </div>
+        <!--Description-->
+        <div class="d-flex flex-column pt-4 align-items-start">
+            <h5>Description:</h5>
+            <p class="h5" style="text-align: left;">
+                {{ movie.get("m_description") }}
+            </p>
+        </div>
+    </div>
+</div>

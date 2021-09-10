@@ -1,5 +1,5 @@
 /data/*.csv
-/data/posters/*.jpg
+/static/data/posters/*.jpg
 /custom_redis/redis-stable
 /custom_elastic/kibana-7.14.1
 /custom_elastic/elasticsearch-7.14.1

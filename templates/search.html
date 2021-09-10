@@ -31,70 +31,93 @@
     <div class="container-fluid">
         <div class="d-flex justify-content-center align-items-center text-center">
             <div class="d-none d-xxl-inline-block container w-25">
-
+                <!--Left -->
             </div>
-            <div class="container w-100 d-flex flex-column pt-5 pb-5 mt-5 mb-5">
+            <div class="container w-100 d-flex flex-column pt-5 pb-5 mt-5">
                 <!--Search Box-->
                 <div class="container p-4 d-flex flex-row search-box">
-                    <input class="w-100 text-box" type="text" placeholder="What are you looking to watch?">
-                    <button class="submit-button" type="submit">
+                    <input
+                        class="w-100 text-box"
+                        id="searchBox"
+                        type="text" placeholder="What are you looking to watch?">
+                    <button class="submit-button" id="searchButton" type="submit">
                         <i class="bi bi-search"></i>
                     </button>
                 </div>
                 <!--Dynamic Search Results-->
-                <div class="container w-75 p-4 mt-4 result-sheet">
-                    <!-- Example Result-->
-                    <div class="d-flex flex-row pt-2">
-                        <!--Left Side-->
-                        <div class="d-none d-md-inline-block d-flex flex-column align-items-center result-left">
-                            <img
-                                src="/static/sample_poster.jpg"
-                                class="poster"
-                            >
-                        </div>
-                        <!--Right Side-->
-                        <div class="container d-flex flex-column align-items-start result-right">
-                            <!--Movie Name-->
-                            <h2>Matrix Reloaded</h2>
-                            <!--Rating-->
-                            <div class="d-flex flex-row rating align-items-center">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star-half-alt"></i>
-                                <i class="far fa-star"></i>
-                                <h5 class="container-fluid pl-1">3.6/5</h5>
-                            </div>
-                            <!--Country-->
-                            <div class="d-flex flex-row pt-3 justify-content-center">
-                                <i class="flag flag-united-states"></i>
-                                <h6>USA</h6>
-                            </div>
-                            <!--Director-->
-                            <div class="d-flex flex-row pt-3 justify-content-center">
-                                <h5>Director:</h5>
-                                <h5 class="container-fluid pl-1">Lana Wachowski</h5>
-                            </div>
-                            <!--Writer-->
-                            <div class="d-flex flex-row pt-2 justify-content-center">
-                                <h5>Writer:</h5>
-                                <h5 class="container-fluid pl-1">Lilly Wachowski</h5>
-                            </div>
-                            <!--Description-->
-                            <div class="d-flex flex-column pt-4 align-items-start">
-                                <h5>Description:</h5>
-                                <p class="h5" style="text-align: left;">
-                                    Neo and his allies race against time before the machines discover the city of Zion and destroy it.
-                                    While seeking the truth about the Matrix, Neo must save Trinity from a dark fate within his dreams.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    
+                <div class="container w-75 p-4 mt-4 result-sheet slide-in-top" id="resultSheet" style="display: none;">
+                    <!--Result Will Display Here-->
+                    <!--See 'movie_card.html' for the layout-->
                 </div>
             </div>
             <div class="d-none d-xxl-inline-block container w-25">
 
+            </div>
+        </div>
+        <div class="container d-flex flex-row p-5 justify-content-center">
+            <!--Card One-->
+            <div class="card w-25 m-4 slide-in-bottom">
+                <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+                  <img
+                    src="/static/data/icons/search.svg"
+                    class="img-fluid p-5"
+                  />
+                </div>
+                <div class="card-body">
+                  <h3>Search</h3>
+                  <p class="h5">
+                    We use lightning-fast search engine called ElasticSearch. If you don't
+                    belive us, just give it a shot and experience the speed.
+                  </p>
+                </div>
+            </div>
+            <!--Card Two-->
+            <div class="card w-25 m-4 slide-in-bottom2">
+                <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+                  <img
+                    src="/static/data/icons/heart.svg"
+                    class="img-fluid p-5"
+                  />
+                </div>
+                <div class="card-body">
+                  <h3>Love</h3>
+                  <p class="h5">
+                    I tried my best make the database full of cool movies. If you can't find
+                    your movie here don't worry. Soon you will be able to add new movies.
+                  </p>
+                </div>
+            </div>
+            <!--Card Three-->
+            <div class="card w-25 m-4 slide-in-bottom3">
+                <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+                  <img
+                    src="/static/data/icons/bookmark.svg"
+                    class="img-fluid p-5"
+                  />
+                </div>
+                <div class="card-body">
+                  <h3>Watchlist</h3>
+                  <p class="h5">
+                    You can add any desired movie to your own watchlist. There you can organize
+                    them anyway you want. We can even send a reminder email.
+                  </p>
+                </div>
+            </div>
+            <!--Card Four-->
+            <div class="card w-25 m-4 slide-in-bottom4">
+                <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+                  <img
+                    src="/static/data/icons/refresh.svg"
+                    class="img-fluid p-5"
+                  />
+                </div>
+                <div class="card-body">
+                    <h3>Up-to-date</h3>
+                    <p class="h5">
+                        We try to add new movies as they come out. You can help us by signing up
+                        for our Editor membership. We even reward our editors &lt;3.
+                    </p>
+                </div>
             </div>
         </div>
     </div>

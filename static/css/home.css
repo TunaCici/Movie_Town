@@ -75,7 +75,7 @@ body::before {
 }
 
 .background-img {
-    background-image: url("background.png");
+    background-image: url("/static/background.png");
     background-repeat: no-repeat;
     background-size: cover;
 }

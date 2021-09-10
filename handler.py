@@ -14,6 +14,7 @@ currently used for login and sign-ups.
 # TODO: Use encryption whenever possible
 
 # global import
+import time
 import uuid
 import bcrypt
 from flask import session
@@ -72,32 +73,38 @@ def handle_login(form: dict, db: MongoHandler, session: session) -> str:
     
     return "fail"
 
+def handle_search(elastic: ElasticHandler, search_str: str) -> list:
+    result = elastic.search(search_str)
+    return result
+
 def check_integrity(
     mongo: MongoHandler,
     elastic: ElasticHandler,
     start: int, end: int) -> bool:
 
+    print(f"Looking between {start} and {end}")
     mongo_movies = mongo.get_range_of_movies(start, end)
 
+    print(f"Starting check operations.")
     for i in mongo_movies:
         result = elastic.movie_get(i.get("m_id"))
+
         if not result:
             print(f"Indexing: {i.get('m_id')}")
             elastic.movie_add(
-                i.get("m_id"),
-                i.get("m_imdb_id"),
-                i.get("m_title"),
-                i.get("m_year"),
-                i.get("m_genre"),
-                i.get("m_duration"),
-                i.get("m_country"),
-                i.get("m_director"),
-                i.get("m_writer"),
-                i.get("m_production"),
-                i.get("m_actors"),
-                i.get("m_description"),
-                i.get("m_score"),
-                i.get("m_poster")
+                i.get("m_id", "None"),
+                i.get("m_imdb_id", "None"),
+                i.get("m_title", "None"),
+                i.get("m_year", "None"),
+                i.get("m_genre", "None"),
+                i.get("m_duration", 0),
+                i.get("m_country", "None"),
+                i.get("m_director", "None"),
+                i.get("m_writer", "None"),
+                i.get("m_production", "None"),
+                i.get("m_actors", "None"),
+                i.get("m_description", "None"),
+                i.get("m_score", 0.0),
+                i.get("m_poster", "None")
             )
-    
     return True

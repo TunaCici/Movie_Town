@@ -91,7 +91,7 @@ class ElasticHandler():
                 refresh=True
             )
         except Exception as e:
-            print("An error occured operation will stop. See details:")
+            print("[ELASTIC] An error occured when adding movie. See details:")
             print(e)
             return False
         
@@ -154,7 +154,7 @@ class ElasticHandler():
         # query for searching
         search_query = {
             "_source": True,
-            "size": 15,
+            "size": 3,
             "query": {
                 "multi_match": {
                     "query": search_str,

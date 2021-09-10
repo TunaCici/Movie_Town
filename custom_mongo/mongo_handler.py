@@ -1,6 +1,7 @@
 from numpy import str_
 import pymongo
 import bcrypt
+import numpy
 import uuid
 import sys
 import pandas as pd
@@ -173,22 +174,24 @@ class MongoHandler:
             with open(config.PROJECT_DIR + "data/imdb_movies.csv") as movie_file:
                 pd_csv = pd.read_csv(movie_file, low_memory=False)
                 df = pd.DataFrame(pd_csv)
+                df = df.replace({numpy.nan: None})
+
                 for i in df.to_dict("records"):
                     movie_struct = {
-                        "m_id": i.get("id"),
-                        "m_imdb_id": i.get("imdb_title_id"),
-                        "m_title": i.get("title"),
-                        "m_year": i.get("year"),
-                        "m_genre": i.get("genre"),
-                        "m_duration": i.get("duration"),
-                        "m_country": i.get("country"),
-                        "m_director": i.get("director"),
-                        "m_writer": i.get("writer"),
-                        "m_production": i.get("production_company"),
-                        "m_actors": i.get("actors"),
-                        "m_description": i.get("description"),
-                        "m_score": i.get("avg_vote"),
-                        "m_poster": i.get("poster_path")
+                        "m_id": i.get("id", "None"),
+                        "m_imdb_id": i.get("imdb_title_id", "None"),
+                        "m_title": i.get("title", "None"),
+                        "m_year": i.get("year", "None"),
+                        "m_genre": i.get("genre", "None"),
+                        "m_duration": i.get("duration", 0),
+                        "m_country": i.get("country", "None"),
+                        "m_director": i.get("director", "None"),
+                        "m_writer": i.get("writer", "None"),
+                        "m_production": i.get("production_company", "None"),
+                        "m_actors": i.get("actors", "None"),
+                        "m_description": i.get("description", "None"),
+                        "m_score": i.get("avg_vote", 0.0),
+                        "m_poster": i.get("poster_path", "None")
                     }
                     self.movie_collection.insert_one(movie_struct)
         except Exception as e:
@@ -222,3 +225,4 @@ class MongoHandler:
 if __name__ == "__main__":
     inst = MongoHandler()
     
+    inst.init_movies()

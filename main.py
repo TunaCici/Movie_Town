@@ -22,9 +22,9 @@ also initializes connection to databases. (not sure about this yet)
 # GENERAL TIPS FOR MYSELF
 # TODO: Try to make it as fool-proof as you can
 
-from werkzeug.datastructures import UpdateDictMixin
 import handler
 
+import json
 import threading
 import time
 import datetime
@@ -69,9 +69,9 @@ except Exception as e:
     FLASK_LOGGER.log_error(f"Connection failed to ElasticSearch.\n\t{e}")  
 
 # global variables
-UPDATE_RATE = 30 # per second
+UPDATE_RATE = 10 # per second
 FIRST_RUN = True
-BATCH_SIZE = 100
+BATCH_SIZE = 1000
 MOVIE_SIZE = MONGO_CLIENT.movie_get_count()
 
 @app.route("/")
@@ -165,9 +165,34 @@ def search():
     """
     if "username" in session:
         usr = session.get("username")
+
         return render_template("search.html", user=usr)
     
     return redirect(url_for("login"))
+
+@app.route("/process-search", methods=['POST'])
+def process_search():
+    """
+    method to be called by jQuery to process search strings
+    """
+    if "username" in session:
+        search_str = request.form.get("search_str")
+        if search_str:
+            results = handler.handle_search(ELASTIC_CLIENT, search_str)
+            result_size = len(results)
+            movie_cards = [render_template("movie_card.html", movie=i) for i in results]
+
+            data = {
+                "result": "success",
+                "result_size": result_size,
+                "data": movie_cards         
+            }
+
+            return json.dumps(data)
+
+        else:
+            return json.dumps({"result": "empty"})
+    return {"result": "fail"}
 
 def watchdog():
     """
@@ -178,7 +203,7 @@ def watchdog():
     last_run = time.perf_counter()
     integrity_start_idx = 0
     integrity_end_idx = 0
-    integrity_check_reset = False
+    integrity_check_stop = True
 
     while RUNNING:
         curr_run = time.perf_counter()
@@ -191,22 +216,20 @@ def watchdog():
                 FIRST_RUN = False
 
             # obtain integrity between mongo and elastic
-            if integrity_check_reset:
+            if integrity_check_stop:
                 integrity_start_idx = 0
-                print("indexing done.")
-                exit(0)
-
-            if MOVIE_SIZE - integrity_start_idx < BATCH_SIZE:
-                integrity_end_idx = MOVIE_SIZE
-                integrity_check_reset = True
             else:
-                integrity_end_idx = integrity_start_idx + BATCH_SIZE
+                if MOVIE_SIZE - integrity_start_idx < BATCH_SIZE:
+                    integrity_end_idx = MOVIE_SIZE
+                    integrity_check_stop = True
+                else:
+                    integrity_end_idx = integrity_start_idx + BATCH_SIZE
 
-            handler.check_integrity(
-                MONGO_CLIENT, ELASTIC_CLIENT,
-                integrity_start_idx, integrity_end_idx
-            )
-            integrity_start_idx += BATCH_SIZE
+                handler.check_integrity(
+                    MONGO_CLIENT, ELASTIC_CLIENT,
+                    integrity_start_idx, integrity_end_idx
+                )
+                integrity_start_idx += BATCH_SIZE
             last_run = time.perf_counter()
 
 
