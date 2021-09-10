@@ -26,7 +26,7 @@ class CustomLogger:
         filename = os.path.basename(filename)
 
         #get the root logger
-        rootlogger = logging.getLogger()
+        rootlogger = logging.getLogger(filename)
         #set overall level to debug, default is warning for root logger
         rootlogger.setLevel(logging.DEBUG)
 
