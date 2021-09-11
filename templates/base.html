@@ -8,6 +8,7 @@
     <script src="/static/js/jquery-3.6.0.min.js"></script>
     <script src="/static/js/search.js"></script>
     <script src="/static/js/profile.js"></script>
+    <script src="/static/js/watchlist.js"></script>
     <!--End import-->
     <!--Import Bootstrap 5 CSS-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
@@ -34,10 +35,17 @@
         rel="stylesheet"
       />
     <!--End import-->
+    <!--Import Animations-->
+     <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+    <!--End import-->
     <!-- Import Custom CSS-->
     <link rel="stylesheet" href="/static/css/home.css">
     <link rel="stylesheet" href="/static/css/profile.css">
     <link rel="stylesheet" href="/static/css/search.css">
+    <link rel="stylesheet" href="/static/css/watchlist.css">
     <link rel="stylesheet" href="/static/css/flag-icon.css">
     <!-- End import-->
     <title>{% block title %}{% endblock %}</title>
@@ -75,7 +83,7 @@
                 <a class="nav-link", href="{{ url_for('search') }}">Search</a>
               </li>
               <li>
-                <a class="nav-link", href="#">About</a>
+                <a class="nav-link", href="{{ url_for('watchlist') }}">Watchlist</a>
               </li>
             </ul>
 

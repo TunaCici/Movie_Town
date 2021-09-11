@@ -15,8 +15,10 @@ currently used for login and sign-ups.
 
 # global import
 import time
+import json
 import uuid
 import bcrypt
+import datetime
 from flask import session
 
 # local import
@@ -109,6 +111,51 @@ def handle_password_change(
         return "success"
 
     return "fail"
+
+def handle_watchlist_add(
+    db: MongoHandler,
+    id: uuid.UUID,
+    movie: str) -> str:
+    curr_list = db.watchlist_get(id)
+    data = {
+        "movie": movie,
+        "data_added": str(datetime.datetime.now()),
+        "watched": "no"
+    }
+
+    curr_list.append(data)
+
+    new_list = {
+        "list": [i for i in curr_list]
+    }
+
+    db.watchlist_update(id, json.dumps(new_list))
+    return "success"
+
+def handle_watchlist_remove(
+    db: MongoHandler,
+    id: uuid.UUID,
+    movie: str) -> str:
+    curr_list = db.watchlist_get(id)
+
+    # remove the movie from the list
+    removed = False
+    for i in range(len(curr_list)):
+        print(f"looking for: {curr_list[i]}")
+        if curr_list[i].get("movie") == movie:
+            curr_list.pop(i)
+            removed = True
+            break
+
+    if not removed:
+        return "fail"
+
+    new_list = {
+        "list": [i for i in curr_list]
+    }
+    
+    db.watchlist_update(id, json.dumps(new_list))
+    return "success"
 
 def check_integrity(
     mongo: MongoHandler,

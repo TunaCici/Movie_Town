@@ -40,6 +40,15 @@
     filter: drop-shadow(0 0 0.1rem grey);
 }
 
+.movie-sheet {
+    border-top-left-radius: 4.3rem;
+    border-bottom-left-radius: 4.3rem;
+    border-top-right-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+    background-color: white;
+    filter: drop-shadow(0 0 0.1rem grey);
+}
+
 .result-left {
     min-width: 256px;
     width: 30%;
@@ -47,6 +56,8 @@
 
 .poster {
     width: 100%;
+    border-top-left-radius: 4rem;
+    border-bottom-left-radius: 4rem;
     height: auto;
 }
 
@@ -56,6 +67,10 @@
 
 .rating {
     font-size: 1rem;
+}
+
+#addToList {
+    transform: translateX(-2rem);
 }
 
 .slide-in-bottom {

@@ -1,4 +1,4 @@
-<div class="d-flex flex-row pt-2">
+<div class="d-flex flex-row mb-3 movie-sheet slide-in-bottom">
     <!--Left Side-->
     <div class="d-none d-md-inline-block d-flex flex-column align-items-center result-left">
         {% set path = movie.get("m_poster")%}
@@ -9,12 +9,19 @@
         {% endif %}
     </div>
     <!--Right Side-->
-    <div class="container d-flex flex-column align-items-start result-right">
+    <div class="container d-flex flex-column pl-2 pt-1 align-items-start result-right">
         <!--Movie Name-->
-        <h2>{{ movie.get("m_title") }}</h2>
+        <div class="d-flex flex-row w-100 justify-content-between align-items-center">
+            <h2>{{ movie.get("m_title") }}</h2>
+            
+            <input
+                type="image" src="/static/data/icons/{{ job }}.png"
+                data-title-id="{{ movie.get('m_id') }}" class="pt-1"
+                id="{{ job }}ToList{{ number }}" style="height: 3rem;"/>
+        </div>
         <!--Rating-->
         <div class="d-flex flex-row rating align-items-center">
-            {% set score = (movie.get("m_score") / 2) %}
+            {% set score = (movie.get("m_score", 0) / 2) %}
             {% set full_star = score | int %}
             {% set empty_star = (5 - score) | int %}
             {% set half_star = 5 - (full_star + empty_star) %}

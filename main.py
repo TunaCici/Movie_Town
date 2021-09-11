@@ -235,7 +235,12 @@ def process_search():
         if search_str:
             results = handler.handle_search(ELASTIC_CLIENT, search_str)
             result_size = len(results)
-            movie_cards = [render_template("movie_card.html", movie=i) for i in results]
+
+            movie_cards = []
+            for i in range(len(results)):
+                movie_cards.append(
+                    render_template("movie_card.html", movie=results[i], job="add", number=i)
+                )
 
             data = {
                 "result": "success",
@@ -247,6 +252,70 @@ def process_search():
 
         else:
             return json.dumps({"result": "empty"})
+    return json.dumps({"result": "fail"})
+
+@app.route("/watchlist", methods=['GET', 'POST'])
+def watchlist():
+    """
+    method to be called when visiting '/watchlist'
+    """
+    if "username" in session:
+        usr = session.get("username")
+        return render_template("watchlist.html", user=usr)
+
+    return redirect(url_for("home"))
+
+@app.route("/process-watchlist", methods=['POST'])
+def process_watchlist():
+    """
+    method to be called when posting to '/process-watchlist'
+    """
+    if "username" in session:
+        usr = session.get("username")
+        operation = request.form.get("request")
+
+        if operation == "add":
+            result = handler.handle_watchlist_add(
+                MONGO_CLIENT, usr.get("u_id"), request.form.get("target"))
+            if result == "success":
+                return json.dumps({"result": "success"})
+            return json.dumps({"result": "fail"})
+        elif operation == "load":
+            # get watchlist of the user
+            movie_ids = MONGO_CLIENT.watchlist_get(usr.get("u_id"))
+            if len(movie_ids) == 0:
+                return json.dumps({"result": "empty"})
+
+            # get the movies from their id
+            movies = []
+            for i in movie_ids:
+                movie = ELASTIC_CLIENT.movie_get(i.get("movie"))
+                if movie:
+                    movies.append(movie)
+
+            # render the movie cards
+            movie_cards = []
+            for i in range(len(movies)):
+                movie_cards.append(
+                    render_template("movie_card.html", movie=movies[i], job="remove", number=i)
+                )
+            
+            # send them to AJAX
+            data = {
+                "result": "success",
+                "result_size": len(movie_cards),
+                "data": movie_cards
+            }
+
+            return json.dumps(data)
+        elif operation == "remove":
+            result = handler.handle_watchlist_remove(
+                MONGO_CLIENT, usr.get("u_id"), request.form.get('target')
+            )
+            if result == "success":
+                return json.dumps({"result": "success"})
+            return json.dumps({"result": "fail"})
+    
     return json.dumps({"result": "fail"})
 
 def watchdog():

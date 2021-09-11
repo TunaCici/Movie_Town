@@ -1,8 +1,10 @@
 from numpy import str_
+import datetime
 import pymongo
 import bcrypt
 import numpy
 import uuid
+import json
 import sys
 import pandas as pd
 from pymongo import database
@@ -18,9 +20,10 @@ PORT = 27017
 DB_NAME = "movie_town"
 USER_COLLECTION_NAME = "users"
 MOVIE_COLLECTION_NAME = "movies"
+WATCHLIST_COLLECTION_NAME = "watchlist"
 
 user_struct = {
-    "u_id": str_,
+    "u_id": uuid.UUID,
     "u_name": str,
     "u_surname": str,
     "u_username": str,
@@ -46,6 +49,12 @@ movie_struct = {
     "m_poster": str
 }
 
+watchlist_struct = {
+    "u_id": uuid.UUID,
+    "u_watchlist": str,
+    "u_remindertime": datetime.datetime
+}
+
 class MongoHandler:
     is_running = False
     client: MongoClient
@@ -53,6 +62,7 @@ class MongoHandler:
     db: database.Database
     user_collection: database.Collection
     movie_collection: database.Collection
+    watchlist_collection: database.Collection
 
     def __init__(self):
         self.client = MongoClient(host=URL, port=PORT)
@@ -69,6 +79,7 @@ class MongoHandler:
         self.db = self.client[DB_NAME]
         self.user_collection = self.db[USER_COLLECTION_NAME]
         self.movie_collection = self.db[MOVIE_COLLECTION_NAME]
+        self.watchlist_collection = self.db[WATCHLIST_COLLECTION_NAME]
         print("MongoDB initialization successful.")
 
     def running(self) -> bool:
@@ -104,6 +115,7 @@ class MongoHandler:
         }
         try:
             self.user_collection.insert_one(user_struct)
+            self.watchlist_add(unique_id)
         except Exception as e:
             print("An error occured operation will stop. See details:")
             print(e)
@@ -121,7 +133,6 @@ class MongoHandler:
             print("An error occured operation will stop. See details:")
             print(e)
             return None
-
 
     def mail_exists(self, mail: str) -> bool:
         try:
@@ -182,7 +193,56 @@ class MongoHandler:
             print("An error occured operation will stop. See details:")
             print(e)
             return None
+
+    def watchlist_add(self, id: uuid.UUID):
+        watchlist_struct = {
+            "u_id": id,
+            "u_watchlist": "None",
+            "u_remindertime": datetime.datetime.now()
+        }
+        try:
+            self.watchlist_collection.insert_one(watchlist_struct)
+        except Exception as e:
+            print("An error occured operation will stop. See details:")
+            print(e)
+            return False
+
+    def watchlist_get(self, id: uuid.UUID) -> list:
+        try:
+            res = self.watchlist_collection.find_one({"u_id": id})
+            watch_list = res.get("u_watchlist", "None")
+
+            
+            if (watch_list == "None") or (watch_list is None):
+                return []
+            
+            parsed_list = json.loads(watch_list)
+            return parsed_list.get("list")
+        except Exception as e:
+            print("An error occured operation will stop. See details:")
+            print(e)
+            return None
+
+    def watchlist_update(self, id: uuid.UUID, new_list: str):
+        try:
+            self.watchlist_collection.update_one(
+                {"u_id": id},
+                {"$set": {"u_watchlist": str(new_list)}})
+        except Exception as e:
+            print("An error occured operation will stop. See details:")
+            print(e)
+            return None
     
+    def watchlist_update_reminder(self, id: uuid.UUID, date: datetime.datetime):
+        try:
+            self.watchlist_collection.update_one(
+                {"u_id": id},
+                {"$set": {"u_remindertime": date}})
+        except Exception as e:
+            print("An error occured operation will stop. See details:")
+            print(e)
+            return None
+
     def init_movies(self):
         try:
             with open(config.PROJECT_DIR + "data/imdb_movies.csv") as movie_file:

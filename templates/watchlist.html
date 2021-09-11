@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Your Watchlist
+{% endblock %}
+
+{% block navbar %}
+  <!-- signed in -->
+  {% if user %}
+    <a href="{{ url_for('profile') }}">
+      <img src="{{ user.get('u_picture') }}" alt="Profile Picture" width="60rem" height="60rem" class="d-none d-md-inline-block align-top profile-img">
+    </a>
+    <li>
+      <a class="nav-link visible-ws", href="{{ url_for('profile') }}"> {{ user.get("u_name") }}</a>
+    </li>
+    <li>
+      <a class="nav-link visible-ws" href="{{ url_for('logout') }}">Logout  </a>
+    </li>
+  <!-- no one signed in -->
+  {% else %}
+    <li>
+      <a class="nav-link", href="{{ url_for('login') }}">Login</a>
+    </li>
+    <li>
+      <a class="nav-link", href="{{ url_for('sign_up') }}">Sign up   </a>
+    </li>
+  {% endif %}
+{% endblock %}
+
+{% block main %}
+    <div class="d-flex justify-content-center align-items-center cool-font-regular">
+        <!--Left section-->
+        <div class="container w-25 "></div>
+        <!--Middle section-->
+        <div
+          class="container w-75 text-center pb-5 mt-5 mb-5 ">
+          <div class="container pt-5 pb-5 mt-5 mb-5 watchlist-sheet">
+            <!--Profile Picture-->
+            <img
+            src="{{ user.get('u_picture') }}"
+            alt="Profile Picture"
+            width="196rem" height="196rem"
+            class="profile-img push-up">
+            <!--Welcoming Text-->
+            <h2 class="push-up pt-4">{{ user.get("u_name") }}&rsquo;s</h2>
+            <h4 class="push-up">watchlist</h4>
+            <!-- Movies -->
+            <div class="p-5 push-up" id="watchlistSheet">
+            </div>
+
+          </div>
+        </div>
+        <!--Right section-->
+        <div class="container w-25 justify-content-end"></div>
+    </div>
+{% endblock %}

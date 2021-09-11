@@ -1,0 +1,9 @@
+.watchlist-sheet {
+    border-radius: 1rem;
+    background-color: white;
+    filter: drop-shadow(0 0 0.75rem grey);
+}
+
+.push-up {
+    transform: translateY(-9rem);
+}

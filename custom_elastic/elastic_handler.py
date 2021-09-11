@@ -137,7 +137,7 @@ class ElasticHandler():
             if result_size == 0:
                 return []
 
-            result = response.get("hits").get("hits")[0]
+            result = response.get("hits").get("hits")[0].get("_source")
 
             return result
         except Exception as e:

@@ -42,6 +42,74 @@ function main_entry() {
             }
         });
     }, 250));
+
+    $("#resultSheet").on("click", "#addToList0", function (e) { 
+        var title_id = $("#addToList0").data("title-id");
+        $.ajax({
+            type: "POST",
+            url: "/process-watchlist",
+            data: {
+                "request": "add",
+                "target": title_id
+            },
+            success: function (response) {
+                parsed_response = JSON.parse(response);
+                if (parsed_response.result == "success") {
+                    console.log("added to watchlist")
+                }
+                
+                else {
+                    console.log("faile to add.")
+                }
+            }
+        });
+    });
+    
+    $("#resultSheet").on("click", "#addToList1", function (e) { 
+        var title_id = $("#addToList1").data("title-id");
+        $.ajax({
+            type: "POST",
+            url: "/process-watchlist",
+            data: {
+                "request": "add",
+                "target": title_id
+            },
+            success: function (response) {
+                parsed_response = JSON.parse(response);
+
+                if (parsed_response.result == "success") {
+                    console.log("added to watchlist")
+                }
+                
+                else {
+                    console.log("faile to add.")
+                }
+            }
+        });
+    });
+
+    $("#resultSheet").on("click", "#addToList2", function (e) { 
+        var title_id = $("#addToList2").data("title-id");
+        $.ajax({
+            type: "POST",
+            url: "/process-watchlist",
+            data: {
+                "request": "add",
+                "target": title_id
+            },
+            success: function (response) {
+                parsed_response = JSON.parse(response);
+                if (parsed_response.result == "success") {
+                    console.log("added to watchlist")
+                }
+                
+                else {
+                    console.log("faile to add.")
+                }
+            }
+        });
+    });
+    
 }
 
 $(document).ready(main_entry);
