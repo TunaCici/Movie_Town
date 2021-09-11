@@ -25,7 +25,8 @@ user_struct = {
     "u_surname": str,
     "u_username": str,
     "u_mail": str,
-    "u_password": bytes
+    "u_password": bytes,
+    "u_picture": str
 }
 
 movie_struct = {
@@ -87,16 +88,19 @@ class MongoHandler:
     def user_add(
         self, name: str, surname: str,
         username: str, mail: str,
-        password: bytes ) -> bool:
+        password: bytes, picture: str ) -> bool:
 
+        # create unique id for the user
         unique_id = uuid.uuid4()
+
         user_struct = {
             "u_id": unique_id,
             "u_name": name,
             "u_surname": surname,
             "u_username": username,
             "u_mail": mail,
-            "u_password": password
+            "u_password": password,
+            "u_picture": picture
         }
         try:
             self.user_collection.insert_one(user_struct)

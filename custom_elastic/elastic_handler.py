@@ -12,6 +12,7 @@ INDEX_NAME = "movie_town"
 SEARCH_FIELDS = [
     "m_imdb_id",
     "m_title",
+    "m_year",
     "m_director",
     "m_writer",
     "m_production",
