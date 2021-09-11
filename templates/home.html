@@ -8,7 +8,7 @@
   <!-- signed in -->
   {% if user %}
     <a href="{{ url_for('profile') }}">
-      <img src="/static/sample_profil_pic.jpg" alt="Profile Picture" width="60rem" height="60rem" class="d-none d-md-inline-block align-top profile-img">
+      <img src="{{ user.get('u_picture') }}" alt="Profile Picture" width="60rem" height="60rem" class="d-none d-md-inline-block align-top profile-img">
     </a>
     <li>
       <a class="nav-link visible-ws", href="{{ url_for('profile') }}"> {{ user.get("u_name") }}</a>
@@ -37,13 +37,14 @@
   </span>
   </div>
   <!-- carousel section-->
-  <div
+  <div class="container">
+    <div
     id="carouselShowcase" 
-    class="container p-3 carousel slide"
+    class="container p-3 carousel slide "
     data-bs-interval="3000"
     data-bs-ride="carousel"
-  >
-  <!--Indicators-->
+    >
+    <!--Indicators-->
     <div class="carousel-indicators">
       <button
         class="active"
@@ -71,61 +72,57 @@
       >
       </button>
     </div>
-  <!--Images-->
+    <!--Carousel Items-->
     <div class="carousel-inner" style="border-radius: 1rem;" >
-      <div class="carousel-item active">
-        <img
-          src="/static/quentin_movies.jpeg"
-          class="d-block w-100"
-          alt="Movie One"
-        >
-        <div class="carousel-caption d-none d-md-block">
-          <h5 class="drop-shadow">Quentin Tarantino Movies</h5>
-          <p class="drop-shadow">The king of pop-culture is back! Check out his movies</p>
-        </div>
-      </div>
-      <div class="carousel-item">
-        <img
-          src="/static/lotr_trilogy.jpg"
-          class="d-block w-100"
-          alt="Movie Two"
-        >
-        <div class="carousel-caption d-none d-md-block">
-          <h5 class="drop-shadow">The Lord of The Rings Trilogy</h5>
-          <p class="drop-shadow">Explore the epic adventure in the Middle-Earth</p>
-        </div>
-      </div>
-      <div class="carousel-item">
-        <img
-          src="/static/matrix_trilogy.jpg"
-          class="d-block w-100"
-          alt="Movie Three"
-        >
-        <div class="carousel-caption d-none d-md-block">
-          <h5 class="drop-shadow">The Matrix Trilogy</h5>
-          <p class="drop-shadow">Do you think we live in a simulation? Then, check out The Matrix</p>
-        </div>
+      {% for i in movies %}
+        {% if loop.first%}
+          <!--First Item-->
+          <div class="carousel-item active">
+            <img
+              src="{{ i.get('background') }}"
+              class="d-block w-100"
+              alt="Movie One"
+            >
+            <div class="carousel-caption d-none d-md-block">
+              <h5 class="drop-shadow">{{ i.get("title") }}</h5>
+              <p class="drop-shadow">{{ i.get("description") }}</p>
+            </div>
+          </div>
+        {% else %}
+          <div class="carousel-item">
+            <img
+              src="{{ i.get('background') }}"
+              class="d-block w-100"
+              alt="Movie Two"
+            >
+            <div class="carousel-caption d-none d-md-block">
+              <h5 class="drop-shadow">{{ i.get("title") }}</h5>
+              <p class="drop-shadow">{{ i.get("description") }}</p>
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
+      <!--Buttons-->
+      <button
+        class="carousel-control-prev"
+        type="button"
+        data-bs-target="#carouselShowcase"
+        data-bs-slide="prev"
+      >
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button
+        class="carousel-control-next"
+        type="button"
+        data-bs-target="#carouselShowcase"
+        data-bs-slide="next"
+      >
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
       </div>
     </div>
-    <!--Buttons-->
-    <button
-      class="carousel-control-prev"
-      type="button"
-      data-bs-target="#carouselShowcase"
-      data-bs-slide="prev"
-    >
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Previous</span>
-    </button>
-    <button
-      class="carousel-control-next"
-      type="button"
-      data-bs-target="#carouselShowcase"
-      data-bs-slide="next"
-    >
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Next</span>
-    </button>
   </div>
   <!--Info about the search-->
   <section class="text-light p-5 text-center" style="background-color: rgba(227, 166, 230, 0.3)">

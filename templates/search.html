@@ -8,7 +8,7 @@
     <!-- signed in -->
     {% if user %}
         <a href="{{ url_for('profile') }}">
-            <img src="/static/sample_profil_pic.jpg" alt="Movie Town Logo" width="60rem" height="60rem" class="d-none d-md-inline-block align-top profile-img">
+            <img src="{{ user.get('u_picture') }}" alt="Movie Town Logo" width="60rem" height="60rem" class="d-none d-md-inline-block align-top profile-img">
         </a>
         <li>
             <a class="nav-link visible-ws", href="{{ url_for('profile') }}"> {{ user.get("u_name") }}</a>
@@ -51,12 +51,12 @@
                 </div>
             </div>
             <div class="d-none d-xxl-inline-block container w-25">
-
+              <!--Right -->
             </div>
         </div>
-        <div class="container d-flex flex-row p-5 justify-content-center">
+        <div class="container d-flex flex-column flex-lg-row p-5 justify-content-center align-items-center">
             <!--Card One-->
-            <div class="card w-25 m-4 slide-in-bottom">
+            <div class="card w-25 m-4 slide-in-bottom" style="height: 32rem;">
                 <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
                   <img
                     src="/static/data/icons/search.svg"
@@ -72,7 +72,7 @@
                 </div>
             </div>
             <!--Card Two-->
-            <div class="card w-25 m-4 slide-in-bottom2">
+            <div class="card w-25 m-4 slide-in-bottom2" style="height: 32rem;">
                 <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
                   <img
                     src="/static/data/icons/heart.svg"
@@ -88,7 +88,7 @@
                 </div>
             </div>
             <!--Card Three-->
-            <div class="card w-25 m-4 slide-in-bottom3">
+            <div class="card w-25 m-4 slide-in-bottom3" style="height: 32rem;">
                 <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
                   <img
                     src="/static/data/icons/bookmark.svg"
@@ -104,7 +104,7 @@
                 </div>
             </div>
             <!--Card Four-->
-            <div class="card w-25 m-4 slide-in-bottom4">
+            <div class="card w-25 m-4 slide-in-bottom4" style="height: 32rem;">
                 <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
                   <img
                     src="/static/data/icons/refresh.svg"

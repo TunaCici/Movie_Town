@@ -8,7 +8,7 @@
   <!-- signed in -->
   {% if user %}
     <a href="{{ url_for('profile') }}">
-      <img src="/static/sample_profil_pic.jpg" alt="Movie Town Logo" width="60rem" height="60rem" class="d-none d-md-inline-block align-top profile-img">
+      <img src="{{ user.get('u_picture') }}" alt="Movie Town Logo" width="60rem" height="60rem" class="d-none d-md-inline-block align-top profile-img">
     </a>
     <li>
       <a class="nav-link visible-ws", href="{{ url_for('profile') }}"> {{ user.get("u_name") }}</a>
@@ -41,7 +41,7 @@
                       class="container d-none d-md-inline-block w-50 d-flex flex-column justify-content-center align-items-center">
                       <!--Profile Picture Big-->
                       <img
-                        src="/static/sample_profil_pic.jpg"
+                        src="{{ user.get('u_picture') }}"
                         alt="Movie Town Logo"
                         width="196rem" height="196rem"
                         class="profile-img">
