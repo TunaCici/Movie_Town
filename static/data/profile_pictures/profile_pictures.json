@@ -1,0 +1,34 @@
+{
+    "profile_pictures": [
+        {
+            "path": "/static/data/profile_pictures/emilia_clarke.jpg"
+        },
+        {
+            "path": "/static/data/profile_pictures/emma_watson.jpg"
+        },
+        {
+            "path": "/static/data/profile_pictures/evan_rachel_wood.jpg"
+        },
+        {
+            "path": "/static/data/profile_pictures/henry_cavill.jpg"
+        },
+        {
+            "path": "/static/data/profile_pictures/keanu_reeves.jpg"
+        },
+        {
+            "path": "/static/data/profile_pictures/margot_robbie.jpg"
+        },
+        {
+            "path": "/static/data/profile_pictures/natalia_portmen.jpg"
+        },
+        {
+            "path": "/static/data/profile_pictures/quentin_tarantino.jpg"
+        },
+        {
+            "path": "/static/data/profile_pictures/samuel_jackson.jpg"
+        },
+        {
+            "path": "/static/data/profile_pictures/tom_hardy.jpg"
+        }
+    ]
+}

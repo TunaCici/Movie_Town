@@ -1,0 +1,54 @@
+{
+    "movies": [
+        {
+            "title": "Avengers: Endgame",
+            "description": "Long awaited conclusion to an epic universe.",
+            "background": "/static/data/featured_movies/backgrounds/avengers.png"
+        },
+        {
+            "title": "Blade Runner 2049",
+            "description": "Beautiful yet dangerous, dystopic cyber-world.",
+            "background": "/static/data/featured_movies/backgrounds/blade_runner.jpg"
+        },
+        {
+            "title": "Dunkirk",
+            "description": "Another breathtaking experience from Christopher Nolan.",
+            "background": "/static/data/featured_movies/backgrounds/dunkirk.jpg"
+        },
+        {
+            "title": "Harry Potter and The Deathly Hallows Pt. 1",
+            "description": "Our beloved characters on their last journey.",
+            "background": "/static/data/featured_movies/backgrounds/harry_potter.jpg"
+        },
+        {
+            "title": "Inception",
+            "description": "Mind bending masterpiece.",
+            "background": "/static/data/featured_movies/backgrounds/inception.jpg"
+        },
+        {
+            "title": "John Wick 3: Parabellum",
+            "description": "Action packed and high adrenaline movie, starring Keanu Reeves.",
+            "background": "/static/data/featured_movies/backgrounds/john_wick.jpg"
+        },
+        {
+            "title": "Mad Max: Fury Road",
+            "description": "An apocalyptic madness starring Tom Hardy.",
+            "background": "/static/data/featured_movies/backgrounds/mad_max.jpg"
+        },
+        {
+            "title": "Star Wars: The Last Jedi",
+            "description": "Everything has an end. Even the good things.",
+            "background": "/static/data/featured_movies/backgrounds/star_wars.jpg"
+        },
+        {
+            "title": "Terminator Genisys",
+            "description": "What our heroes up to this time? Starring Emilia Clarke",
+            "background": "/static/data/featured_movies/backgrounds/terminator.jpg"
+        },
+        {
+            "title": "Toy Story 2",
+            "description": "A family classic from Disney.",
+            "background": "/static/data/featured_movies/backgrounds/toy_story.jpg"
+        }
+    ]
+}
