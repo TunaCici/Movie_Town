@@ -21,12 +21,13 @@ from flask import session
 
 # local import
 import form_helper
+from utils import feature_pack
 from custom_mongo.mongo_handler import MongoHandler
 from custom_elastic.elastic_handler import ElasticHandler
 
-def handle_signup(form: dict, db: MongoHandler) -> str:
+def handle_signup(db: MongoHandler, form: dict) -> str:
     # check if register form is valid
-    result = form_helper.check_register(form)
+    result = form_helper.check_register(db, form)
 
     if result is None:
         # TODO: Register the user to the database
@@ -37,16 +38,16 @@ def handle_signup(form: dict, db: MongoHandler) -> str:
             bcrypt.gensalt()
         )
 
-        # create uuid for the user
-        unq_id = uuid.uuid4()
+        # get random profile picture
+        picture_path = feature_pack.get_profile_picture()
 
         db.user_add(
-            unq_id,
             form.get("name"),
             form.get("surname"),
             form.get("username"),
             form.get("maildAddress"),
-            pass_hashed
+            pass_hashed,
+            picture_path
         )
 
         return "success"
@@ -54,7 +55,7 @@ def handle_signup(form: dict, db: MongoHandler) -> str:
     # TODO: Inform the user about the error
     return result
 
-def handle_login(form: dict, db: MongoHandler, session: session) -> str:
+def handle_login(db: MongoHandler, form: dict, session: session) -> str:
     # TODO: Handle the login request
     username = form.get("username")
     password = form.get("passwordOne")

@@ -39,7 +39,7 @@ def check_password(passwordOne: str, passwordTwo: str) -> str:
     
     return "valid"
 
-def check_existing(username: str, mail: str, db: MongoHandler) -> bool:
+def check_existing(db: MongoHandler, username: str, mail: str) -> bool:
     if db.username_exists(username):
         print("username exists")
         return True
@@ -48,7 +48,7 @@ def check_existing(username: str, mail: str, db: MongoHandler) -> bool:
         return True
     return False
 
-def check_register(form: dict) -> str:
+def check_register(db: MongoHandler, form: dict) -> str:
     """
     checks for errors in the form from sign-up page
     args:
@@ -88,7 +88,7 @@ def check_register(form: dict) -> str:
     if accept is None:
         return "invalid_accept"
     
-    if check_existing(username, mailAddress):
+    if check_existing(db, username, mailAddress):
         return "user_exists"
 
     return None

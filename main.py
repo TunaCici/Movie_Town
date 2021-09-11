@@ -79,11 +79,16 @@ def home():
     """
     method to be called when wisiting root or '/'
     """
+
+    featured_movies = feature_pack.get_featured_movies()
+
     if "username" in session:
         usr = session.get("username")
-        return render_template("home.html", user=usr)
+        return render_template(
+            "home.html", user=usr, movies=featured_movies)
     else:
-        return render_template("home.html", user=None)
+        return render_template(
+            "home.html", user=None, movies=featured_movies)
 
 @app.route("/sign-up", methods=['GET', 'POST'])
 def sign_up():
@@ -96,11 +101,11 @@ def sign_up():
 
     elif request.method == "POST":
         form = request.form
-        result = handler.handle_signup(form)
+        result = handler.handle_signup(MONGO_CLIENT, form)
         if result:
             # TODO: Inform the user about the results
             FLASK_LOGGER.log_info("Successfuly registered.")
-            pass
+            handler.handle_login(MONGO_CLIENT, form, session)
         else:
             # TODO: Critical error. Handle this ASAP!
             FLASK_LOGGER.log_warning(f"Failed to register. ({result})")
@@ -119,7 +124,7 @@ def login():
 
     elif request.method == "POST":
         form = request.form
-        result = handler.handle_login(form, MONGO_CLIENT, session)
+        result = handler.handle_login(MONGO_CLIENT, form, session)
         if result == "success":
             # successfully logged in
             FLASK_LOGGER.log_info(
