@@ -1,4 +1,29 @@
+function animate_in(id) {
+    console.log(id)
+}
+
+function notify(message, type) {
+    if (type == "success") {
+        $("#success span").text(message);
+        $("#success").show(250);
+        setTimeout(hide_notify, 3000, [250]);
+    }
+
+    else if (type == "fail") {
+        $("#fail span").text(message);
+        $("#fail").show(250);
+        setTimeout(hide_notify, 3000, [250]);
+    }
+}
+
+function hide_notify(duration) {  
+    $("#success").hide(duration);
+    $("#fail").hide(duration);
+}
+
+
 function main_entry() {
+    hide_notify(0);
 
     $.ajax({
         // send a request for loading information panel
@@ -9,10 +34,6 @@ function main_entry() {
             parsed_response = JSON.parse(response);
             if (parsed_response.result == "success") {
                 $("#profilePanel").append(parsed_response.data);
-            }
-
-            else {
-                console.log("failed to load information panel.");
             }
         }
     });
@@ -30,10 +51,7 @@ function main_entry() {
                 parsed_response = JSON.parse(response);
                 if (parsed_response.result == "success") {
                     $("#profilePanel").append(parsed_response.data);
-                }
-
-                else {
-                    console.log("failed to load password panel.");
+                    // notify("Yeah", "success");
                 }
             }
         });

@@ -7,9 +7,9 @@
 {% block middle %}
 <div class="container w-100">
     <div class="d-flex flex-column min-vh-100 justify-content-center align-items-center">
-        <form action="{{ url_for('sign_up') }}" method="POST">
+        <form action="{{ url_for('sign_up') }}" method="POST" id="signupForm">
             <h1 class="text-center">create your account</h1>
-            <div class="form-text text-center">
+            <div class="form-text text-center" id="infoTextSignup">
                 all your information is safe on our database
             </div>
             <div class="container p-5">
@@ -74,14 +74,14 @@
                     id="accept"
                     />
                     <label class="form-check-label" for="accept">
-                    I agree to the Terms of Use.
+                        I agree to the Terms of Use.
                     </label>
                 </div>
 
                 <br>
 
                 <!-- Submit button -->
-                <button type="submit" class="btn btn-secondary btn-block text-light">Sign up</button>
+                <button type="button" class="btn btn-secondary btn-block text-light" id="submitSignup">Sign up</button>
             </div>
         </form>
     </div>

@@ -102,15 +102,25 @@ def sign_up():
     elif request.method == "POST":
         form = request.form
         result = handler.handle_signup(MONGO_CLIENT, form)
-        if result:
+        if result == "success":
             # TODO: Inform the user about the results
             FLASK_LOGGER.log_info("Successfuly registered.")
             handler.handle_login(MONGO_CLIENT, form, session)
+
+            data = {
+                "result": result
+            }
+
+            return json.dumps(data)
+
         else:
             # TODO: Critical error. Handle this ASAP!
             FLASK_LOGGER.log_warning(f"Failed to register. ({result})")
-            pass
-        return redirect(url_for("home"))
+            data = {
+                "result": result
+            }
+
+            return json.dumps(data)
     
     return render_template("sign-up.html")
 
@@ -121,6 +131,7 @@ def login():
     """
     if "username" in session:
         FLASK_LOGGER.log_warning(f"Already logged in.")
+        return redirect(url_for("home"))
 
     elif request.method == "POST":
         form = request.form
@@ -129,12 +140,19 @@ def login():
             # successfully logged in
             FLASK_LOGGER.log_info(
                 f"User: {form.get('username')} successfully logged in.")
-            return redirect(url_for("home"))
+
+            data = {
+                "result": result
+            }
+            return json.dumps(data)
         
         # login failed
         FLASK_LOGGER.log_warning(
             f"User: {form.get('username')} failed to log in. ({result})")
-        return redirect(url_for("home"))
+        data = {
+            "result": result
+        }
+        return json.dumps(data)
         
     return render_template("login.html")
 

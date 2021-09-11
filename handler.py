@@ -47,7 +47,7 @@ def handle_signup(db: MongoHandler, form: dict) -> str:
             form.get("name"),
             form.get("surname"),
             form.get("username"),
-            form.get("maildAddress"),
+            form.get("mailAddress"),
             pass_hashed,
             picture_path
         )
@@ -65,7 +65,7 @@ def handle_login(db: MongoHandler, form: dict, session: session) -> str:
     # check if user registered
     user = db.user_get(username)
     if user is None:
-        return "fail"
+        return f"could not find anyone with the username '{username}'"
         
     # check password
     valid = bcrypt.checkpw(
@@ -74,7 +74,7 @@ def handle_login(db: MongoHandler, form: dict, session: session) -> str:
         session["username"] = user
         return "success"
     
-    return "fail"
+    return "wrong password, try again"
 
 def handle_search(elastic: ElasticHandler, search_str: str) -> list:
     result = elastic.search(search_str)

@@ -7,9 +7,9 @@
 {% block middle %}
 <div class="container w-100">
     <div class="d-flex flex-column min-vh-100 justify-content-center align-items-center">
-        <form action="{{ url_for('login') }}" method="POST">
+        <form action="{{ url_for('login') }}" method="POST" id="loginForm">
             <h1 class="text-center">login to your account</h1>
-            <div class="form-text text-center">
+            <div class="form-text text-center" id="infoTextLogin">
                 you are about to experience something amazing
             </div>
             <div class="container p-5">
@@ -35,7 +35,7 @@
                 <br>
 
                 <!-- Submit button -->
-                <button type="submit" class="btn btn-secondary btn-block text-light">Sign in</button>
+                <button type="button" class="btn btn-secondary btn-block text-light" id="submitLogin">Sign in</button>
             </div>
         </form>
     </div>

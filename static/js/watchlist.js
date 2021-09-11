@@ -1,4 +1,28 @@
+function animate_in(id) {
+    console.log(id)
+}
+
+function notify(message, type) {
+    if (type == "success") {
+        $("#success span").text(message);
+        $("#success").show(250);
+        setTimeout(hide_notify, 3000, [250]);
+    }
+
+    else if (type == "fail") {
+        $("#fail span").text(message);
+        $("#fail").show(250);
+        setTimeout(hide_notify, 3000, [250]);
+    }
+}
+
+function hide_notify(duration) {  
+    $("#success").hide(duration);
+    $("#fail").hide(duration);
+}
+
 function main_entry() {
+    hide_notify(0);
 
     $.ajax({
         // send a request for loading watchlist
@@ -8,15 +32,11 @@ function main_entry() {
         success: function (response) {
             parsed_response = JSON.parse(response);
             if (parsed_response.result == "success") {
-                i$("#watchlistSheet").append(parsed_response.data);
+                $("#watchlistSheet").append(parsed_response.data);
             }
 
             else if (parsed_response.result == "empty") {
                 $("#watchlistSheet").append("<h3>your watchlist is empty</h3>");
-            }
-
-            else {
-                console.log("failed to load watchlist panel.");
             }
         }
     });
@@ -33,12 +53,12 @@ function main_entry() {
             success: function (response) {
                 parsed_response = JSON.parse(response);
                 if (parsed_response.result == "success") {
-                    console.log("removed from watchlist")
-                    location.replace(location.href)
+                    notify("removed from watchlist.", "success");
+                    location.replace(location.href);
                 }
                 
                 else {
-                    console.log("faile to remove.")
+                    notify("failed to remove.", "fail");
                 }
             }
         });
@@ -56,12 +76,12 @@ function main_entry() {
             success: function (response) {
                 parsed_response = JSON.parse(response);
                 if (parsed_response.result == "success") {
-                    console.log("removed from watchlist")
-                    location.replace(location.href)
+                    notify("removed from watchlist.", "success");
+                    location.replace(location.href);
                 }
                 
                 else {
-                    console.log("faile to remove.")
+                    notify("failed to remove.", "fail");
                 }
             }
         });
@@ -79,12 +99,12 @@ function main_entry() {
             success: function (response) {
                 parsed_response = JSON.parse(response);
                 if (parsed_response.result == "success") {
-                    console.log("removed from watchlist")
-                    location.replace(location.href)
+                    notify("removed from watchlist.", "success");
+                    location.replace(location.href);
                 }
                 
                 else {
-                    console.log("faile to remove.")
+                    notify("failed to remove.", "fail");
                 }
             }
         });

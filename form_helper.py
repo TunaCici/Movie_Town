@@ -68,27 +68,27 @@ def check_register(db: MongoHandler, form: dict) -> str:
     name = form.get("name")
     surname = form.get("surname")
     username = form.get("username")
-    mailAddress = form.get("maildAddress")
+    mailAddress = form.get("mailAddress")
     passwordOne = form.get("passwordOne")
     passwordTwo = form.get("passwordTwo")
     accept = form.get("accept")
 
     if name is None or len(name) < MIN_ALLOWED_NAME:
-        return "invalid_name"
+        return "you have entered invalid name, try something else"
     if surname is None or len(surname) < MIN_ALLOWED_SURNAME:
-        return "invalid_surname"
+        return "you have entered invalid surname, try something else"
     if username is None or len(username) < MIN_ALLOWED_USERNAME:
-        return "invalid_username"
+        return "you have entered invalid username, try something else"
     if mailAddress is None or (not validate_email(mailAddress)):
-        return "invalid_mail"
+        return "you have entered invalid mail, try something else"
     if passwordOne is None or len(passwordOne) < MIN_ALLOWED_PASSWORD:
-        return "invalid_password"
+        return "password size must be greater than 8, for security reasons"
     if passwordTwo is None or passwordTwo != passwordOne:
-        return "invalid_confirm"
-    if accept is None:
-        return "invalid_accept"
+        return "passwords do not match, check again"
+    if accept == "off":
+        return "you must accept the agreement"
     
     if check_existing(db, username, mailAddress):
-        return "user_exists"
+        return "mail or username is already in use, forgot your password?"
 
     return None

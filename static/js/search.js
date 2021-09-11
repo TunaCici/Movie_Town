@@ -1,3 +1,26 @@
+function animate_in(id) {
+    console.log(id)
+}
+
+function notify(message, type) {
+    if (type == "success") {
+        $("#success span").text(message);
+        $("#success").show(250);
+        setTimeout(hide_notify, 3000, [250]);
+    }
+
+    else if (type == "fail") {
+        $("#fail span").text(message);
+        $("#fail").show(250);
+        setTimeout(hide_notify, 3000, [250]);
+    }
+}
+
+function hide_notify(duration) {  
+    $("#success").hide(duration);
+    $("#fail").hide(duration);
+}
+
 function delay(callback, ms) {
     var timer = 0;
     return function() {
@@ -7,9 +30,11 @@ function delay(callback, ms) {
         callback.apply(context, args);
       }, ms || 0);
     };
-  }
+}
 
 function main_entry() {
+    hide_notify(0);
+
     $("#searchBox").keyup(delay(function (e) {
         $.ajax({
             type: "POST",
@@ -55,11 +80,13 @@ function main_entry() {
             success: function (response) {
                 parsed_response = JSON.parse(response);
                 if (parsed_response.result == "success") {
-                    console.log("added to watchlist")
+                    console.log("added to watchlist");
+                    notify("added to watchlist.", "success");
                 }
                 
                 else {
-                    console.log("faile to add.")
+                    console.log("faile to add.");
+                    notify("added to watchlist.", "fail");
                 }
             }
         });
@@ -78,11 +105,13 @@ function main_entry() {
                 parsed_response = JSON.parse(response);
 
                 if (parsed_response.result == "success") {
-                    console.log("added to watchlist")
+                    console.log("added to watchlist");
+                    notify("added to watchlist.", "success");
                 }
                 
                 else {
                     console.log("faile to add.")
+                    notify("added to watchlist.", "fail");
                 }
             }
         });
@@ -100,11 +129,13 @@ function main_entry() {
             success: function (response) {
                 parsed_response = JSON.parse(response);
                 if (parsed_response.result == "success") {
-                    console.log("added to watchlist")
+                    console.log("added to watchlist");
+                    notify("added to watchlist.", "success");
                 }
                 
                 else {
-                    console.log("faile to add.")
+                    console.log("faile to add.");
+                    notify("added to watchlist.", "fail");
                 }
             }
         });
