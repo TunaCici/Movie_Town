@@ -68,7 +68,7 @@ html {
     filter: drop-shadow(0 0 0.75rem grey);
 }
 
-p {
+.info-paragraph {
     text-shadow: 1px 1px 1px grey;
     padding: 1rem;
 }

@@ -86,7 +86,7 @@ function main_entry() {
                 
                 else {
                     console.log("faile to add.");
-                    notify("added to watchlist.", "fail");
+                    notify("failed to watchlist.", "fail");
                 }
             }
         });
@@ -111,7 +111,7 @@ function main_entry() {
                 
                 else {
                     console.log("faile to add.")
-                    notify("added to watchlist.", "fail");
+                    notify("failed to watchlist.", "fail");
                 }
             }
         });
@@ -135,7 +135,7 @@ function main_entry() {
                 
                 else {
                     console.log("faile to add.");
-                    notify("added to watchlist.", "fail");
+                    notify("failed to watchlist.", "fail");
                 }
             }
         });

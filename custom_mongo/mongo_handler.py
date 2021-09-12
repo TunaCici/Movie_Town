@@ -99,10 +99,11 @@ class MongoHandler:
     def user_add(
         self, name: str, surname: str,
         username: str, mail: str,
-        password: bytes, picture: str ) -> bool:
+        password: str, picture: str ) -> bool:
 
         # create unique id for the user
         unique_id = uuid.uuid4()
+        unique_id = str(unique_id)
 
         user_struct = {
             "u_id": unique_id,
@@ -145,7 +146,7 @@ class MongoHandler:
             print(e)
             return None
 
-    def user_delete(self, id: uuid.UUID):
+    def user_delete(self, id: str):
         try:
             res = self.user_collection.find_one({"u_id": id})
             if res:
@@ -155,7 +156,7 @@ class MongoHandler:
             print(e)
             return None
 
-    def user_update_name(self, id: uuid.UUID, name: str):
+    def user_update_name(self, id: str, name: str):
         try:
             self.user_collection.update_one(
                 {"u_id": id},
@@ -165,7 +166,7 @@ class MongoHandler:
             print(e)
             return None
     
-    def user_update_mail(self, id: uuid.UUID, mail: str):
+    def user_update_mail(self, id: str, mail: str):
         try:
             self.user_collection.update_one(
                 {"u_id": id},
@@ -175,7 +176,7 @@ class MongoHandler:
             print(e)
             return None
 
-    def user_update_password(self, id: uuid.UUID, password: bytes):
+    def user_update_password(self, id: str, password: str):
         try:
             self.user_collection.update_one(
                 {"u_id": id},
@@ -194,7 +195,7 @@ class MongoHandler:
             print(e)
             return None
 
-    def watchlist_add(self, id: uuid.UUID):
+    def watchlist_add(self, id: str):
         watchlist_struct = {
             "u_id": id,
             "u_watchlist": "None",
@@ -207,7 +208,7 @@ class MongoHandler:
             print(e)
             return False
 
-    def watchlist_get(self, id: uuid.UUID) -> list:
+    def watchlist_get(self, id: str) -> list:
         try:
             res = self.watchlist_collection.find_one({"u_id": id})
             watch_list = res.get("u_watchlist", "None")
@@ -223,7 +224,7 @@ class MongoHandler:
             print(e)
             return None
 
-    def watchlist_update(self, id: uuid.UUID, new_list: str):
+    def watchlist_update(self, id: str, new_list: str):
         try:
             self.watchlist_collection.update_one(
                 {"u_id": id},
@@ -233,7 +234,7 @@ class MongoHandler:
             print(e)
             return None
     
-    def watchlist_update_reminder(self, id: uuid.UUID, date: datetime.datetime):
+    def watchlist_update_reminder(self, id: str, date: datetime.datetime):
         try:
             self.watchlist_collection.update_one(
                 {"u_id": id},

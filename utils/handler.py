@@ -22,13 +22,19 @@ import datetime
 from flask import session
 
 # local import
-import form_helper
+from . import form_helper
 from utils import feature_pack
 from custom_mongo.mongo_handler import MongoHandler
 from custom_elastic.elastic_handler import ElasticHandler
 
+
+def get_user(db: MongoHandler, username: str) -> dict:
+    user = db.user_get(username)
+    return user
+
 def handle_signup(db: MongoHandler, form: dict) -> str:
     # check if register form is valid
+    print("lets go")
     result = form_helper.check_register(db, form)
 
     if result is None:
@@ -39,6 +45,8 @@ def handle_signup(db: MongoHandler, form: dict) -> str:
             bytes(form.get("passwordOne"), encoding="utf-8"),
             bcrypt.gensalt()
         )
+        
+        pass_hashed = pass_hashed.decode("utf-8")
 
         # get random profile picture
         picture_path = feature_pack.get_profile_picture()
@@ -57,7 +65,7 @@ def handle_signup(db: MongoHandler, form: dict) -> str:
     # TODO: Inform the user about the error
     return result
 
-def handle_login(db: MongoHandler, form: dict, session: session) -> str:
+def handle_login(db: MongoHandler, form: dict) -> str:
     # TODO: Handle the login request
     username = form.get("username")
     password = form.get("passwordOne")
@@ -68,10 +76,14 @@ def handle_login(db: MongoHandler, form: dict, session: session) -> str:
         return f"could not find anyone with the username '{username}'"
         
     # check password
+    encoded_pass: str = user.get("u_password")
+    encoded_pass = encoded_pass.encode("utf-8")
+
+    print("before")
     valid = bcrypt.checkpw(
-        bytes(password, encoding="utf8"), user.get("u_password"))
+        bytes(password, encoding="utf8"), encoded_pass)
+    print("after")
     if valid:
-        session["username"] = user
         return "success"
     
     return "wrong password, try again"
@@ -88,6 +100,7 @@ def handle_password_change(
     curr_pass = user.get("u_password")
     form_pass = form.get("currentPassword")
 
+    curr_pass = curr_pass.encode("utf-8")
     same = bcrypt.checkpw(bytes(form_pass, encoding="utf-8"), curr_pass)
 
     if not same:
@@ -104,9 +117,12 @@ def handle_password_change(
         return "fail"
     elif response == "valid":
         user_id = user.get("u_id")
+
         pass_hashed = bcrypt.hashpw(
             bytes(passwordOne, encoding="utf-8"),
             bcrypt.gensalt())
+        pass_hashed = pass_hashed.decode("utf-8")
+
         mongo.user_update_password(user_id, pass_hashed)
         return "success"
 

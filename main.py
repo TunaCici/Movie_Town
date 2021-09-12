@@ -22,8 +22,7 @@ also initializes connection to databases. (not sure about this yet)
 # GENERAL TIPS FOR MYSELF
 # TODO: Try to make it as fool-proof as you can
 
-import handler
-
+import uuid
 import json
 import threading
 import time
@@ -36,6 +35,11 @@ from flask import session
 from flask_session import Session
 from werkzeug.utils import redirect
 
+from pika.spec import Basic
+from pika.spec import BasicProperties
+from pika.adapters.blocking_connection import BlockingChannel
+
+from custom_rabbit import rabbit_handler
 from custom_mongo import mongo_handler
 from custom_redis import redis_handler
 from custom_elastic import elastic_handler
@@ -53,6 +57,7 @@ RUNNING = False
 REDIS_CLIENT: redis_handler.RedisHandler
 MONGO_CLIENT: mongo_handler.MongoHandler
 ELASTIC_CLIENT: elastic_handler.ElasticHandler
+RABBIT_CLIENT: rabbit_handler.RabbitHandler
 
 FLASK_LOGGER.log_info("Connecting to databases.")
 try:
@@ -66,13 +71,32 @@ except Exception as e:
 try:
     ELASTIC_CLIENT = elastic_handler.ElasticHandler()
 except Exception as e:
-    FLASK_LOGGER.log_error(f"Connection failed to ElasticSearch.\n\t{e}")  
+    FLASK_LOGGER.log_error(f"Connection failed to ElasticSearch.\n\t{e}") 
+try:
+    RABBIT_CLIENT = rabbit_handler.RabbitHandler()
+except Exception as e:
+    FLASK_LOGGER.log_error(f"Connection failed to RabbitMQ.\n\t{e}")  
 
 # global variables
 UPDATE_RATE = 10 # per second
 FIRST_RUN = True
 BATCH_SIZE = 1000
 MOVIE_SIZE = MONGO_CLIENT.movie_get_count()
+RESULT_LIST = []
+RESULT_TIMEOUT = 5 # seconds
+RESULT_CHECK_RATE = 1 # per second
+
+def get_results(id: str) -> dict:
+    passed_time = 0
+    while passed_time != RESULT_TIMEOUT:
+        time.sleep(RESULT_CHECK_RATE)
+        for i in range(len(RESULT_LIST)):
+            if RESULT_LIST[i].get("owner") == id:
+                result = RESULT_LIST[i]
+                RESULT_LIST.pop(i)
+                return result
+        passed_time += RESULT_CHECK_RATE
+    return {"result": "fail"}
 
 @app.route("/")
 def home():
@@ -101,11 +125,33 @@ def sign_up():
 
     elif request.method == "POST":
         form = request.form
-        result = handler.handle_signup(MONGO_CLIENT, form)
+        anon_id = uuid.uuid4()
+        anon_id = str(anon_id)
+        RABBIT_CLIENT.request_add(
+            anon_id, "handle_signup", json.dumps(form), "")
+        
+        # wait for the results
+        results = get_results(anon_id)
+
+        result = results.get("result")
+
         if result == "success":
             # TODO: Inform the user about the results
             FLASK_LOGGER.log_info("Successfuly registered.")
-            handler.handle_login(MONGO_CLIENT, form, session)
+
+            # get the newly created user info
+            RABBIT_CLIENT.request_add(
+                anon_id, "get_user", form.get("username"), ""
+            )
+
+            # wait for the results
+            results = get_results(anon_id)
+
+            result = results.get("result")
+
+            if result == "success":
+                user = json.loads(results.get("data"))
+                session["username"] = user
 
             data = {
                 "result": result
@@ -115,9 +161,10 @@ def sign_up():
 
         else:
             # TODO: Critical error. Handle this ASAP!
-            FLASK_LOGGER.log_warning(f"Failed to register. ({result})")
+            reason = results.get("data")
+            FLASK_LOGGER.log_warning(f"Failed to register. ({reason})")
             data = {
-                "result": result
+                "result": reason
             }
 
             return json.dumps(data)
@@ -135,8 +182,37 @@ def login():
 
     elif request.method == "POST":
         form = request.form
-        result = handler.handle_login(MONGO_CLIENT, form, session)
+
+        anon_id = uuid.uuid4()
+        anon_id = str(anon_id)
+
+        RABBIT_CLIENT.request_add(
+            anon_id, "handle_login", json.dumps(form), ""
+        )
+        
+        results = get_results(anon_id)
+
+        result = results.get("result")
+        
+        # login validated
         if result == "success":
+            RABBIT_CLIENT.request_add(
+                anon_id, "get_user", form.get("username"), ""
+            )
+
+            # wait for the results
+            results = get_results(anon_id)
+
+            result = results.get("result")
+
+            if result == "success":
+                user = json.loads(results.get("data"))
+                session["username"] = user
+
+            data = {
+                "result": result
+            }
+
             # successfully logged in
             FLASK_LOGGER.log_info(
                 f"User: {form.get('username')} successfully logged in.")
@@ -150,7 +226,7 @@ def login():
         FLASK_LOGGER.log_warning(
             f"User: {form.get('username')} failed to log in. ({result})")
         data = {
-            "result": result
+            "result": results.get("data")
         }
         return json.dumps(data)
         
@@ -221,7 +297,19 @@ def password():
         usr = session.get("username")
         if request.form.get("request") == "change":
             form = request.form
-            result = handler.handle_password_change(MONGO_CLIENT, usr, form)
+
+            data = {
+                "user": usr,
+                "form": form
+            }
+
+            RABBIT_CLIENT.request_add(
+                usr.get("u_id"), "handle_password_change", 
+                json.dumps(data), ""
+            )
+
+            results = get_results(usr.get("u_id"))
+            result = results.get("result")
 
             if result == "success":
                 session.pop("username")
@@ -249,25 +337,41 @@ def process_search():
     method to be called by jQuery to process search strings
     """
     if "username" in session:
+        usr = session.get("username")
         search_str = request.form.get("search_str")
         if search_str:
-            results = handler.handle_search(ELASTIC_CLIENT, search_str)
-            result_size = len(results)
+            RABBIT_CLIENT.request_add(
+                usr.get("u_id"), "handle_search",
+                search_str, ""
+            )
 
-            movie_cards = []
-            for i in range(len(results)):
-                movie_cards.append(
-                    render_template("movie_card.html", movie=results[i], job="add", number=i)
-                )
+            results = get_results(usr.get("u_id"))
+            result = results.get("result")
 
-            data = {
-                "result": "success",
-                "result_size": result_size,
-                "data": movie_cards         
-            }
+            if result == "success":
+                results = results.get("data")
+                if results:
+                    results = json.loads(results)
 
-            return json.dumps(data)
+                    result_size = len(results)
 
+                    movie_cards = []
+                    for i in range(len(results)):
+                        movie_cards.append(
+                            render_template("movie_card.html", movie=results[i], job="add", number=i)
+                        )
+
+                    data = {
+                        "result": "success",
+                        "result_size": result_size,
+                        "data": movie_cards         
+                    }
+
+                    return json.dumps(data)
+                else:
+                    return json.dumps({"result": "empty"})
+            else:
+                return json.dumps({"result": "empty"})
         else:
             return json.dumps({"result": "empty"})
     return json.dumps({"result": "fail"})
@@ -293,8 +397,14 @@ def process_watchlist():
         operation = request.form.get("request")
 
         if operation == "add":
-            result = handler.handle_watchlist_add(
-                MONGO_CLIENT, usr.get("u_id"), request.form.get("target"))
+            RABBIT_CLIENT.request_add(
+                usr.get("u_id"), "handle_watchlist_add",
+                request.form.get("target"), ""
+            )
+
+            results = get_results(usr.get("u_id"))
+            result = results.get("result")
+
             if result == "success":
                 return json.dumps({"result": "success"})
             return json.dumps({"result": "fail"})
@@ -327,9 +437,14 @@ def process_watchlist():
 
             return json.dumps(data)
         elif operation == "remove":
-            result = handler.handle_watchlist_remove(
-                MONGO_CLIENT, usr.get("u_id"), request.form.get('target')
+            RABBIT_CLIENT.request_add(
+                usr.get("u_id"), "handle_watchlist_remove",
+                request.form.get("target"), ""
             )
+
+            results = get_results(usr.get("u_id"))
+            result = results.get("result")
+
             if result == "success":
                 return json.dumps({"result": "success"})
             return json.dumps({"result": "fail"})
@@ -340,6 +455,7 @@ def watchdog():
     """
     monitors the website and dbs after app.run() is called.
     """
+    FLASK_LOGGER.log_info("Starting watchdog.")
     global FIRST_RUN
     time.sleep(1)
     last_run = time.perf_counter()
@@ -347,7 +463,7 @@ def watchdog():
     integrity_end_idx = 0
     integrity_check_stop = True
 
-    while RUNNING:
+    while False:
         curr_run = time.perf_counter()
         delta = curr_run - last_run
         if (1 / UPDATE_RATE) <= delta:
@@ -374,6 +490,40 @@ def watchdog():
                 integrity_start_idx += BATCH_SIZE
             last_run = time.perf_counter()
 
+def result_callback(
+    ch : BlockingChannel,
+    method : Basic.Deliver,
+    properties : BasicProperties,
+    body : bytes):
+
+    # convert bytes to dict
+    FLASK_LOGGER.log_info("Retriving result.")
+    parsed_result : dict = json.loads(body.decode("UTF-8"))
+
+    # only put results if there was no result before
+    for i in range(len(RESULT_LIST)):
+        if RESULT_LIST[i].get("owner") == parsed_result.get("owner"):
+            RESULT_LIST.pop(i)
+            break
+    
+    RESULT_LIST.append(parsed_result)
+    FLASK_LOGGER.log_info("Placed the result.")
+
+def broker():
+    # get the necessery items
+    FLASK_LOGGER.log_info("Starting result breaker.")
+    broker_client = rabbit_handler.RabbitHandler()
+    broker_channel = broker_client.get_channel()
+    broker_channel_name = broker_client.get_result_queue_name()
+    
+    # start broking result queue
+    broker_channel.basic_consume(
+        queue=broker_channel_name,
+        on_message_callback=result_callback,
+        auto_ack=True
+    )
+
+    broker_channel.start_consuming()
 
 if __name__ == "__main__":
     # check dbs
@@ -385,6 +535,9 @@ if __name__ == "__main__":
     
     if not ELASTIC_CLIENT.running():
         FLASK_LOGGER.log_error("Elastic client is not running. Aborting.")
+
+    if not RABBIT_CLIENT.running():
+        FLASK_LOGGER.log_error("Rabbit client is not running. Aborting.")
 
     FLASK_LOGGER.log_info("Successfully connected to DBs.")
 
@@ -403,12 +556,15 @@ if __name__ == "__main__":
     try:
         t_watchdog = threading.Thread(target=watchdog)
         t_watchdog.start()
+        t_broker = threading.Thread(target=broker)
+        t_broker.start()
 
         RUNNING = True
         app.run()
         RUNNING = False
 
         t_watchdog.join()
+        t_broker.join()
     except Exception as e:
         FLASK_LOGGER.log_error(f"Something went wrong. Aborting.\n\t{e}")
         exit(-1)
