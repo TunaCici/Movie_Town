@@ -1,0 +1,57 @@
+version: "3.7"
+
+services:
+  rabbit-service:
+    image: rabbitmq:3.9.7-management-alpine
+    container_name: rabbit-service
+    hostname: rabbit-service
+    environment:
+      - RABBITMQ_DEFAULT_USER=tunac
+      - RABBITMQ_DEFAULT_PASS=123456
+    ports:
+      - 5672:5672
+      - 15672:15672
+    volumes:
+      - rabbitmq-data:/var/lib/rabbitmq
+
+  mongodb-service:
+    image: mongo:latest
+    container_name: mongodb-service
+    hostname: mongodb-service
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=tunac
+      - MONGO_INITDB_ROOT_PASSWORD=123456
+    ports:
+      - 27017:27017
+    volumes:
+      - mongodb-data:/data/db
+  
+  redis-service:
+    image: redis:latest
+    container_name: redis-service
+    hostname: redis-service
+    ports:
+      - 6379:6379
+    volumes:
+        - redis-data:/redis.conf
+    command: [ "redis-server", "/redis.conf" ]
+  
+  elastic-service:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.4.0
+    container_name: elastic-service
+    hostname: elastic-service
+    environment:
+      - xpack.security.enabled=false
+      - discovery.type=single-node
+    ports:
+      - 9200:9200
+      - 9300:9300
+    volumes:
+      - elastic-data:/usr/share/elasticsearch/data
+
+volumes:
+  rabbitmq-data:
+  mongodb-data:
+  elasticsearch-data:
+  redis-data:
+  elastic-data:
