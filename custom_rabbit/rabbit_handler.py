@@ -9,11 +9,22 @@ from pika.adapters.blocking_connection import BlockingChannel
 from pika.spec import Basic
 from pika.spec import BasicProperties
 
-URL = "localhost"
+# connection and authentication info
+HOST = "localhost"
 PORT = 5672
+USERNAME = "tunac"
+PASSWORD = "123456"
+AUTH = pika.PlainCredentials(
+    USERNAME, PASSWORD, erase_on_connect=True)
+CONNECTION_PARAMS = pika.ConnectionParameters(
+    host=HOST, port=PORT, credentials=AUTH)
 
+# database releated info
 REQUEST_QUEUE_NAME = "request_queue"
 RESULT_QUEUE_NAME = "result_queue"
+
+# general info
+MAX_RECONNECT_COUNT = 30 # times
 
 request_queue_struct = {
     "operation": str,
@@ -29,24 +40,18 @@ result_queue_struct = {
 
 class RabbitHandler():
     is_running = False
-    client: BlockingConnection
-    channel: BlockingChannel
-    channel_number: int
+    client: BlockingConnection = None
+
+    channel: BlockingChannel = None
+    channel_number: int = -1
 
     def __init__(self):
-        # establish the connection
+        print("Starting a new RabbitMQ client.")
+        print(f"Host: {HOST}, Port: {PORT}")
         try:
-            self.client = BlockingConnection(
-                pika.ConnectionParameters(host=URL, port=PORT))
+            self.client = BlockingConnection(CONNECTION_PARAMS)
         except Exception as e:
-            print("An error occured operation will stop. See details:")
-            print(e)
-            return None
-        
-        # check the connection
-        if not self.client.is_open:
-            print("RabbitMQ server not available.")
-            self.is_running = False
+            print("An error occured when connecting to RabbitMQ.")
             return None
         
         # intialize channel
@@ -60,8 +65,36 @@ class RabbitHandler():
         self.is_running = True
 
     def running(self) -> bool:
-        self.is_running = self.client.is_open
-        return self.is_running
+        # check if client or channel exists
+        if self.client is None or self.channel is None:
+            print("No client or channel exists.")
+            return False
+
+        # send a heartbeat
+        try:
+            self.client.sleep(0.001)
+        except:
+            pass
+
+        # check if channel is open
+        if self.channel.is_open:
+            print("Channel is open")
+            return True
+        
+        # no active connection found
+        print("Connection dropped.")
+        i = 1
+        while i <= MAX_RECONNECT_COUNT:
+            print(f"Trying to reconnect [{i}/{MAX_RECONNECT_COUNT}]")
+            try:
+                self.client = BlockingConnection(CONNECTION_PARAMS)
+                print("Successfully reconnected.")
+                return True
+            except Exception as e:
+                i += 1
+                time.sleep(1)
+                
+        return False
 
     def get_channel_number(self) -> int:
         return self.channel_number
@@ -128,4 +161,29 @@ class RabbitHandler():
         return RESULT_QUEUE_NAME
 
 if __name__ == "__main__":
-    pass
+    print("Creating an instance of RabbitMQ handler.")
+    inst = RabbitHandler()
+
+    if not inst.running():
+        print("Failed to create an instance. Exiting.")
+        exit(-1)
+    
+    while True:
+        print("***********************")
+        print("1. Check connection")
+        print("2. Get channel no")
+        print("0. Exit")
+        print("***********************")
+        op = input('Enter operation no: ')
+        if op == "0":
+            exit(0)
+        elif op == "1":
+            if inst.running():
+                print("Connection is active.")
+            else:
+                print("Connection is inactive.")
+        elif op == "2":
+            no = inst.get_channel_number()
+            print(no)
+        else:
+            print("Invalid operation, try again.")

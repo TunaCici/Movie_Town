@@ -1,13 +1,18 @@
 import elasticsearch
 import uuid
+import time
 
-URL = "localhost"
+# connection and authentication info
+HOST = "localhost"
 PORT = 9200
+USERNAME = ""
+PASSWORD = ""
 
-AUTH_ID = "elastic"
-AUTH_PASS = "QQr9ElJyJOh0MAD27ZEH"
-
+# database releated info
 INDEX_NAME = "movie_town"
+
+# general info
+MAX_RECONNECT_COUNT = 30 # times
 
 SEARCH_FIELDS = [
     "m_imdb_id",
@@ -22,21 +27,17 @@ SEARCH_FIELDS = [
 ]
 
 class ElasticHandler():
-    
     is_running = False
     client = elasticsearch.Elasticsearch
 
     def __init__(self):
         self.client = elasticsearch.Elasticsearch(
-            hosts=URL, port=PORT,
-            http_auth=(AUTH_ID, AUTH_PASS)) 
+            hosts=HOST, port=PORT,
+            http_auth=(USERNAME, PASSWORD)) 
 
-        # check the connection
-        if self.client.ping():
-            self.is_running = True
-        else:
+        # just in case check the connection again
+        if not self.running():
             print("Elasticsearch server not available.")
-            self.is_running = False
             return None
 
         # create indices if not exists
@@ -51,8 +52,28 @@ class ElasticHandler():
         print("Elasticsearch initialization successful.")
 
     def running(self) -> bool:
-        self.is_running = self.client.ping()
-        return self.is_running
+        if self.client.ping():
+            return True
+
+        print("Connection dropped.")
+        i = 1
+        while i <= MAX_RECONNECT_COUNT:
+            print(f"Trying to reconnect [{i}/{MAX_RECONNECT_COUNT}]")
+            try:
+                self.client = elasticsearch.Elasticsearch(
+                    hosts=HOST, port=PORT,
+                    http_auth=(USERNAME, PASSWORD)) 
+                if self.client.ping():
+                    print("Successfully reconnected.")
+                    return True
+                else:
+                    i += 1
+                    time.sleep(1)
+            except Exception as e:
+                i += 1
+                time.sleep(1)
+
+        return False
 
     def get_elastic(self) -> elasticsearch.Elasticsearch:
         return self.client
@@ -188,33 +209,41 @@ class ElasticHandler():
             return False
 
 if __name__ == "__main__":
-    elastic_test = ElasticHandler()
-    print(elastic_test.running())
+    inst = ElasticHandler()
 
-    test_indexing = False
-    if test_indexing:
-        result = elastic_test.movie_add(
-            "tt00000010", "Miss Jerry",
-            "1894", "Romance",
-            "45", "USA",
-            "Alexander Black", "Alexander Black",
-            "Alexander Black Photoplays", "Blanche Bayliss, William Courtenay, Chauncey Depew",
-            "The adventures of a female reporter in the 1890s.", 5.9,
-            "no_path"
-        )
-        print(result)
-    
-    test_deleting = False
-    if test_deleting:
-        result = elastic_test.movie_delete("0ed13bd0-a9c5-4502-b568-fda56a9049e5")
-        print(result)
+    if not inst:
+        print("Failed to create an instance. Exiting.")
+        exit(-1)
 
-    test_searching = False
-    if test_searching:
-        result = elastic_test.search("jerry")
-        print(result)
-
-    test_get = False
-    if test_get:
-        result = elastic_test.movie_get("c21243c6-0ac9-467c-96bb-335cc7a2c7f0")
-        print(result)
+    while True:
+        print("***********************")
+        print("1. Check connection")
+        print("2. Check indexing")
+        print("3. Check searching")
+        print("0. Exit")
+        print("***********************")
+        op = input('Enter operation no: ')
+        if op == "0":
+            exit(0)
+        elif op == "1":
+            if inst.running():
+                print("Connection is active.")
+            else:
+                print("Connection is inactive.")
+        elif op == "2":
+            result = inst.movie_add(
+                "tt00000010", "Miss Jerry",
+                "1894", "Romance",
+                "45", "USA",
+                "Alexander Black", "Alexander Black",
+                "Alexander Black Photoplays", "Blanche Bayliss, William Courtenay, Chauncey Depew",
+                "The adventures of a female reporter in the 1890s.", 5.9,
+                "no_path"
+            )
+            print(result)
+        elif op == "3":
+            result = inst.search("jerry")
+            print(result)
+        else:
+            print("Invalid operation, try again.")
+        

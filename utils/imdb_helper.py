@@ -140,18 +140,23 @@ def init_movie_images():
 
     # list all images in data/posters folder
     curr_posters = os.listdir(config.PROJECT_DIR + "data/posters")
+
+    total_found = 0
     
     for imdb_id in df["imdb_title_id"]:
+        print(f"total_found: {total_found}")
         print(f"looking for: {imdb_id}")
         file_name = imdb_id + ".jpg"
         if file_name in curr_posters:
             print("Poster already exists.")
+            total_found += 1
         else:
             img_data = get_image(str(imdb_id))
             if img_data is not None:
                 with open(config.PROJECT_DIR + "data/posters/" + imdb_id + ".jpg", "wb") as f:
                     f.write(img_data)
                 print(f"Save {file_name}")
+                total_found += 1
 
 def drop_column(file: FileIO, columns: list):
     pd_file = pd.read_csv(file, low_memory=False)
@@ -204,10 +209,10 @@ if __name__ == "__main__":
 
     open_files()
     # TODO: Write your code here for data manipulation
-    #init_movie_images()
+    init_movie_images()
     #list_high_rated(FILE_MOVIES)
     #add_path_to_titles(FILE_MOVIES)
     #update_path_of_titles(FILE_MOVIES)
     #update_id_of_titles(FILE_MOVIES)
     #print_all(FILE_MOVIES)
-    close_files()
+    #close_files()

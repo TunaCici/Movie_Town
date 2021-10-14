@@ -1,7 +1,5 @@
-from numpy import str_
 import datetime
-import pymongo
-import bcrypt
+import time
 import numpy
 import uuid
 import json
@@ -14,13 +12,26 @@ from pymongo.errors import ConnectionFailure
 sys.path.append("..")
 from utils import config
 
-URL = "localhost"
+# connection and authentication info
+HOST = "localhost"
 PORT = 27017
+USERNAME = ""
+PASSWORD = ""
 
+if USERNAME and PASSWORD:
+    CONNECTION_STRING = f"mongodb://{USERNAME}:{PASSWORD}@{HOST}:{PORT}"
+else:
+    CONNECTION_STRING = f"mongodb://{HOST}:{PORT}"
+
+# database releated info
 DB_NAME = "movie_town"
 USER_COLLECTION_NAME = "users"
 MOVIE_COLLECTION_NAME = "movies"
 WATCHLIST_COLLECTION_NAME = "watchlist"
+
+# general info
+MAX_RECONNECT_COUNT = 30 # times
+CONNECTION_TIMEOUT = 3000 # miliseconds
 
 user_struct = {
     "u_id": uuid.UUID,
@@ -65,16 +76,21 @@ class MongoHandler:
     watchlist_collection: database.Collection
 
     def __init__(self):
-        self.client = MongoClient(host=URL, port=PORT)
+        print("Starting a new Mongo client.")
+        print(f"Host: {HOST}, Port: {PORT}")
         try:
-        # The ismaster command is cheap and does not require auth.
-            self.client.admin.command('ismaster')
-        except ConnectionFailure:
-            print("MongoDB server not available.")
-            self.is_running = False
+            self.client = MongoClient(
+                CONNECTION_STRING, serverSelectionTimeoutMS=CONNECTION_TIMEOUT)
+        except ConnectionFailure as e:
+            print(e)
+            print("Connection failed. See the above details.")
             return None
-        self.is_running = True
         
+        # just in case check the connection again
+        if not self.running():
+            print("Connection failed.")
+            return None
+
         # create database and collections
         self.db = self.client[DB_NAME]
         self.user_collection = self.db[USER_COLLECTION_NAME]
@@ -84,17 +100,32 @@ class MongoHandler:
 
     def running(self) -> bool:
         try:
-        # The ismaster command is cheap and does not require auth.
+            # The ismaster command is cheap and does not require auth.
             self.client.admin.command('ismaster')
+            return True
         except ConnectionFailure:
-            print("Server not available.")
-            self.is_running = False
-        self.is_running = True
-        
-        return self.is_running
+            print("Connection dropped.")
+            i = 1
+            while i <= MAX_RECONNECT_COUNT:
+                print(f"Trying to reconnect [{i}/{MAX_RECONNECT_COUNT}]")
+
+                try:
+                    self.client = MongoClient(
+                        CONNECTION_STRING, serverSelectionTimeoutMS=CONNECTION_TIMEOUT)
+                    self.client.admin.command('ismaster')
+                    print("Successfully reconnected.")
+                    return True
+                except ConnectionFailure:
+                    i += 1
+
+            return False
 
     def get_mongo(self) -> MongoClient:
         return self.client
+
+    def list_databases(self) -> None:
+        dbs = self.client.list_database_names()
+        print(dbs)
 
     def user_add(
         self, name: str, surname: str,
@@ -298,6 +329,28 @@ class MongoHandler:
             return None
 
 if __name__ == "__main__":
+    print("Creating an instance of Mongo handler.")
     inst = MongoHandler()
     
-    inst.init_movies()
+    if not inst:
+        print("Failed to create an instance. Exiting.")
+        exit(-1)
+    
+    while True:
+        print("***********************")
+        print("1. Check connection")
+        print("2. List all dbs")
+        print("0. Exit")
+        print("***********************")
+        op = input('Enter operation no: ')
+        if op == "0":
+            exit(0)
+        elif op == "1":
+            if inst.running():
+                print("Connection is active.")
+            else:
+                print("Connection is inactive.")
+        elif op == "2":
+            inst.list_databases()
+        else:
+            print("Invalid operation, try again.")
