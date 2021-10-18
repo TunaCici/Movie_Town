@@ -560,7 +560,7 @@ if __name__ == "__main__":
         t_broker.start()
 
         RUNNING = True
-        app.run(host='0.0.0.0', port=5000)
+        app.run()
         RUNNING = False
 
         t_watchdog.join()
