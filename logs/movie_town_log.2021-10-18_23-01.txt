@@ -1,0 +1,2 @@
+2021-10-18 23:01:46,009 [INFO] [main.py] Connecting to databases.
+2021-10-18 23:01:53,595 [INFO] [main.py] Connecting to databases.

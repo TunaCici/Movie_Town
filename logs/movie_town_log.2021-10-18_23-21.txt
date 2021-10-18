@@ -1,0 +1,18 @@
+2021-10-18 23:20:10,571 [INFO] [main.py] Connecting to databases.
+2021-10-18 23:20:10,633 [INFO] [main.py] Successfully connected to DBs.
+2021-10-18 23:20:10,633 [INFO] [main.py] Starting the helper threads
+2021-10-18 23:20:10,633 [INFO] [main.py] Starting watchdog.
+2021-10-18 23:20:10,634 [INFO] [main.py] Starting result breaker.
+2021-10-18 23:20:10,634 [INFO] [main.py] What a successful run! Goob job.
+2021-10-18 23:20:38,821 [INFO] [main.py] Connecting to databases.
+2021-10-18 23:20:38,880 [INFO] [main.py] Successfully connected to DBs.
+2021-10-18 23:20:38,881 [INFO] [main.py] Starting the helper threads
+2021-10-18 23:20:38,882 [INFO] [main.py] Starting watchdog.
+2021-10-18 23:20:38,882 [INFO] [main.py] Starting result breaker.
+2021-10-18 23:20:38,883 [INFO] [main.py] What a successful run! Goob job.
+2021-10-18 23:21:02,032 [INFO] [main.py] Connecting to databases.
+2021-10-18 23:21:02,092 [INFO] [main.py] Successfully connected to DBs.
+2021-10-18 23:21:02,092 [INFO] [main.py] Starting the helper threads
+2021-10-18 23:21:02,093 [INFO] [main.py] Starting watchdog.
+2021-10-18 23:21:02,093 [INFO] [main.py] Starting result breaker.
+2021-10-18 23:21:02,094 [INFO] [main.py] What a successful run! Goob job.

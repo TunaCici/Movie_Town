@@ -48,6 +48,14 @@ services:
       - 9300:9300
     volumes:
       - elastic-data:/usr/share/elasticsearch/data
+  
+  app:
+    build: .
+    command: python main.py
+    ports:
+      - 5000:5000
+    volumes:
+      - .:/python-flask
 
 volumes:
   rabbitmq-data:
