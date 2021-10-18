@@ -1,10 +1,17 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+**/__pycache__/
+*.py[cod]
+*.pyc
+
+# vscode stuff
+.vscode
+
+# custom
 /data/*.csv
 /static/data/posters/*.jpg
 /custom_redis/redis-stable
 /custom_elastic/kibana-7.14.1
 /custom_elastic/elasticsearch-7.14.1
 /custom_elastic/ids_and_passwords.txt
-/logs
 /data/logs
-/logs/movie_town_log.txt
-/__pycache__
