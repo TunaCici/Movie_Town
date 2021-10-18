@@ -178,15 +178,14 @@ def check_integrity(
     elastic: ElasticHandler,
     start: int, end: int) -> bool:
 
-    print(f"Looking between {start} and {end}")
     mongo_movies = mongo.get_range_of_movies(start, end)
 
     print(f"Starting check operations.")
+    total_done = 0
     for i in mongo_movies:
         result = elastic.movie_get(i.get("m_id"))
 
         if not result:
-            print(f"Indexing: {i.get('m_id')}")
             elastic.movie_add(
                 i.get("m_id", "None"),
                 i.get("m_imdb_id", "None"),
@@ -203,4 +202,10 @@ def check_integrity(
                 i.get("m_score", 0.0),
                 i.get("m_poster", "None")
             )
+
+            if total_done % 1000 == 0:
+                print(f"Total movies added: {total_done}")
+            total_done += 1
+
+    print(f"Total movies added: {total_done}")
     return True

@@ -43,8 +43,10 @@ from custom_rabbit import rabbit_handler
 from custom_mongo import mongo_handler
 from custom_redis import redis_handler
 from custom_elastic import elastic_handler
+
 from utils import logger
 from utils import feature_pack
+from utils import handler
 
 # logger
 FLASK_LOGGER = logger.CustomLogger()
@@ -461,16 +463,15 @@ def watchdog():
     last_run = time.perf_counter()
     integrity_start_idx = 0
     integrity_end_idx = 0
-    integrity_check_stop = True
+    integrity_check_stop = False
 
-    while False:
+    while True:
         curr_run = time.perf_counter()
         delta = curr_run - last_run
         if (1 / UPDATE_RATE) <= delta:
             # TODO: write the code here
             if FIRST_RUN:
                 # TODO: to be executed on the first run 
-                # redis_c.reset() # reset session data
                 FIRST_RUN = False
 
             # obtain integrity between mongo and elastic

@@ -282,7 +282,13 @@ class MongoHandler:
                 df = pd.DataFrame(pd_csv)
                 df = df.replace({numpy.nan: None})
 
+                total_movies = df.shape[0]
+                total_done = 0
+                
                 for i in df.to_dict("records"):
+                    if total_done % 1000 == 0:
+                        print(f"Movies added {total_done}/{total_movies}")
+                    
                     movie_struct = {
                         "m_id": i.get("id", "None"),
                         "m_imdb_id": i.get("imdb_title_id", "None"),
@@ -299,8 +305,10 @@ class MongoHandler:
                         "m_score": i.get("avg_vote", 0.0),
                         "m_poster": i.get("poster_path", "None")
                     }
-                    print(f"Initializing {i.get('title', 'None')}")
                     self.movie_collection.insert_one(movie_struct)
+                    total_done += 1
+    
+                print(f"Movies added {total_done}/{total_movies}")
         except Exception as e:
             print("An error occured operation will stop. See details:")
             print(e)
