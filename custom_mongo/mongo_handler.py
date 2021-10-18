@@ -15,8 +15,8 @@ from utils import config
 # connection and authentication info
 HOST = "localhost"
 PORT = 27017
-USERNAME = ""
-PASSWORD = ""
+USERNAME = "mongo"
+PASSWORD = "Eqqz6fXGyhXTpmN8"
 
 if USERNAME and PASSWORD:
     CONNECTION_STRING = f"mongodb://{USERNAME}:{PASSWORD}@{HOST}:{PORT}"

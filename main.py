@@ -527,7 +527,7 @@ def broker():
 
 if __name__ == "__main__":
     # check dbs
-    if not REDIS_CLIENT.runnig():
+    if not REDIS_CLIENT.running():
         FLASK_LOGGER.log_error("Redis client is not running. Aborting.")
 
     if not MONGO_CLIENT.running():
@@ -560,7 +560,7 @@ if __name__ == "__main__":
         t_broker.start()
 
         RUNNING = True
-        app.run()
+        app.run(host='0.0.0.0',port=5000)
         RUNNING = False
 
         t_watchdog.join()

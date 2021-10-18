@@ -6,8 +6,8 @@ services:
     container_name: rabbit-service
     hostname: rabbit-service
     environment:
-      - RABBITMQ_DEFAULT_USER=tunac
-      - RABBITMQ_DEFAULT_PASS=123456
+      - RABBITMQ_DEFAULT_USER=rabbit
+      - RABBITMQ_DEFAULT_PASS=oFbmhtLdJz5GCYt5
     ports:
       - 5672:5672
       - 15672:15672
@@ -19,8 +19,8 @@ services:
     container_name: mongodb-service
     hostname: mongodb-service
     environment:
-      - MONGO_INITDB_ROOT_USERNAME=tunac
-      - MONGO_INITDB_ROOT_PASSWORD=123456
+      - MONGO_INITDB_ROOT_USERNAME=mongo
+      - MONGO_INITDB_ROOT_PASSWORD=Eqqz6fXGyhXTpmN8
     ports:
       - 27017:27017
     volumes:
@@ -33,11 +33,11 @@ services:
     ports:
       - 6379:6379
     volumes:
-        - redis-data:/redis.conf
+      - redis-data:/redis.conf
     command: [ "redis-server", "/redis.conf" ]
   
   elastic-service:
-    image: docker.elastic.co/elasticsearch/elasticsearch:7.4.0
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.15.0
     container_name: elastic-service
     hostname: elastic-service
     environment:

@@ -12,10 +12,12 @@ from pika.spec import BasicProperties
 # connection and authentication info
 HOST = "localhost"
 PORT = 5672
-USERNAME = "tunac"
-PASSWORD = "123456"
+USERNAME = "rabbit"
+PASSWORD = "oFbmhtLdJz5GCYt5"
+
 AUTH = pika.PlainCredentials(
     USERNAME, PASSWORD, erase_on_connect=True)
+
 CONNECTION_PARAMS = pika.ConnectionParameters(
     host=HOST, port=PORT, credentials=AUTH)
 
