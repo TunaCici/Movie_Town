@@ -552,7 +552,7 @@ if __name__ == "__main__":
 
     # reset the session before start
 
-    FLASK_LOGGER.log_info("Starting")
+    FLASK_LOGGER.log_info("Starting the main Flask App")
     try:
         t_watchdog = threading.Thread(target=watchdog)
         t_watchdog.start()

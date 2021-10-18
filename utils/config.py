@@ -1,7 +1,7 @@
 import os
 
 # Project
-PROJECT_DIR = "/home/tunacici/movie_town/"
+PROJECT_DIR = "/home/tunac/movie_town/"
 
 # Logger
 LOG_FORMAT = "%(asctime)s [%(levelname)s] [%(name)s] %(message)s"

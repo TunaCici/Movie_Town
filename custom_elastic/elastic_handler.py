@@ -232,13 +232,15 @@ if __name__ == "__main__":
                 print("Connection is inactive.")
         elif op == "2":
             result = inst.movie_add(
-                "tt00000010", "Miss Jerry",
+                "this-is-a-cool-uuid",
+                "tt00000010",
+                "Miss Jerry",
                 "1894", "Romance",
                 "45", "USA",
                 "Alexander Black", "Alexander Black",
                 "Alexander Black Photoplays", "Blanche Bayliss, William Courtenay, Chauncey Depew",
                 "The adventures of a female reporter in the 1890s.", 5.9,
-                "no_path"
+                "no_path" 
             )
             print(result)
         elif op == "3":

@@ -1,0 +1,3 @@
+2021-10-18 16:19:26,137 [INFO] [main.py] Connecting to databases.
+2021-10-18 16:19:26,147 [ERROR] [main.py] Connection failed to MongoDB.
+	Authentication failed., full error: {'ok': 0.0, 'errmsg': 'Authentication failed.', 'code': 18, 'codeName': 'AuthenticationFailed'}

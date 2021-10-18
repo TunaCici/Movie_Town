@@ -299,6 +299,7 @@ class MongoHandler:
                         "m_score": i.get("avg_vote", 0.0),
                         "m_poster": i.get("poster_path", "None")
                     }
+                    print(f"Initializing {i.get('title', 'None')}")
                     self.movie_collection.insert_one(movie_struct)
         except Exception as e:
             print("An error occured operation will stop. See details:")
@@ -340,6 +341,7 @@ if __name__ == "__main__":
         print("***********************")
         print("1. Check connection")
         print("2. List all dbs")
+        print("3. Init movies")
         print("0. Exit")
         print("***********************")
         op = input('Enter operation no: ')
@@ -352,5 +354,7 @@ if __name__ == "__main__":
                 print("Connection is inactive.")
         elif op == "2":
             inst.list_databases()
+        elif op == "3":
+            inst.init_movies()
         else:
             print("Invalid operation, try again.")
