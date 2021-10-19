@@ -8,6 +8,7 @@ __pycache__/
 .vscode
 
 # custom
+/data/posters/*.jpg
 /data/*.csv
 /static/data/posters/*.jpg
 /custom_redis/redis-stable

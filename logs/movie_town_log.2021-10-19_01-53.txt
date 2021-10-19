@@ -1,0 +1,1 @@
+2021-10-19 01:53:38,825 [WARNING] [worker.py] Detecting keyboard interrupt. Exiting the program.

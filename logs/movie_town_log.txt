@@ -1,5 +1,3 @@
-2021-10-19 01:02:12,974 [INFO] [main.py] Connecting to databases.
-2021-10-19 01:02:13,037 [INFO] [main.py] Successfully connected to DBs.
-2021-10-19 01:02:13,038 [INFO] [main.py] Starting the main Flask App
-2021-10-19 01:02:13,038 [INFO] [main.py] Starting watchdog.
-2021-10-19 01:02:13,039 [INFO] [main.py] Starting result breaker.
+2021-10-19 21:03:20,989 [INFO] [imdb_helper.py] Started main function.
+2021-10-19 21:03:20,994 [INFO] [imdb_helper.py] Opening files...
+2021-10-19 21:03:21,099 [INFO] [imdb_helper.py] Files opened.

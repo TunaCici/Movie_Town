@@ -1,0 +1,47 @@
+2021-10-19 01:52:19,115 [INFO] [worker.py] Retriving new requst from user
+2021-10-19 01:52:19,127 [INFO] [worker.py] Request made by: abe74888-8a4d-4a6c-9af0-79dc578b043c
+2021-10-19 01:52:19,128 [INFO] [worker.py] Changing password.
+2021-10-19 01:52:19,671 [INFO] [worker.py] Successfully changed the password.
+2021-10-19 01:52:32,483 [INFO] [worker.py] Retriving new requst from user
+2021-10-19 01:52:32,484 [INFO] [worker.py] Request made by: 1a776048-4661-43fd-8e86-cf81577dff88
+2021-10-19 01:52:32,484 [INFO] [worker.py] Validating login form.
+2021-10-19 01:52:32,764 [INFO] [worker.py] Validation login form successful.
+2021-10-19 01:52:33,483 [INFO] [worker.py] Retriving new requst from user
+2021-10-19 01:52:33,484 [INFO] [worker.py] Request made by: 1a776048-4661-43fd-8e86-cf81577dff88
+2021-10-19 01:52:33,485 [INFO] [worker.py] Getting user.
+2021-10-19 01:52:33,488 [INFO] [worker.py] Successfully got the user.
+2021-10-19 01:52:39,944 [INFO] [worker.py] Retriving new requst from user
+2021-10-19 01:52:39,945 [INFO] [worker.py] Request made by: abe74888-8a4d-4a6c-9af0-79dc578b043c
+2021-10-19 01:52:39,945 [INFO] [worker.py] Searching through ElasticSearch.
+2021-10-19 01:52:39,946 [INFO] [worker.py] Keyword: o
+2021-10-19 01:52:39,996 [INFO] [worker.py] Searching successful Found '3' results.
+2021-10-19 01:52:42,526 [INFO] [worker.py] Retriving new requst from user
+2021-10-19 01:52:42,527 [INFO] [worker.py] Request made by: abe74888-8a4d-4a6c-9af0-79dc578b043c
+2021-10-19 01:52:42,527 [INFO] [worker.py] Searching through ElasticSearch.
+2021-10-19 01:52:42,528 [INFO] [worker.py] Keyword: john wick
+2021-10-19 01:52:42,574 [INFO] [worker.py] Searching successful Found '3' results.
+2021-10-19 01:52:51,258 [INFO] [worker.py] Retriving new requst from user
+2021-10-19 01:52:51,259 [INFO] [worker.py] Request made by: abe74888-8a4d-4a6c-9af0-79dc578b043c
+2021-10-19 01:52:51,259 [INFO] [worker.py] Searching through ElasticSearch.
+2021-10-19 01:52:51,260 [INFO] [worker.py] Keyword: toy story
+2021-10-19 01:52:51,274 [INFO] [worker.py] Searching successful Found '3' results.
+2021-10-19 01:52:54,164 [INFO] [worker.py] Retriving new requst from user
+2021-10-19 01:52:54,165 [INFO] [worker.py] Request made by: abe74888-8a4d-4a6c-9af0-79dc578b043c
+2021-10-19 01:52:54,166 [INFO] [worker.py] Adding movie to the watchlist.
+2021-10-19 01:52:54,166 [INFO] [worker.py] Movies is: db365b16-d673-4d45-8f1a-f9d07ef27191
+2021-10-19 01:52:54,171 [INFO] [worker.py] Successfully added movie to the watchlist.
+2021-10-19 01:52:56,516 [INFO] [worker.py] Retriving new requst from user
+2021-10-19 01:52:56,517 [INFO] [worker.py] Request made by: abe74888-8a4d-4a6c-9af0-79dc578b043c
+2021-10-19 01:52:56,517 [INFO] [worker.py] Adding movie to the watchlist.
+2021-10-19 01:52:56,518 [INFO] [worker.py] Movies is: e4a1cbd5-ef9f-4062-b050-1f890c068dc4
+2021-10-19 01:52:56,523 [INFO] [worker.py] Successfully added movie to the watchlist.
+2021-10-19 01:53:02,129 [INFO] [worker.py] Retriving new requst from user
+2021-10-19 01:53:02,130 [INFO] [worker.py] Request made by: abe74888-8a4d-4a6c-9af0-79dc578b043c
+2021-10-19 01:53:02,130 [INFO] [worker.py] Removing movie from the watchlist.
+2021-10-19 01:53:02,131 [INFO] [worker.py] Movies is: e4a1cbd5-ef9f-4062-b050-1f890c068dc4
+2021-10-19 01:53:02,136 [INFO] [worker.py] Successfully removed the movie to the watchlist.
+2021-10-19 01:53:06,240 [INFO] [worker.py] Retriving new requst from user
+2021-10-19 01:53:06,240 [INFO] [worker.py] Request made by: abe74888-8a4d-4a6c-9af0-79dc578b043c
+2021-10-19 01:53:06,241 [INFO] [worker.py] Removing movie from the watchlist.
+2021-10-19 01:53:06,241 [INFO] [worker.py] Movies is: db365b16-d673-4d45-8f1a-f9d07ef27191
+2021-10-19 01:53:06,246 [INFO] [worker.py] Successfully removed the movie to the watchlist.

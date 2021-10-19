@@ -1,0 +1,5 @@
+2021-10-19 01:49:57,768 [INFO] [main.py] Connecting to databases.
+2021-10-19 01:49:57,864 [INFO] [main.py] Successfully connected to DBs.
+2021-10-19 01:49:57,865 [INFO] [main.py] Starting the main Flask App
+2021-10-19 01:49:57,866 [INFO] [main.py] Starting watchdog.
+2021-10-19 01:49:57,866 [INFO] [main.py] Starting result breaker.

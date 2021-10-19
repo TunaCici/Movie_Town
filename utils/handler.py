@@ -180,7 +180,7 @@ def check_integrity(
 
     mongo_movies = mongo.get_range_of_movies(start, end)
 
-    print(f"Starting check operations.")
+    print(f"Checking integrity.")
     total_done = 0
     for i in mongo_movies:
         result = elastic.movie_get(i.get("m_id"))
