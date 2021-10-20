@@ -15,7 +15,7 @@ if __name__ == "__main__":
         exit(-1)
 
     print("Adding movies to MongoDB.")
-    # mongo_inst.init_movies()
+    mongo_inst.init_movies()
     print("Added movies to MongoDB.")
 
     print("Adding movies to ElasticSearch.")

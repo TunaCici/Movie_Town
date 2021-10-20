@@ -67,7 +67,7 @@ STEP 5 - Download the necessary python libraries.
     iii. Required python libraries are now installed.
 STEP 6 - Initialize the docker containers
     i. Navigate to the project folder and type the following.
-        docker-compose up -d
+        sudo docker-compose up -d
     ii. Wait for the operation to end.
     iii. Docker containers for the MongoDB, ElasticSearch, Redis and Rabbitmq is installed.
 STEP 7 - Initialize the databases.
