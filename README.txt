@@ -28,8 +28,8 @@ Quick notes before starting this tutorial
 Prerequisites
 ---------------------------------------------------------------------------
 STEP 1 - Installing conda to your system.
-    i. Go to Anaconda3's official website and download Miniconda 3 for Linux 64 bit
-        Website: https://conda.io/miniconda.html
+    i. Run the below command to get the latest conda from the Anaconda's officel website
+        wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
     ii. Open the downloadad file with bash
         sudo bash ./Miniconda3-latest-Linux-x86_64.sh
     iii. Follow the instructions to install Miniconda3.
