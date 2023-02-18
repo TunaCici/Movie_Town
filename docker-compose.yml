@@ -52,6 +52,5 @@ services:
 volumes:
   rabbitmq-data:
   mongodb-data:
-  elasticsearch-data:
   redis-data:
   elastic-data:
