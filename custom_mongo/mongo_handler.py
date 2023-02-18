@@ -31,7 +31,7 @@ WATCHLIST_COLLECTION_NAME = "watchlist"
 
 # general info
 MAX_RECONNECT_COUNT = 30 # times
-CONNECTION_TIMEOUT = 3000 # miliseconds
+CONNECTION_TIMEOUT = 1000 # miliseconds
 
 user_struct = {
     "u_id": uuid.UUID,

@@ -1,7 +1,6 @@
-2021-10-19 21:03:20,989 [INFO] [imdb_helper.py] Started main function.
-2021-10-19 21:03:20,994 [INFO] [imdb_helper.py] Opening files...
-2021-10-19 21:03:21,099 [INFO] [imdb_helper.py] Files opened.
-2021-10-19 21:03:22,426 [INFO] [imdb_helper.py] Closing files...
-2021-10-19 21:03:22,428 [INFO] [imdb_helper.py] Files closed.
-2021-10-19 21:03:22,429 [INFO] [imdb_helper.py] Opening files...
-2021-10-19 21:03:22,433 [INFO] [imdb_helper.py] Files opened.
+2023-02-18 21:46:33,658 [INFO] [main.py] Retriving result.
+2023-02-18 21:46:33,690 [INFO] [main.py] Placed the result.
+2023-02-18 21:46:45,550 [INFO] [main.py] Retriving result.
+2023-02-18 21:46:45,557 [INFO] [main.py] Placed the result.
+2023-02-18 21:46:48,474 [INFO] [main.py] Retriving result.
+2023-02-18 21:46:48,481 [INFO] [main.py] Placed the result.

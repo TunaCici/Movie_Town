@@ -4,7 +4,10 @@ __pycache__/
 *.py[cod]
 *.pyc
 
-# vscode stuff
+# Pyhthon environment
+.venv
+
+# VSCode stuff
 .vscode
 
 # custom
@@ -16,3 +19,5 @@ __pycache__/
 /custom_elastic/elasticsearch-7.14.1
 /custom_elastic/ids_and_passwords.txt
 /data/logs
+/logs
+*DS_Store

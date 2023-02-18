@@ -19,7 +19,7 @@ AUTH = pika.PlainCredentials(
     USERNAME, PASSWORD, erase_on_connect=True)
 
 CONNECTION_PARAMS = pika.ConnectionParameters(
-    host=HOST, port=PORT, credentials=AUTH)
+    host=HOST, port=PORT, credentials=AUTH, heartbeat=0)
 
 # database releated info
 REQUEST_QUEUE_NAME = "request_queue"

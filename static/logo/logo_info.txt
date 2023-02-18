@@ -1,7 +1,7 @@
 
-            Fonts used: CallunaSans-Italic 
+Fonts used: CallunaSans-Italic 
 
-            Colors used: E2E2E2,171717  
+Colors used: E2E2E2,171717  
 
-            Icon url: https://thenounproject.com/term/movie/562297  
+Icon url: https://thenounproject.com/term/movie/562297  
         
